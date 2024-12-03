@@ -4,93 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KelasSore.com</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f7f7f7;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 10%;
-            background-color: #ffffff;
-            border-bottom: 1px solid #ddd;
-        }
-        header .logo img {
-            max-height: 50px; /* Atur sesuai ukuran logo */
-        }
-        header .buttons {
-            display: flex;
-            gap: 10px;
-        }
-        header .buttons a {
-            text-decoration: none;
-            padding: 10px 15px;
-            border-radius: 50px; 
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        header .buttons .join {
-            background-color: #001A45;
-            color: #fff;
-        }
-        header .buttons .login {
-            background-color: #fff;
-            border: 2px solid #001A45;
-            color: #001A45;
-        }
-        header .buttons a:hover {
-            opacity: 0.8;
-        }
-        nav {
-            background-color: #ffffff;
-            padding: 10px 10%;
-            border-bottom: 1px solid #ddd;
-            display: flex;
-            justify-content: space-between;
-        }
-        nav a {
-            margin: 0 10px;
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-        }
-        .hero {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 50px 10%;
-        }
-        
-        .hero .text {
-            max-width: 50%;
-        }
-        .hero .text h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-        .hero .text p {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            color: #555;
-        }
-        .hero .text .buttons a {
-            margin: 0 10px;
-        }
-        .hero .images {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            align-items: center;
-        }
-        .hero .images img {
-            width: 100%;
-            border-radius: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/home/header.css">
+    <link rel="stylesheet" href="assets/css/home/content.css">
 </head>
 <body>
 
@@ -123,7 +38,6 @@
         <a href="#" style="background-color: #333; color: #fff; padding: 10px 20px; border-radius: 50px;">Start Your Certification</a>
         <a href="#" style="text-decoration: underline; color: #333;">Browse All Courses</a>
     </div>
-
     </div>
     <div class="images">
         <img src="image1.jpg" alt="Example 1">
@@ -134,6 +48,8 @@
         <img src="image6.jpg" alt="Example 6">
     </div>
 </section>
+
+<?php include('content.php'); ?>
 
 </body>
 </html>
