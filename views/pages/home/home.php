@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KelasSore.com</title>
-    <link rel="stylesheet" href="assets/css/home/header.css">
+    <link rel="stylesheet" href="assets/css/home/home.css">
     <link rel="stylesheet" href="assets/css/home/content.css">
+    <link rel="stylesheet" href="assets/css/home/ourcourses.css">
+    <link rel="stylesheet" href="assets/css/home/animation.css">
 </head>
 <body>
 
-<header>
+<header class="fade-in">
     <div class="logo">
         <img src="assets/images/logo.svg" alt="KelasSore Logo">
     </div>
@@ -19,23 +21,23 @@
     </div>
 </header>
 
-<nav>
-    <a href="#">Technology & Software</a>
-    <a href="#">Partner Kami</a>
-    <a href="#">Kategori Kursus</a>
-    <a href="#">Health & Wellness</a>
-    <a href="#">Language Learning</a>
+<nav class="fade-in">
+    <a href="#" class="stagger-delay-1">Technology & Software</a>
+    <a href="#" class="stagger-delay-2">Partner Kami</a>
+    <a href="#" class="stagger-delay-3">Kategori Kursus</a>
+    <a href="#" class="stagger-delay-4">Health & Wellness</a>
+    <a href="#" class="stagger-delay-5">Language Learning</a>
     <a href="#">See All Categories</a>
 </nav>
 
 <section class="hero">
-    <div class="text">
+    <div class="text slide-in-left">
         <h1><span class="highlight">Boost Your Career</span> with Industry-Recognized Skills</h1>
         <p>
             Flexible, affordable courses designed to help you achieve your goals, whether you're at home, on the go, or anywhere in between.
         </p>
         
-        <div class="avatar-stack">
+        <div class="avatar-stack fade-up">
             <div class="avatars">
                 <img src="assets/images/homecontent.svg" alt="User 1">
                 <img src="assets/images/logo.svg" alt="User 2">
@@ -47,12 +49,12 @@
             <span class="join-text">Join with us</span>
         </div>
 
-        <div class="buttons">
+        <div class="buttons fade-up">
             <a href="#" style="background-color: #001A45; color: #fff; padding: 10px 20px; border-radius: 50px;">Start Your Certification</a>
             <a href="#" style="background-color: #001A45; color: #fff; padding: 10px 20px; border-radius: 50px;">Browse All Courses</a>
         </div>
     </div>
-    <div class="images">
+    <div class="images slide-in-right">
         <img src="image1.jpg" alt="Example 1">
         <img src="image2.jpg" alt="Example 2">
         <img src="image3.jpg" alt="Example 3">
@@ -63,6 +65,8 @@
 </section>
 
 <?php include('content.php'); ?>
+<?php include('ourcourses.php'); ?>
 
+<script src="assets/js/animation.js"></script>
 </body>
 </html>
