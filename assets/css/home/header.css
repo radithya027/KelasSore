@@ -4,6 +4,7 @@ body {
     padding: 0;
     background-color: #f7f7f7;
 }
+
 header {
     display: flex;
     justify-content: space-between;
@@ -12,13 +13,16 @@ header {
     background-color: #ffffff;
     border-bottom: 1px solid #ddd;
 }
+
 header .logo img {
-    max-height: 50px; /* Atur sesuai ukuran logo */
+    max-height: 50px;
 }
+
 header .buttons {
     display: flex;
     gap: 10px;
 }
+
 header .buttons a {
     text-decoration: none;
     padding: 10px 15px;
@@ -26,18 +30,22 @@ header .buttons a {
     font-weight: 600;
     transition: all 0.3s ease;
 }
+
 header .buttons .join {
     background-color: #001A45;
     color: #fff;
 }
+
 header .buttons .login {
     background-color: #fff;
     border: 2px solid #001A45;
     color: #001A45;
 }
+
 header .buttons a:hover {
     opacity: 0.8;
 }
+
 nav {
     background-color: #ffffff;
     padding: 10px 10%;
@@ -45,12 +53,14 @@ nav {
     display: flex;
     justify-content: space-between;
 }
+
 nav a {
     margin: 0 10px;
     text-decoration: none;
     color: #333;
     font-weight: 500;
 }
+
 .hero {
     display: flex;
     justify-content: space-between;
@@ -61,25 +71,84 @@ nav a {
 .hero .text {
     max-width: 50%;
 }
+
 .hero .text h1 {
     font-size: 3rem;
     margin-bottom: 20px;
+    
 }
+
 .hero .text p {
     font-size: 1.2rem;
+    
     margin-bottom: 20px;
     color: #555;
 }
+
+.hero .text .buttons {
+    margin-top: 30px;
+}
+
 .hero .text .buttons a {
+    text-decoration: none; 
     margin: 0 10px;
 }
+
+
 .hero .images {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     align-items: center;
 }
+
 .hero .images img {
     width: 100%;
     border-radius: 10px;
+}
+
+.highlight {
+    color: #443EDE;
+}
+
+/* Avatar Stack Styles */
+.avatar-stack {
+    margin: 30px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatars {
+    display: flex;
+    align-items: center;
+}
+
+.avatars img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    object-fit: cover;
+    margin-right: -10px;
+}
+
+.avatar-count {
+    background: #443EDE;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    border: 2px solid #fff;
+}
+
+.join-text {
+    color: #555;
+    font-size: 14px;
+    font-weight: 500;
 }

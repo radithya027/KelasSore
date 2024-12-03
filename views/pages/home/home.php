@@ -30,14 +30,27 @@
 
 <section class="hero">
     <div class="text">
-        <h1>Boost Your Career with Industry-Recognized Skills</h1>
+        <h1><span class="highlight">Boost Your Career</span> with Industry-Recognized Skills</h1>
         <p>
             Flexible, affordable courses designed to help you achieve your goals, whether you're at home, on the go, or anywhere in between.
         </p>
-    <div class="buttons">
-        <a href="#" style="background-color: #333; color: #fff; padding: 10px 20px; border-radius: 50px;">Start Your Certification</a>
-        <a href="#" style="text-decoration: underline; color: #333;">Browse All Courses</a>
-    </div>
+        
+        <div class="avatar-stack">
+            <div class="avatars">
+                <img src="assets/images/homecontent.svg" alt="User 1">
+                <img src="assets/images/logo.svg" alt="User 2">
+                <img src="assets/images/logo.svg" alt="User 3">
+                <img src="assets/images/homecontent.svg" alt="User 4">
+                <img src="assets/images/logo.svg" alt="User 5">
+                <span class="avatar-count">+20k</span>
+            </div>
+            <span class="join-text">Join with us</span>
+        </div>
+
+        <div class="buttons">
+            <a href="#" style="background-color: #001A45; color: #fff; padding: 10px 20px; border-radius: 50px;">Start Your Certification</a>
+            <a href="#" style="background-color: #001A45; color: #fff; padding: 10px 20px; border-radius: 50px;">Browse All Courses</a>
+        </div>
     </div>
     <div class="images">
         <img src="image1.jpg" alt="Example 1">
