@@ -1,0 +1,142 @@
+body {
+    font-family: 'Manrope', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fc;
+    color: #333;
+}
+.navbar {
+    background-color: #fff;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.navbar a {
+    text-decoration: none;
+    color: #000;
+    margin: 0 10px;
+}
+.container {
+    max-width: 1400px;
+    margin: 2rem auto;
+    margin: 2rem auto;
+    padding: 1rem 1rem 1rem 2rem;
+    background: #F1F4FF;
+    border-radius: 32px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.course-header h1 {
+    font-size: 30px;
+    padding-left: 20px;
+
+
+}
+.course-content {
+    display: flex;
+    justify-content: space-between;
+}
+.course-details {
+    max-width: 600px;
+    padding-left: 20px;
+}
+.course-image img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-top: -50px; /* Menyesuaikan posisi gambar lebih tinggi */
+}
+
+.buy-now {
+    background-color: #001A45;
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border-radius: 24px;
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 16px;
+}
+.course-rating-enrollment {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.price {
+    font-size: 24px; /* Atur ukuran font lebih besar */
+    font-weight: bold; /* Buat teks lebih tebal */
+    color: #333; /* Warna teks */
+}
+
+
+
+h1 {
+    font-family: 'Manrope', sans-serif; /* Gunakan font Manrope */
+    font-weight: 700; /* Bold */
+    color: #333; /* Warna teks */
+    font-size: 30px; /* Ukuran font */
+    line-height: 1.5; /* Jarak antar baris */
+    margin-bottom: 1rem; /* Jarak bawah */
+}
+
+
+.rating {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 10rem; 
+}
+
+.rating span {
+    margin-left: 0.5rem;
+    color: #ffb400; /* Warna bintang */
+}
+
+.enrolled {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.avatars {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.avatars img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    position: relative;
+    z-index: 1;
+    margin-left: -10px; /* Tumpukan avatar */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.avatars img:first-child {
+    margin-left: 0; /* Avatar pertama tidak perlu overlap */
+}
+
+.enrolled span {
+    font-size: 14px;
+    color: #666;
+}
+
+h1 {
+    font-weight: 700; /* Bold */
+}
+
+p {
+    font-weight: 400; /* Normal */
+}
+
+span {
+    font-weight: 500; /* Medium */
+}
+
+
+
