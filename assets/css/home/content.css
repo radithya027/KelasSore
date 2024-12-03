@@ -1,0 +1,84 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    gap: 2%; 
+    padding: 0 5%; 
+    width: 100%; 
+    box-sizing: border-box; 
+}
+
+.benefits {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #f9f9f9;
+    gap: 4%;
+    flex: 1;
+    padding-left: 5%;
+}
+
+.benefit-item {
+    padding: 10px;
+    box-shadow: none;
+    flex: 0 0 90%;
+}
+
+.benefit-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.benefit-item p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.divider {
+    height: 1px;
+    background-color: #585858;
+    margin: 10px 0;
+}
+
+.benefitwithus {
+    flex: 0 0 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px; 
+    box-sizing: border-box;
+    background-color: transparent;
+    align-self: flex-start;
+    height: 100%; /* Ensures full height for alignment */
+}
+
+.cta {
+    padding: 0; 
+    text-align: center; /* Center the content within the CTA */
+}
+
+.cta h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.cta p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.start-learn-btn {
+    background-color: #0056b3;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.start-learn-btn:hover {
+    background-color: #004085;
+}
