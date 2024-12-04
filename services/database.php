@@ -2,14 +2,12 @@
 $hostname = "localhost";
 $username = "root";
 $password = "";
-$dbname = "";
+$dbname = "database_maker";
 
+// Membuat koneksi menggunakan mysqli (Object-Oriented)
+$conn = mysqli_connect($hostname, $username, $password, $dbname);
 
-$db = mysqli_connect($hostname, $username, $password, $dbname);
-
-if ($db->connect_error) {
-    echo "Connection failed: " . $db->connect_error;
-    die("Connection failed: " . $db->connect_error);
+// Cek apakah koneksi berhasil
+if (!$conn) {
+    die("Koneksi gagal: " . mysqli_connect_error());
 }
-
-?>
