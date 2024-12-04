@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="assets/css/home/home.css">
     <link rel="stylesheet" href="assets/css/home/content.css">
     <link rel="stylesheet" href="assets/css/home/ourcourses.css">
+    <link rel="stylesheet" href="assets/css/home/privatecourses.css">
+    <link rel="stylesheet" href="assets/css/home/publiccourses.css">
+    <link rel="stylesheet" href="assets/css/home/partner.css">
+    <link rel="stylesheet" href="assets/css/home/feedback.css">
     <link rel="stylesheet" href="assets/css/home/animation.css">
 </head>
 <body>
@@ -66,7 +70,17 @@
 
 <?php include('content.php'); ?>
 <?php include('ourcourses.php'); ?>
+<?php include('privatecourses.php'); ?>
+<?php include('publiccourses.php'); ?>
+<?php include('partner.php'); ?>
+<?php include('feedback.php'); ?>
+
+
 
 <script src="assets/js/animation.js"></script>
+<script src="assets/js/privateslide.js"></script>
+<script src="assets/js/publicslide.js"></script>
+<script src="assets/js/partnerslide.js"></script>
+
 </body>
 </html>
