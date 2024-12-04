@@ -1,0 +1,58 @@
+.partner {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    padding: 20px; 
+    background-color: #f9f9f9;
+}
+
+.partner-header {
+    margin-top: 10px;
+    text-align: center; 
+    position: relative; 
+}
+
+.partner-title {
+    font-size: 28px; 
+    font-weight: bold; 
+    color: #333;
+}
+
+.partner-container {
+    display: flex;
+    overflow: hidden; 
+    justify-content: center; 
+    width: 100%; 
+    padding: 20px;
+}
+
+.partner-cards-wrapper {
+    display: flex;
+    transition: transform 0.5s ease;
+    gap: 15px;
+    justify-content: center; 
+    align-items: center; 
+}
+
+.partner-card {
+    width: 150px;
+    height: 150px;
+    background-color: white;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden; 
+    flex-shrink: 0; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.partner-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.partner-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}

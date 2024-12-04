@@ -1,4 +1,5 @@
 <?php
-include "views/pages/dashoardUser/index.php";
+
+include "views/pages/home/home.php";
 
 ?>
