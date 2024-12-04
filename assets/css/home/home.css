@@ -72,6 +72,24 @@ nav a {
     max-width: 50%;
 }
 
+.hero .text-bottom {
+    color: #443EDE;
+    
+    margin-bottom: -20px; 
+    padding-bottom: 0; 
+    
+}
+
+.hero .images-bottom img {
+    width: 120%; 
+    height: 300px; 
+    object-fit: cover; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+
+
 .hero .text h1 {
     font-size: 3rem;
     margin-bottom: 20px;

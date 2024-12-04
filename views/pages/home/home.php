@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="assets/css/home/privatecourses.css">
     <link rel="stylesheet" href="assets/css/home/publiccourses.css">
     <link rel="stylesheet" href="assets/css/home/partner.css">
-    <link rel="stylesheet" href="assets/css/home/feedback.css">
     <link rel="stylesheet" href="assets/css/home/animation.css">
 </head>
 <body>
@@ -73,9 +72,21 @@
 <?php include('privatecourses.php'); ?>
 <?php include('publiccourses.php'); ?>
 <?php include('partner.php'); ?>
-<?php include('feedback.php'); ?>
 
+<section class="hero">
+    <div class="text slide-in-left">
+        <h1 class="text-bottom">Boost Your Career with Industry-Recognized Skills</h1>
+        <p>
+            Flexible, affordable courses designed to help you achieve your goals, whether you're at home, on the go, or anywhere in between.
+        </p>
+  
+    </div>
+    <div class="images-bottom slide-in-right">
+        <img src="assets/images/homecontent.svg" alt="Example 1">
+    </div>
+</section>
 
+<?php include('views/layouts/footer.php'); ?>
 
 <script src="assets/js/animation.js"></script>
 <script src="assets/js/privateslide.js"></script>
