@@ -1,14 +1,99 @@
-<div class="course-features">
-    <h2>Course Features</h2>
-    <ul>
-        <li>📌 Beginner to Advanced</li>
-        <li>📌 80+ hours of video content</li>
-        <li>📌 15 modules with over 150 lessons</li>
-        <li>📌 5 real-world projects</li>
-        <li>📌 Professional Certificate upon completion</li>
-        <li>📌 English</li>
-        <li>📌 Lifetime access with free updates</li>
-        <li>📌 No prior programming experience required</li>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Features</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="row-container">
+        <!-- Accordion Section -->
+        <div class="accordion">
+            <details>
+                <summary>
+                    <span class="summary-text">What you'll Learn</span>
+                    <span class="arrow-icon">▼</span>
+                </summary>
+                <ul class="list-items">
+                    <li><span class="checkmark">✓</span> Prepare for Industry Certification Exam</li>
+                    <li><span class="checkmark">✓</span> Over 25 Engaging Lab Exercises</li>
+                    <li><span class="checkmark">✓</span> Comprehensive Coverage of HTML and CSS</li>
+                    <li><span class="checkmark">✓</span> Dozens of Code Examples to Download and Study</li>
+                    <li><span class="checkmark">✓</span> Hours and Hours of Video Instruction</li>
+                    <li><span class="checkmark">✓</span> Earn Certification that is Proof of your Competence</li>
+                </ul>
+            </details>
+            <h2>Course Curriculum Breakdown</h2>
+            <details>
+                <summary>
+                    <span class="summary-text">Module 1: Introduction to Web Development</span>
+                    <span class="arrow-icon">▼</span>
+                </summary>
+                <ul class="list-items">
+                    <li><span class="checkmark">✓</span> Prepare for Industry Certification Exam</li>
+                    <li><span class="checkmark">✓</span> Over 25 Engaging Lab Exercises</li>
+                    <li><span class="checkmark">✓</span> Comprehensive Coverage of HTML and CSS</li>
+                    <li><span class="checkmark">✓</span> Dozens of Code Examples to Download and Study</li>
+                    <li><span class="checkmark">✓</span> Hours and Hours of Video Instruction</li>
+                    <li><span class="checkmark">✓</span> Earn Certification that is Proof of your Competence</li>
+                </ul>
+            </details>
+            
+        </div>
+
+        <!-- Cards Section -->
+        <div class="card-container">
+            <!-- Course Features -->
+            <div class="card-coursesfeature">
+                <h4 class="hai">Course Features</h4>
+                <ul>
+        <li><i class="bi bi-pin-fill pinned-icon"></i> Beginner to Advanced</li>
+        <li><i class="bi bi-pin-fill pinned-icon"></i> 80+ hours of video content</li>
+        <li><i class="bi bi-pin-fill pinned-icon"></i> 15 modules with over 150 lessons</li>
+        <li><i class="bi bi-pin-fill pinned-icon"></i> Professional Certificate upon completion</li>
+        <li><i class="bi bi-pin-fill pinned-icon"></i> Professional Certificate upon completion</li>
+        <li><i class="bi bi-pin-fill pinned-icon"></i> Professional Certificate upon completion</li>
+        <li><i class="bi bi-pin-fill pinned-icon"></i> Professional Certificate upon completion</li>
+        <li><i class="bi bi-pin-fill pinned-icon"></i> Professional Certificate upon completion</li>
+        <li><i class="bi bi-pin-fill pinned-icon"></i> Professional Certificate upon completion</li>
+        <li><i class="bi bi-pin-fill pinned-icon"></i> Professional Certificate upon completion</li>
+        <li><i class="bi bi-pin-fill pinned-icon"></i> Professional Certificate upon completion</li>
     </ul>
-    <a href="#" class="btn-buy-now">Buy Now</a>
+
+                <button class="buy-now">Buy Now</button>
+            </div>
+
+            <div class="card-coursesfeature1">
+    <h4>Instructor Profile</h4>
+    <div class="avatar-text">
+        <div class="avatar-container">
+            <img class="avatar" src="assets/images/1fdd264b4b531494b306bf6994d7448c.jpg" alt="Avatar">
+        </div>
+        <div class="text">
+            <p><strong>Angela Yu</strong></p>
+            <p>Lead Instructor, Software Engineer</p>
+        </div>
+    </div>
+    <ul class="list-itemscolumn">
+    <li>
+        10+ years Experience 
+        <span class="divider"></span>
+    </li>
+    <li>
+        20,450+ Reviews
+        <span class="divider"></span>
+    </li>
+    <li>
+        25+ Courses
+        <span class="divider"></span>
+    </li>
+    <li><a href="#">Follow on LinkedIn</a></li>
+</ul>
+    <button class="buy-nowcek">Learn More about</button>
 </div>
+        </div>
+    </div>
+</body>
+</html>

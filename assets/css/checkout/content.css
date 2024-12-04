@@ -48,7 +48,7 @@ body {
 }
 
 .buy-now {
-    background-color: #001A45;
+    background-color: #443EDE;
     color: #fff;
     padding: 0.8rem 1.5rem;
     text-decoration: none;
@@ -56,6 +56,7 @@ body {
     display: inline-block;
     margin-top: 1rem;
     font-size: 16px;
+    width: 100%;
 }
 .course-rating-enrollment {
     display: flex;
@@ -138,5 +139,526 @@ span {
     font-weight: 500; /* Medium */
 }
 
+/* Container for course features */
+.course-features {
+    background-color: #f8f9fc; /* Background color for the container */
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.course-features h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #001A45;
+}
+
+.list-itemsdrop {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    }
+    .list-itemsdrop li {
+    display: flex;
+    align-items: center;
+    }
+    .checkmark {
+    margin-right: 0.5rem;
+    color: #001A45;
+    font-size: 1.2rem;
+    }
+    .list-itemsdrop a {
+    color: #001A45;
+    text-decoration: none;
+    }
+    .list-itemsdrop a:hover {
+    text-decoration: underline;
+    }
+
+details {
+    background: #f8f9fc;
+    border-radius: 16px;
+
+    border: 1px solid #001a45;
+    position: relative;
+    overflow: hidden;
+    transition: border-left 0.3s ease, border-right 0.3s ease;
+}
+
+details summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #001a45;
+    list-style: none; /* Menghapus marker default */
+}
+
+details summary::marker {
+    content: ""; /* Hapus marker bawaan */
+}
+
+.arrow-icon {
+    font-size: 14px;
+    color: #001a45;
+    transition: transform 0.3s ease; /* Animasi rotasi */
+}
+
+details[open] .arrow-icon {
+    transform: rotate(180deg); /* Rotasi panah ke atas saat terbuka */
+}
+
+details[open] {
+    border-left: 4px solid #001a45;
+    border-right: 4px solid #001a45;
+}
+
+details ul {
+    margin: 0;
+    padding-left: 1.5rem;
+    list-style: none; /* Menghapus bullet points */
+}
+
+details ul li {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 0.5rem;
+    display: flex; /* Membuat checkmark dan teks dalam satu baris */
+    align-items: center;
+}
+
+.checkmark {
+    color: #6c63ff;
+    font-weight: bold;
+    margin-right: 0.5rem;
+    font-size: 16px;
+}
+
+.hai{
+    color: #E1E9FE;
+}
+
+/* Typography */
+h1, h4 {
+    font-weight: 700; /* Bold */
+    color: #333;
+}
+
+p {
+    font-weight: 400; /* Normal */
+}
+
+span {
+    font-weight: 500; /* Medium */
+}
 
 
+.list-items {
+    list-style: none; 
+    padding: 0;
+    margin: 0;
+}
+
+.list-items li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Jarak antara ikon dan teks */
+    margin-bottom: 1rem; /* Spasi antar item */
+    font-size: 16px;
+    position: relative; /* Agar divider bisa diposisikan dengan baik */
+    padding-right: 1rem; /* Memberi ruang untuk divider di sebelah kanan */
+}
+
+.list-items li::after {
+    content: ''; /* Membuat divider */
+    position: absolute;
+    right: 0; /* Tempatkan divider di sebelah kanan */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 80%;
+    background-color: #ddd; /* Warna divider */
+}
+
+.list-items li:last-child::after {
+    content: none; /* Menghapus divider pada item terakhir */
+}
+
+.icon {
+    color: #443EDE; /* Warna ikon biru */
+    font-size: 18px; /* Ukuran ikon */
+}
+
+a {
+    color: #443EDE; /* Warna link */
+    text-decoration: none;
+}
+.card-coursesfeature1 {
+    padding: 1.5rem;
+    background: #FFFFFF;
+    color: #000;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 3px solid #E1E9FE; 
+    }
+    .card-coursesfeature1:before {
+    content: "";
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    right: 0.5rem;
+    bottom: 0.5rem;
+    border: 1px solid #E1E9FE; /* Add border inside the card /
+    border-radius: 16px;
+    pointer-events: none; / Prevent the inner border from interfering with interactions */
+    }
+
+.card-coursesfeature h4 {
+    font-size: 24px; /* Ukuran font untuk heading */
+}
+
+.card-coursesfeature p {
+    font-size: 16px; /* Ukuran font untuk paragraf */
+}
+
+.card-coursesfeature ul li {
+    font-size: 14px; /* Ukuran font untuk list item */
+}
+
+
+.row-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+   padding-right: 2rem;
+    max-width: 1100;
+
+}
+
+/* Accordion Section */
+.accordion {
+    flex: 2;
+    flex-direction: column;
+    border-radius: 16px;
+    padding-left: 2rem;
+}
+
+details {
+    margin-bottom: 1rem;
+    background: #f8f9fc;
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid #001A45;
+    position: relative;
+    overflow: hidden;
+    transition: border-left 0.3s ease, border-right 0.3s ease;
+}
+
+details summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #001A45;
+    list-style: none;
+}
+
+details summary::marker {
+    content: "";
+}
+
+.arrow-icon {
+    font-size: 14px;
+    color: #001A45;
+    transition: transform 0.3s ease;
+}
+
+details[open] .arrow-icon {
+    transform: rotate(180deg);
+}
+
+details[open] {
+    border-left: 4px solid #001A45;
+    border-right: 4px solid #001A45;
+}
+
+/* List Styles */
+.list-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.list-items li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+    font-size: 16px;
+}
+
+.checkmark {
+    color: #443EDE;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Cards Section */
+.card-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+
+.card-coursesfeature {
+    padding: 1.5rem;
+    background: #001A45;
+    color: #fff;
+    border-radius: 16px;
+    height: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-coursesfeature h4 {
+    font-size: 18px;
+    margin-bottom: 1rem;
+}
+
+.card-coursesfeature ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.card-coursesfeature ul li {
+    margin-bottom: 0.5rem;
+}
+
+.buy-nowcek {
+    background-color: #121212;
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border-radius: 24px;
+    display: inline-block;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* Header and Text */
+h1 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    color: #333;
+    font-size: 30px;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+p {
+    font-weight: 400;
+}
+
+span {
+    font-weight: 500;
+}
+
+/* Instructor Profile */
+.rating {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 10rem;
+}
+
+.rating span {
+    margin-left: 0.5rem;
+    color: #ffb400;
+}
+
+.enrolled {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.avatar-text {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    }
+    .avatar-container {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+    .avatar {
+    max-width: 100%;
+    height: auto;
+    }
+.enrolled span {
+    font-size: 14px;
+    color: #666;
+}
+
+.list-itemscolumn {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    }
+    .list-itemscolumn li {
+    display: flex;
+    align-items: center;
+    }
+    .divider {
+    color: #ccc;
+    margin: 0 0.5rem;
+    }
+    .list-itemscolumn a {
+    color: #001A45;
+    text-decoration: none;
+    }
+    .list-itemscolumn a:hover {
+    text-decoration: underline;
+    }
+
+    .allcourse {
+        background-color: #001a45;
+    }
+
+    .private-courses {
+        padding: 2rem;
+        background-color: #f8f9fa;
+        position: relative;
+      }
+      
+      .private-container {
+        max-width: 1300;
+        margin: 0 auto;
+      }
+      
+      .private-cards-wrapper {
+        display: flex;
+        gap: 1rem;
+        overflow: hidden;
+        position: relative;
+        scroll-behavior: smooth; /* Agar scroll terasa mulus */
+      }
+      
+      .private-card {
+        background: white;
+        border-radius: 0.5rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.2s ease-in-out;
+        flex: 0 0 23%;
+      }
+      
+      .private-card:hover {
+        transform: translateY(-5px);
+      }
+      
+      .private-card-image {
+        line-height: 0;
+      }
+      
+      .private-card-image img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        display: block;
+      }
+      
+      .private-card-content {
+        padding: 1rem;
+      }
+      
+      .private-course-title {
+        color: #2d3748;
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 0 0 0.5rem 0;
+        line-height: 1.4;
+      }
+      
+      .private-instructor-name {
+        color: #718096;
+        font-size: 0.875rem;
+        margin-bottom: 0.5rem;
+      }
+      
+      .private-price {
+        color: #2d3748;
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+      }
+      
+      .private-card-stats {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      
+      .private-rating {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        color: #2d3748;
+      }
+      
+      .private-rating span:first-child {
+        color: #f6ad55;
+      }
+      
+      .private-students {
+        color: #718096;
+        font-size: 0.875rem;
+      }
+      
+      .private-avatars {
+        display: flex;
+        align-items: center;
+      }
+      
+      .private-avatars img {
+        width: 1.75rem;
+        height: 1.75rem;
+        border-radius: 50%;
+        border: 2px solid white;
+        margin-left: -0.5rem;
+      }
+      
+      .private-avatars img:first-child {
+        margin-left: 0;
+      }
+      
+      /* Hilangkan tombol */
+      .private-courses-controls {
+        display: none;
+      }
+
+      .title{
+        padding-left: 2rem;
+      }
