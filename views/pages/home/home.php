@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="assets/css/home/publiccourses.css">
     <link rel="stylesheet" href="assets/css/home/partner.css">
     <link rel="stylesheet" href="assets/css/home/animation.css">
+    <link rel="stylesheet" href="assets/css/home/banner.css">
 </head>
 <body>
 
@@ -35,11 +36,11 @@
 
 <section class="hero">
     <div class="text slide-in-left">
-        <h1><span class="highlight">Boost Your Career</span> with Industry-Recognized Skills</h1>
+        <h1><span class="highlight">Selamat Datang di Kelas Sore!</span></h1>
         <p>
-            Flexible, affordable courses designed to help you achieve your goals, whether you're at home, on the go, or anywhere in between.
+            Tingkatkan keterampilan Anda bersama Kelas Sore, platform kursus online dengan berbagai pilihan topik menarik, seperti teknologi, pengembangan karier, dan pembelajaran bahasa. Belajar kapan saja dan di mana saja dengan mudah dan fleksibel.
         </p>
-        
+
         <div class="avatar-stack fade-up">
             <div class="avatars">
                 <img src="assets/images/homecontent.svg" alt="User 1">
@@ -53,17 +54,20 @@
         </div>
 
         <div class="buttons fade-up">
-            <a href="#" style="background-color: #001A45; color: #fff; padding: 10px 20px; border-radius: 50px;">Start Your Certification</a>
-            <a href="#" style="background-color: #001A45; color: #fff; padding: 10px 20px; border-radius: 50px;">Browse All Courses</a>
+            <a href="#" style="background-color: #001A45; color: #fff; padding: 10px 20px; border-radius: 50px;">Mulai kursus</a>
+            <a href="#" style="background-color: #001A45; color: #fff; padding: 10px 20px; border-radius: 50px;">Cari semua kursus</a>
         </div>
     </div>
-    <div class="images slide-in-right">
-        <img src="image1.jpg" alt="Example 1">
-        <img src="image2.jpg" alt="Example 2">
-        <img src="image3.jpg" alt="Example 3">
-        <img src="image4.jpg" alt="Example 4">
-        <img src="image5.jpg" alt="Example 5">
-        <img src="image6.jpg" alt="Example 6">
+    
+    <div class="home-images slide-in-right">
+        <div class="slide-container">
+            <img src="assets/images/ayam.jpg" alt="Example 1" class="slide active">
+            <img src="assets/images/kodok.jpg" alt="Example 2" class="slide">
+            <img src="assets/images/ayam.jpg" alt="Example 3" class="slide">
+            <img src="assets/images/homecontent.svg" alt="Example 4" class="slide">
+            <img src="assets/images/kursus.svg" alt="Example 5" class="slide">
+            <img src="assets/images/logo.svg" alt="Example 6" class="slide">
+        </div>
     </div>
 </section>
 
@@ -75,14 +79,18 @@
 
 <section class="hero">
     <div class="text slide-in-left">
-        <h1 class="text-bottom">Boost Your Career with Industry-Recognized Skills</h1>
+        <h1 class="text-bottom">Kelas sore!</h1>
         <p>
-            Flexible, affordable courses designed to help you achieve your goals, whether you're at home, on the go, or anywhere in between.
+            AKU GAMAU LES DI KELAS SOREEEEEEEEEEEEEEEEEEEEE
+            EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+            EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+            EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+            EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+            EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
         </p>
-  
     </div>
     <div class="images-bottom slide-in-right">
-        <img src="assets/images/homecontent.svg" alt="Example 1">
+        <img src="assets/images/ayam.jpg" alt="Example 1">
     </div>
 </section>
 
@@ -91,7 +99,9 @@
 <script src="assets/js/animation.js"></script>
 <script src="assets/js/privateslide.js"></script>
 <script src="assets/js/publicslide.js"></script>
-<script src="assets/js/partnerslide.js"></script>
+<script src="assets/js/homeslide.js"></script>
+
+
 
 </body>
 </html>
