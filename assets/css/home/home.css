@@ -23,7 +23,7 @@ header .buttons {
     gap: 10px;
 }
 
-header .buttons a {
+header .buttons a { 
     text-decoration: none;
     padding: 10px 15px;
     border-radius: 50px; 
@@ -74,21 +74,16 @@ nav a {
 
 .hero .text-bottom {
     color: #443EDE;
-    
-    margin-bottom: -20px; 
     padding-bottom: 0; 
-    
 }
 
-.hero .images-bottom img {
+.hero .home-images-bottom img {
     width: 120%; 
     height: 300px; 
     object-fit: cover; 
     border-radius: 10px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
-
-
 
 .hero .text h1 {
     font-size: 3rem;
@@ -110,17 +105,35 @@ nav a {
     margin: 0 10px;
 }
 
-.hero .images {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    align-items: center;
+
+.hero .home-images {
+    display: block;
+    width: 45%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.hero .images img {
+.slide-container {
+    position: relative;
     width: 100%;
-    border-radius: 10px;
+    height: 400px;
 }
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    object-fit: cover;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
 
 .highlight {
     color: #443EDE;
@@ -166,3 +179,4 @@ nav a {
     font-size: 14px;
     font-weight: 500;
 }
+
