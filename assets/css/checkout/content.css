@@ -314,7 +314,6 @@ a {
     left: 0.5rem;
     right: 0.5rem;
     bottom: 0.5rem;
-    border: 1px solid #E1E9FE; /* Add border inside the card /
     border-radius: 16px;
     pointer-events: none; / Prevent the inner border from interfering with interactions */
     }
