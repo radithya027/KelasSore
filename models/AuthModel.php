@@ -10,7 +10,6 @@ class AuthModel {
         return mysqli_stmt_get_result($stmt);
     }
 
-    // Fungsi untuk mendaftar user baru
     public function createUser($email, $name, $password) {
         global $conn;
         // Hash password menggunakan bcrypt
