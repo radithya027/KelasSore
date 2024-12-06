@@ -19,9 +19,10 @@ include('views/pages/checkout/nav.php');
 include('views/pages/checkout/content.php'); 
 include('views/pages/checkout/features.php');
 include('views/pages/checkout/learn.php');
-include('views/pages/checkout/kursus.php')
-
+include('views/pages/checkout/kursus.php');
+include('views/layouts/footer.php'); 
 ?>
 
 </body>
-</html>
+</html>     
+ 

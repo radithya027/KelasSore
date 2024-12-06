@@ -307,7 +307,8 @@ a {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border: 3px solid #E1E9FE; 
     }
-    .card-coursesfeature1:before {
+
+.card-coursesfeature1:before {
     content: "";
     position: absolute;
     top: 0.5rem;
@@ -315,8 +316,8 @@ a {
     right: 0.5rem;
     bottom: 0.5rem;
     border-radius: 16px;
-    pointer-events: none; / Prevent the inner border from interfering with interactions */
-    }
+    pointer-events: none; 
+}
 
 .card-coursesfeature h4 {
     font-size: 24px; /* Ukuran font untuk heading */
