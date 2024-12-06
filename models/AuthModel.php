@@ -1,6 +1,6 @@
 <?php
 // File: models/AuthModel.php
-
+// oke
 class AuthModel {
     // Fungsi untuk mendapatkan user berdasarkan email
     public function getUserByEmail($email) {
