@@ -1,3 +1,20 @@
+<?php
+include dirname(__FILE__) . '/../../../controllers/AuthController.php';
+
+// Instantiate AuthController
+$authController = new AuthController();
+
+// Handle registration form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = $_POST['email'];
+    $name = $_POST['name'];
+    $password = $_POST['password'];
+    $password_confirm = $_POST['confirm_password'];
+    $phone_number = $_POST['phone'];
+    $message = $authController->register($email, $name, $password, $password_confirm, $phone_number);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,11 +39,9 @@
             <!--------------------------- Left Box ----------------------------->
 
             <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box" style="background: #000842;">
-                <!-- Gambar dengan tinggi lebih besar -->
                 <div class="featured-image mb-8">
                     <img src="assets/images/login.svg" class="img-fluid" style="width: 200px; height: 300px;" alt="Featured Image">
                 </div>
-                <!-- Font diganti ke Manrope -->
                 <p class="text-white fs-2" style="font-family: 'Manrope', sans-serif; font-weight: 600;">Register for KelasSore</p>
             </div>
 
@@ -38,15 +53,33 @@
                         <h2>KelasSore</h2>
                         <p>Create your account to get started.</p>
                     </div>
-                    <form action="process_register.php" method="POST">
-                      
+                    
+                    <?php 
+                    // Display registration message if exists
+                    if (isset($message)) {
+                        echo "<div class='alert " . 
+                             (strpos($message, 'berhasil') !== false ? 'alert-success' : 'alert-danger') . 
+                             "'>" . htmlspecialchars($message) . "</div>";
+                    }
+                    ?>
+
+                    <form action="register.php" method="POST">
+
+                        <!-- Input untuk nama -->
+                        <div class="input-group mb-3">
+                            <input type="text" name="name" class="form-control form-control-lg bg-light fs-6" 
+                                placeholder="Enter your name" 
+                                style="font-weight: 600;" 
+                                required>
+                        </div>
+
                         <!-- Input untuk nomor telepon -->
-                        <!-- <div class="input-group mb-3">
+                        <div class="input-group mb-3">
                             <input type="text" name="phone" class="form-control form-control-lg bg-light fs-6" 
                                 placeholder="Enter your phone number" 
-                                style="font-weight: 400;" 
+                                style="font-weight: 600;" 
                                 required>
-                        </div> -->
+                        </div>
 
                         <!-- Input untuk email -->
                         <div class="input-group mb-3">
