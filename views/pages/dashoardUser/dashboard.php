@@ -7,20 +7,7 @@
     <link rel="stylesheet" href="assets/css/dashboard/dashbod.css"> <!-- Include CSS File -->
 </head>
 <body>
-    <header class="header">
-        <div class="container header-content">
-            <div class="logo">
-                <img src="assets/images/logo.svg" alt="Kelas Sore Logo"> <!-- Ganti dengan file asset -->
-            </div>
-            <div class="profile">
-                <span>Diapin</span>
-                <div class="avatar"></div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="divider"></div>
-        </div>
-    </header>
+
 
     <section class="your-class">
         <div class="container">

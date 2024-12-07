@@ -20,7 +20,7 @@ class AuthController {
             $_SESSION['user_id'] = $user['id']; // ID pengguna
             $_SESSION['user_email'] = $user['email']; // Email pengguna
             $_SESSION['user_name'] = $user['name']; // Nama pengguna
-            header('Location: ../page/home/home.php'); // Sesuaikan path
+            header('Location: ../home/home.php'); // Sesuaikan path
             exit();
         } else {
             return "Email atau Password salah!";
@@ -37,7 +37,7 @@ class AuthController {
     public function logout() {
         session_start();
         session_destroy(); // Menghancurkan session untuk logout
-        header('Location: ../../auth/login.php'); // Sesuaikan path
+        header('Location: ../login/login.php'); // Sesuaikan path
         exit();
     }
 

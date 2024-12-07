@@ -5,8 +5,9 @@
         <img src="assets/images/logo.svg" alt="KelasSore Logo">
     </div>
     <div class="buttons">
+        <!-- Login and Join links -->
         <a href="#" class="login">Log in</a>
-        <a href="#" class="join">Join for Free</a>
+        <a href="views/pages/checkout/logout.php" class="join">Log out</a>
     </div>
 </header>
 
