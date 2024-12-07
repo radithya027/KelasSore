@@ -4,7 +4,6 @@ include dirname(__FILE__) . '/../../../controllers/AuthController.php';
 // Start session at the beginning
 session_start();
 
-// Check if user is already logged in, redirect to home
 if (isset($_SESSION['user_id'])) {
     header('Location: ../home/home.php');
     exit();
@@ -18,11 +17,9 @@ $message = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
-    
-    // Check if remember me is checked
+
     $remember_me = isset($_POST['remember_me']) ? true : false;
 
-    // Attempt to log in
     $message = $authController->login($email, $password);
 }
 ?>
@@ -34,7 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/login/login.css">
+    <link rel="stylesheet" href="../../../assets/css/login/login.css">
+
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&display=swap" rel="stylesheet">
     <title>Login</title>
 </head>
@@ -46,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <!--------------------------- Left Box ----------------------------->
             <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box" style="background: #000842;">
                 <div class="featured-image mb-8">
-                    <img src="assets/images/login.svg" class="img-fluid" style="width: 200px; height: 300px;" alt="Featured Image">
+                    <img src="../../../assets/images/login.svg" class="img-fluid" style="width: 200px; height: 300px;" alt="Featured Image">
                 </div>
                 <p class="text-white fs-2" style="font-family: 'Manrope', sans-serif; font-weight: 600;">Sign in to KelasSore</p>
             </div>
@@ -94,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </form>
                     <div class="input-group mb-3">
                         <button class="btn btn-lg btn-light w-100 fs-6">
-                            <img src="assets/images/google.svg" style="width:20px" class="me-2" alt="Google Logo">
+                            <img src="../../../assets/images/google.svg" style="width:20px" class="me-2" alt="Google Logo">
                             <small>Sign In with Google</small>
                         </button>
                     </div>

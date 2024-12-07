@@ -28,15 +28,16 @@
 
 .partner-cards-wrapper {
     display: flex;
+    flex-wrap: wrap;
     transition: transform 0.5s ease;
     gap: 15px;
     justify-content: center; 
-    align-items: center; 
+    align-items: center;
 }
 
 .partner-card {
-    width: 150px;
-    height: 150px;
+    width: 200px;  /* Fixed width */
+    height: 200px; /* Fixed height */
     background-color: white;
     border: 2px solid #ddd;
     border-radius: 8px;
@@ -44,12 +45,15 @@
     flex-shrink: 0; 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
+    margin: 10px;
 }
 
 .partner-card img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;  /* Memastikan gambar sepenuhnya terlihat */
+    padding: 20px;  /* Tambahkan padding agar gambar tidak terlalu ketat */
+    box-sizing: border-box;  /* Pastikan padding tidak menambah ukuran total */
 }
 
 .partner-card:hover {

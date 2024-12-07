@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KelasSore.com</title>
-    <link rel="stylesheet" href="assets/css/home/home.css">
-    <link rel="stylesheet" href="assets/css/home/content.css">
-    <link rel="stylesheet" href="assets/css/home/ourcourses.css">
-    <link rel="stylesheet" href="assets/css/home/privatecourses.css">
-    <link rel="stylesheet" href="assets/css/home/publiccourses.css">
-    <link rel="stylesheet" href="assets/css/home/partner.css">
-    <link rel="stylesheet" href="assets/css/home/animation.css">
-    <link rel="stylesheet" href="assets/css/home/banner.css">
+    <link rel="stylesheet" href="../../../../assets/css/home/home.css">
+    <link rel="stylesheet" href="../../../../assets/css/home/content.css">
+    <link rel="stylesheet" href="../../../../assets/css/home/ourcourses.css">
+    <link rel="stylesheet" href="../../../../assets/css/home/privatecourses.css">
+    <link rel="stylesheet" href="../../../../assets/css/home/publiccourses.css">
+    <link rel="stylesheet" href="../../../../assets/css/home/partner.css">
+    <link rel="stylesheet" href="../../../../assets/css/home/animation.css">
+    <link rel="stylesheet" href="../../../../assets/css/home/banner.css">
 </head>
 <body>
 
 <header class="fade-in">
     <div class="logo">
-        <img src="assets/images/logo.svg" alt="KelasSore Logo">
+        <img src="../../../../assets/images/logo.svg" alt="KelasSore Logo">
     </div>
     <div class="buttons">
         <a href="#" class="login">Log in</a>
@@ -43,11 +43,11 @@
 
         <div class="avatar-stack fade-up">
             <div class="avatars">
-                <img src="assets/images/homecontent.svg" alt="User 1">
-                <img src="assets/images/logo.svg" alt="User 2">
-                <img src="assets/images/logo.svg" alt="User 3">
-                <img src="assets/images/homecontent.svg" alt="User 4">
-                <img src="assets/images/logo.svg" alt="User 5">
+                <img src="../../../../assets/images/homecontent.svg" alt="User 1">
+                <img src="../../../../assets/images/logo.svg" alt="User 2">
+                <img src="../../../../assets/images/logo.svg" alt="User 3">
+                <img src="../../../../assets/images/homecontent.svg" alt="User 4">
+                <img src="../../../../assets/images/logo.svg" alt="User 5">
                 <span class="avatar-count">+20k</span>
             </div>
             <span class="join-text">Join with us</span>
@@ -61,12 +61,12 @@
     
     <div class="home-images slide-in-right">
         <div class="slide-container">
-            <img src="assets/images/ayam.jpg" alt="Example 1" class="slide active">
-            <img src="assets/images/kodok.jpg" alt="Example 2" class="slide">
-            <img src="assets/images/ayam.jpg" alt="Example 3" class="slide">
-            <img src="assets/images/homecontent.svg" alt="Example 4" class="slide">
-            <img src="assets/images/kursus.svg" alt="Example 5" class="slide">
-            <img src="assets/images/logo.svg" alt="Example 6" class="slide">
+            <img src="../../../../assets/images/ayam.jpg" alt="Example 1" class="slide active">
+            <img src="../../../../assets/images/kodok.jpg" alt="Example 2" class="slide">
+            <img src="../../../../assets/images/ayam.jpg" alt="Example 3" class="slide">
+            <img src="../../../../assets/images/homecontent.svg" alt="Example 4" class="slide">
+            <img src="../../../../assets/images/kursus.svg" alt="Example 5" class="slide">
+            <img src="../../../../assets/images/logo.svg" alt="Example 6" class="slide">
         </div>
     </div>
 </section>
@@ -90,18 +90,17 @@
         </p>
     </div>
     <div class="images-bottom slide-in-right">
-        <img src="assets/images/ayam.jpg" alt="Example 1">
+        <img src="../../../../assets/images/ayam.jpg" alt="Example 1">
     </div>
 </section>
 
-<?php include('views/layouts/footer.php'); ?>
-
-<script src="assets/js/animation.js"></script>
-<script src="assets/js/privateslide.js"></script>
-<script src="assets/js/publicslide.js"></script>
-<script src="assets/js/homeslide.js"></script>
+<?php include('../../layouts/footer.php'); ?>
 
 
+<script src="../../../../assets/js/animation.js"></script>
+<script src="../../../../assets/js/privateslide.js"></script>
+<script src="../../../../assets/js/publicslide.js"></script>
+<script src="../../../../assets/js/homeslide.js"></script>
 
 </body>
 </html>

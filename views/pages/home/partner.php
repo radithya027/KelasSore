@@ -6,19 +6,19 @@
     <div class="partner-container">
         <div class="partner-cards-wrapper fade-up">
             <div class="partner-card">
-                <img src="image1.jpg" alt="Partner 1">
+                <img src="../../../assets/images/EViews_logo.svg.png" alt="Partner 1">
             </div>
             <div class="partner-card">
-                <img src="image2.jpg" alt="Partner 2">
+                <img src="../../../assets/images/Logo_High_res.jpeg" alt="Partner 2">
             </div>
             <div class="partner-card">
-                <img src="image3.jpg" alt="Partner 3">
+                <img src="../../../assets/images/SmartPLS_Logo.png" alt="Partner 3">
             </div>
             <div class="partner-card">
-                <img src="image4.jpg" alt="Partner 4">
+                <img src="../../../assets/images/png-transparent-spss-hd-logo-removebg-preview.png" alt="Partner 4">
             </div>
             <div class="partner-card">
-                <img src="image5.jpg" alt="Partner 5">
+                <img src="../../../assets/images/logo-blue.png" alt="Partner 5">
             </div>
         </div>
     </div>
