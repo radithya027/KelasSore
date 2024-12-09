@@ -26,7 +26,7 @@
             <img src="../../../assets/images/icon.svg" alt="Icon 4" class="card-icon">
             <div class="card-content">
                 <h2>Kelas Expert Smart PLS </h2>
-                <p>Overview dan Pemahaman Dasar Smart PLS, Konsep dasar structural equation modeling, Analisis variable intervening.</p>
+                <p>Overview dan Pemahaman Dasar Smart PLS, Konsep dasar structural equation modeling, Ana lisis variable intervening.</p>
             </div>
         </div>
         <div class="card fade-up stagger-delay-5">
