@@ -1,6 +1,6 @@
 <?php
 // File: courses.php
-require_once 'controllers/KelasController.php';
+include dirname(__FILE__) . '/../../../controllers/KelasController.php';
 
 // Initialize the KelasController
 $kelasController = new KelasController();

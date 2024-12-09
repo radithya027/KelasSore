@@ -1,5 +1,5 @@
 <?php
 
-include "views/pages/home/home.php";
+include "views/pages/login/login.php";
 
 ?>

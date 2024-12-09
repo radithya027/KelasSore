@@ -21,10 +21,8 @@ class AuthModel {
         return mysqli_stmt_get_result($stmt);
     }
 
-    // Fungsi untuk mendaftar user baru
     public function createUser($email, $name, $password, $phone_number) {
         global $conn;
-        // Hash password menggunakan bcrypt
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
         $created_at = date("Y-m-d H:i:s");
         $updated_at = $created_at;
@@ -32,19 +30,16 @@ class AuthModel {
         $query = "INSERT INTO users (email, name, password, phone_number, created_at, updated_at) 
                   VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = mysqli_prepare($conn, $query);
-        
-        // PERBAIKAN: Tambahkan 's' untuk phone_number dan sesuaikan urutan
+
         mysqli_stmt_bind_param($stmt, "ssssss", $email, $name, $hashedPassword, $phone_number, $created_at, $updated_at);
         
         return mysqli_stmt_execute($stmt);
     }
 
-    // Fungsi untuk login user
     public function loginUser($email, $password) {
         $result = $this->getUserByEmail($email);
         if (mysqli_num_rows($result) > 0) {
             $user = mysqli_fetch_assoc($result);
-            // Verifikasi password menggunakan bcrypt
             if (password_verify($password, $user['password'])) {
                 return $user; // Jika password valid, kembalikan data user
             }

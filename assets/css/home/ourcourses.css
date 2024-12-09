@@ -48,6 +48,7 @@
 }
 
 .card-content p {
+    text-align: start;
     font-size: 0.875rem;
     color: #555;
     margin: 5px 0 0;
