@@ -15,6 +15,8 @@
     align-items: center;
     margin-bottom: 1rem;
   }
+
+  
   
   .public-title {
     font-size: 1.5rem;
@@ -92,6 +94,8 @@
     margin: 0 0 0.5rem 0;
     line-height: 1.4;
   }
+  
+
   
   .public-instructor-name {
     color: #718096;
