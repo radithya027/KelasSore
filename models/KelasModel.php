@@ -35,10 +35,9 @@ class KelasModel
 
     public function insertKelas($data)
     {
-
         $query = "INSERT INTO kelas 
-            (mentor_id, name_mentor, name, image, description, category, kurikulum, price, quota, quota_left, start_date, end_date, link_wa, status, created_at, updated_at)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        (mentor_id, name_mentor, name, image, description, category, kurikulum, price, quota, quota_left, start_date, end_date, link_wa, status, created_at, updated_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         // Prepare the query
         $stmt = mysqli_prepare($this->conn, $query);
@@ -69,7 +68,14 @@ class KelasModel
         );
 
         // Execute the query
-        return mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_execute($stmt);
+
+        // Jika eksekusi berhasil, kembalikan ID terakhir yang dimasukkan
+        if ($result) {
+            return mysqli_insert_id($this->conn);
+        }
+
+        return false;
     }
 
     public function updateKelas($kelasId, $data)
@@ -122,15 +128,53 @@ class KelasModel
 
     public function attachBooksToKelas($kelasId, $bookIds)
     {
-        // Hapus hubungan buku-kelas yang sudah ada sebelumnya
+
+        $currentTimestamp = date('Y-m-d H:i:s');
+
+        // Validate that the kelas exists first
+        $kelasExists = $this->getKelasById($kelasId);
+        if (!$kelasExists) {
+            throw new Exception("Kelas with ID $kelasId does not exist.");
+        }
+
+
+
+        // Detach existing books
         $this->detachBooksFromKelas($kelasId);
 
-        // Buat hubungan baru antara buku-kelas
-        foreach ($bookIds as $bookId) {
-            $query = "INSERT INTO book_kelas (book_id, kelas_id) VALUES (?, ?)";
-            $stmt = mysqli_prepare($this->conn, $query);
-            mysqli_stmt_bind_param($stmt, "ii", $bookId, $kelasId);
-            mysqli_stmt_execute($stmt);
+        // Prepare a query to check if book exists
+        $checkBookQuery = "SELECT id FROM books WHERE id = ?";
+        $checkBookStmt = mysqli_prepare($this->conn, $checkBookQuery);
+
+        // Begin a transaction
+        mysqli_begin_transaction($this->conn);
+
+        try {
+            foreach ($bookIds as $bookId) {
+                // First, verify the book exists
+                mysqli_stmt_bind_param($checkBookStmt, "i", $bookId);
+                mysqli_stmt_execute($checkBookStmt);
+                $result = mysqli_stmt_get_result($checkBookStmt);
+
+                if (mysqli_num_rows($result) === 0) {
+                    throw new Exception("Book with ID $bookId does not exist.");
+                }
+
+                // If book exists, insert the relationship
+                $insertQuery = "INSERT INTO book_kelas (book_id, kelas_id, created_at, updated_at) VALUES (?, ?, ?, ?)";
+                $insertStmt = mysqli_prepare($this->conn, $insertQuery);
+                mysqli_stmt_bind_param($insertStmt, "iiss", $bookId, $kelasId, $currentTimestamp, $currentTimestamp);
+                mysqli_stmt_execute($insertStmt);
+            }
+
+            // Commit the transaction
+            mysqli_commit($this->conn);
+            return true;
+        } catch (Exception $e) {
+            // Rollback the transaction on error
+            mysqli_rollback($this->conn);
+            // You might want to log the error or handle it appropriately
+            throw $e;
         }
     }
 
@@ -141,6 +185,4 @@ class KelasModel
         mysqli_stmt_bind_param($stmt, "i", $kelasId);
         mysqli_stmt_execute($stmt);
     }
-
-    
 }
