@@ -21,26 +21,25 @@ $courses = $kelasController->getAllKelas();
 
     <div class="public-cards-wrapper fade-in">
       <?php foreach ($courses as $course): ?>
-        <div class="public-card">
-          <div class="public-card-image">
-            <img src="<?php echo htmlspecialchars($course['image'] ?? 'assets/images/kursus.svg'); ?>" alt="Course Thumbnail">
-          </div>
-          <div class="public-card-content">
-            <h3 class="public-course-title"><?php echo htmlspecialchars($course['name']); ?></h3>
-            <p class="public-instructor-name"><?php echo htmlspecialchars($course['name_mentor']); ?></p>
-            <p class="public-price">Rp <?php echo number_format($course['price'], 0, ',', '.'); ?></p>
-            <div class="public-card-stats">
-              <div class="public-rating">
-                <span>⭐</span>4.9
-              </div>
-              <div class="public-students">20,459+</div>
-              <div class="public-avatars">
-                <img src="assets/images/kursus.svg" alt="Student 1">
-                <img src="assets/images/kursus.svg" alt="Student 2">
-              </div>
+        
+        <div class="public-card"> 
+          <!-- Use dynamic id here -->
+          <a href="../checkout/index.php?id=<?php echo urlencode($course['id']); ?>" class="public-card-link">
+
+            <div class="public-card-image">
+              <!-- Display image, default if not available -->
+              <img src="<?php echo htmlspecialchars($course['image'] ?? 'assets/images/kursus.svg'); ?>" alt="Course Thumbnail">
             </div>
-          </div>
+            <div class="public-card-content">
+              <h3 class="public-course-title"><?php echo htmlspecialchars($course['name']); ?></h3>
+              <p class="public-instructor-name"><?php echo htmlspecialchars($course['name_mentor']); ?></p>
+              <p class="public-price">Rp <?php echo number_format($course['price'], 0, ',', '.'); ?></p>
+              <p class="public-quota-left">Sisa Kuota: <?php echo htmlspecialchars($course['quota_left']); ?></p>
+              <p class="public-status">Status: <?php echo htmlspecialchars($course['status']); ?></p>
+            </div>
+          </a>
         </div>
+        
       <?php endforeach; ?>
 
       <?php if (empty($courses)): ?>

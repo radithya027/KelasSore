@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../../../../assets/css/home/privatecourses.css">
     <link rel="stylesheet" href="../../../../assets/css/home/publiccourses.css">
     <link rel="stylesheet" href="../../../../assets/css/home/partner.css">
-    <link rel="stylesheet" href="../../../../assets/css/home/animation.css">
+    <link rel="stylesheet" href="../../../../assets/css/home/animation.css"> 6
     <link rel="stylesheet" href="../../../../assets/css/home/banner.css">
 </head>
 <body>

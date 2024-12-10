@@ -2,7 +2,7 @@
 <html lang="en">
 <header>
     <div class="logo">
-        <img src="assets/images/logo.svg" alt="KelasSore Logo">
+        <img src="../../../../assets/images/logo.svg" alt="KelasSore Logo">
     </div>
     <div class="buttons">
         <!-- Login and Join links -->
