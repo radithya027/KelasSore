@@ -83,5 +83,6 @@ class BookModel {
         mysqli_stmt_bind_param($stmt, "i", $bookId);
         return mysqli_stmt_execute($stmt);
     }
+    
 }
 ?>
