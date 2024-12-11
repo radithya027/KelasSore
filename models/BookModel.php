@@ -12,23 +12,16 @@ class BookModel {
     }
 
     public function getAllBooks() {
-        // Pastikan query untuk mengambil buku sudah benar
         $query = "SELECT * FROM books";
         $result = mysqli_query($this->conn, $query);
     
-        // Debugging: Cek apakah query berhasil
-        if (!$result) {
-            echo "Query error: " . mysqli_error($this->conn);
-            return [];
-        }
+       
     
         $books = [];
         while ($row = mysqli_fetch_assoc($result)) {
             $books[] = $row;
         }
     
-        // Debugging: Cek hasil query
-        var_dump($books);  // Menampilkan data buku
     
         return $books;
     }    

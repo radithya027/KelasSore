@@ -5,7 +5,7 @@ include dirname(__FILE__) . '/../../../controllers/AuthController.php';
 session_start();
 
 if (isset($_SESSION['user_id'])) {
-    header('Location: ../home/home.php');
+    header('Location: views/pages/home/home.php');
     exit();
 }
 

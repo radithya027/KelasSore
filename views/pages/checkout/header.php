@@ -5,17 +5,17 @@
         <img src="../../../../assets/images/logo.svg" alt="KelasSore Logo">
     </div>
     <div class="buttons">
-        <!-- Login and Join links -->
-        <a href="#" class="login">Log in</a>
-        <a href="views/pages/checkout/logout.php" class="join">Log out</a>
+        <?php
+        session_start(); // Mulai session
+        if (!isset($_SESSION['user_id'])) {
+            // Jika belum login, tampilkan tombol Log in dan Join
+            echo '<a href="/views/pages/login/login.php" class="login">Log in</a>';
+
+            echo '<a href="/viewa/pages/register/register.php" class="join">Join</a>';
+        } else {
+            // Jika sudah login, tampilkan tombol Log out
+            echo '<a href="logout.php" class="login">Log Out</a>';
+        }
+        ?>
     </div>
 </header>
-
-<nav>
-    <a href="#">Technology & Software</a>
-    <a href="#">Partner Kami</a>
-    <a href="#">Kategori Kursus</a>
-    <a href="#">Health & Wellness</a>
-    <a href="#">Language Learning</a>
-    <a href="#">See All Categories</a>
-</nav>
