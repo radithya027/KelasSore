@@ -1,10 +1,8 @@
 <?php
 define('BASE_PATH', dirname(__DIR__, 3)); // Define base path
 
-
 require_once BASE_PATH . '/models/KelasModel.php';
 require_once BASE_PATH . '/controllers/InvoiceController.php';
-
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -43,6 +41,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
+    // Validate file type (only images)
+    $allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
+    if (!in_array($_FILES['transfer_proof']['type'], $allowedMimeTypes)) {
+        header("Location: /error.php?msg=Invalid%20file%20type");
+        exit;
+    }
+
     // Generate unique filename
     $fileExtension = pathinfo($_FILES['transfer_proof']['name'], PATHINFO_EXTENSION);
     $uniqueFilename = uniqid('transfer_proof_') . '.' . $fileExtension;
@@ -66,14 +71,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         'status' => 'pending', // Initial status
         'name' => htmlspecialchars($_POST['name']),
         'payment_price' => intval($_POST['course_price']),
-        'nominal' => intval($_POST['course_price']),
+        'nominal' => intval($_POST['course_price']), // Use course price for nominal
         'no_rekening' => htmlspecialchars($_POST['account_number']),
         'image_pay' => $uniqueFilename, // Store filename in database
         'bank_name' => htmlspecialchars($_POST['bank']),
-        'transfer_date' => date('Y-m-d H:i:s', strtotime($_POST['transfer_date'])),
+        'transfer_date' => date('Y-m-d', strtotime($_POST['transfer_date'])), // Date format for transfer_date
         'approval' => 'waiting', // Initial approval status
-        'created_at' => date('Y-m-d H:i:s'),
-        'updated_at' => date('Y-m-d H:i:s')
+        'created_at' => date('Y-m-d'), // Only date, no time
+        'updated_at' => date('Y-m-d')  // Only date, no time
     ];
 
     // Create invoice using InvoicesController
@@ -185,8 +190,9 @@ try {
                         </div>
                         <div class="mb-3">
                             <label for="transfer_date" class="form-label">Tanggal</label>
-                            <input type="datetime-local" id="transfer_date" name="transfer_date" class="form-control" required>
+                            <input type="date" id="transfer_date" name="transfer_date" class="form-control" required>
                         </div>
+
                         <div class="mb-3">
                             <label for="transfer_proof" class="form-label">Bukti Transfer</label>
                             <input type="file" id="transfer_proof" name="transfer_proof" class="form-control" accept="image/*" required>
