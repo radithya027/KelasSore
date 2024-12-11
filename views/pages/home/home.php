@@ -20,8 +20,7 @@
         <img src="../../../../assets/images/logo.svg" alt="KelasSore Logo">
     </div>
     <div class="buttons">
-        <a href="#" class="login">Log in</a>
-        <a href="#" class="join">Join for Free</a>
+        <a href="../dashoardUser/index.php" class="login">Your Class</a>
     </div>
 </header>
 

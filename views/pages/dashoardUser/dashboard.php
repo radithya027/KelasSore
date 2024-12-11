@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kelas Sore</title>
-    <link rel="stylesheet" href="assets/css/dashboard/dashbod.css"> <!-- Include CSS File -->
+    <link rel="stylesheet" href="../../../../assets/css/dashboard/dashbod.css"> 
 </head>
 <body>
 
@@ -18,7 +18,7 @@
             <div class="class-grid">
                 <?php for ($i = 0; $i < 4; $i++): ?>
                     <div class="class-card">
-                        <img src="assets/images/kursus.svg" alt="Class Image">
+                        <img src="../../../../assets/images/kursus.svg" alt="Class Image">
                         <h3>The Complete 2023 PHP Full Stack Web Developer Bootcamp</h3>
                         <p>Sarah Lee</p>
                     </div>
@@ -36,7 +36,7 @@
         <div class="class-grid">
             <?php for ($i = 0; $i < 4; $i++): ?>
                 <div class="class-card">
-                    <img src="assets/images/brita.svg" alt="Class Image">
+                    <img src="../../../../assets/images/brita.svg" alt="Class Image">
                     <h3>The Complete 2023 PHP Full Stack Web Developer Bootcamp</h3>
                     <p>Sarah Lee</p>
                 </div>

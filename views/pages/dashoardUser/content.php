@@ -21,7 +21,7 @@
                 <div class="class-grid">
                     <?php for ($i = 0; $i < 4; $i++): ?> <!-- Looping through 5 courses -->
                         <div class="class-card">
-                            <img src="assets/images/kursus.svg" alt="Class Image">
+                            <img src="../../../../assets/images/kursus.svg" alt="Class Image">
                             <h3>The Complete 2023 PHP Full Stack Web Developer Bootcamp</h3>
                             <p>Sarah Lee</p>
                             <div class="price">$109.99</div>
