@@ -36,72 +36,83 @@ class InvoiceModel
     public function insertInvoice($data)
     {
         // Query untuk memasukkan data ke tabel invoices
-        $query = "INSERT INTO invoices (user_id, kelas_id, status, name, payment_price, nominal, no_rekening, image_pay, bank_name, transfer_date, approval, created_at, updated_at)
-                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    
+        $query = "INSERT INTO invoices (user_id, kelas_id, name, payment_price, nominal, no_rekening, image_pay, bank_name, transfer_date, approval, created_at, updated_at)
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
         // Siapkan pernyataan SQL untuk eksekusi
         $stmt = mysqli_prepare($this->conn, $query);
-    
-        
+
+        // Pastikan semua kunci ada di $data, tambahkan default value jika tidak ada
+        $created_at = date('Y-m-d H:i:s');
+        $updated_at = date('Y-m-d H:i:s');
+
+        // Tambahkan 'created_at' dan 'updated_at' jika belum ada
+        $data['created_at'] = $data['created_at'] ?? $created_at;
+        $data['updated_at'] = $data['updated_at'] ?? $updated_at;
+
+        // Verifikasi dan bind parameter
         mysqli_stmt_bind_param(
             $stmt,
-            "ssssssssssss", 
+            "iissdsssssss",
             $data['user_id'],
             $data['kelas_id'],
-            $data['status'],          
-            $data['name'],            
-            $data['payment_price'],  
-            $data['nominal'],        
-            $data['no_rekening'],    
-            $data['image_pay'],      
-            $data['bank_name'],     
-            $data['transfer_date'],  
-            $data['approval'],       
-            $data['created_at'],    
-            $data['updated_at']      
+            $data['name'],
+            $data['payment_price'],
+            $data['nominal'],
+            $data['no_rekening'],
+            $data['image_pay'],
+            $data['bank_name'],
+            $data['transfer_date'],
+            $data['approval'],
+            $data['created_at'],
+            $data['updated_at']
         );
-    
+
         // Eksekusi pernyataan SQL
         $executeResult = mysqli_stmt_execute($stmt);
-    
+
         // Cek apakah eksekusi berhasil
         if ($executeResult) {
             return true; // Data berhasil dimasukkan
         } else {
+            // Tambahkan error logging
+            error_log("Insert Invoice Error: " . mysqli_stmt_error($stmt));
             return false; // Gagal memasukkan data
         }
     }
+
 
     public function updateInvoice($invoiceId, $data)
     {
         // Query untuk memperbarui data di tabel invoices
         $query = "UPDATE invoices SET status = ?, name = ?, payment_price = ?, nominal = ?, no_rekening = ?, image_pay = ?, bank_name = ?, transfer_date = ?, approval = ?, updated_at = ? WHERE id = ?";
-    
+
         // Siapkan pernyataan SQL untuk eksekusi
         $stmt = mysqli_prepare($this->conn, $query);
 
+        // Dapatkan waktu saat ini untuk updated_at
         $updated_at = date('Y-m-d H:i:s');
-    
-        // Bind parameters individually
+
+        // Bind parameter sesuai dengan tipe data yang sesuai
         mysqli_stmt_bind_param(
             $stmt,
-            "ssssssssssssi", 
-            $data['status'],          
-            $data['name'],            
-            $data['payment_price'],  
-            $data['nominal'],        
-            $data['no_rekening'],    
-            $data['image_pay'],      
-            $data['bank_name'],     
-            $data['transfer_date'],  
-            $data['approval'],    
-            $updated_at,   
-            $invoiceId              
+            "sssssssssssi", // format tipe data
+            $data['status'],
+            $data['name'],
+            $data['payment_price'],
+            $data['nominal'],
+            $data['no_rekening'],
+            $data['image_pay'],
+            $data['bank_name'],
+            $data['transfer_date'],
+            $data['approval'],
+            $updated_at,
+            $invoiceId  // Parameter terakhir untuk id invoice yang akan diupdate
         );
-    
+
         // Eksekusi pernyataan SQL
         $executeResult = mysqli_stmt_execute($stmt);
-    
+
         // Cek apakah eksekusi berhasil
         if ($executeResult) {
             return true; // Data berhasil diperbarui
@@ -109,7 +120,6 @@ class InvoiceModel
             return false; // Gagal memperbarui data
         }
     }
-    
 
     public function deleteInvoice($invoiceId)
     {
@@ -119,4 +129,3 @@ class InvoiceModel
         return mysqli_stmt_execute($stmt);
     }
 }
-?>
