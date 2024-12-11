@@ -1,5 +1,28 @@
 <?php
+// Kode saat ini hanya secara langsung memasukkan halaman home
+// Ini memiliki beberapa kelemahan:
+// 1. Tidak fleksibel untuk navigasi antar halaman
+// 2. Tidak mendukung mekanisme routing dinamis
+// 3. Tidak dapat menangani berbagai halaman berbeda
 
-include "views/pages/login/login.php";
+// Solusi yang lebih baik:
+$page = isset($_GET['page']) ? $_GET['page'] : 'home';
 
+// Daftar halaman yang diizinkan untuk mencegah akses file sembarangan
+$allowedPages = ['home', 'checkout', 'login', 'register'];
+
+// Validasi halaman
+if (in_array($page, $allowedPages)) {
+    // Konstruksi path file secara dinamis
+    $pagePath = "views/pages/{$page}/{$page}.php";
+    
+    if (file_exists($pagePath)) {
+        include $pagePath;
+    } else {
+        // Tangani jika halaman tidak ditemukan
+        echo "Halaman tidak ditemukan";
+    }
+} else {
+    include "views/pages/home/home.php";
+}
 ?>

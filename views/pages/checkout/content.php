@@ -1,37 +1,44 @@
 <?php
-// Include the KelasModel class and database connection using the correct relative path
-require_once dirname(__FILE__) . '/../../../models/KelasModel.php';  // Adjusted path
+define('BASE_PATH', dirname(__DIR__, 3)); // Define base path
 
-// Create an instance of the KelasModel class
+require_once BASE_PATH . '/models/KelasModel.php';
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 $kelasModel = new KelasModel();
 
-// Get the course ID from the URL (dynamically)
-if (isset($_GET['id'])) {
-    $courseId = $_GET['id'];
-} else {
-    echo "Course ID is missing!";
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+    header("Location: /error.php?msg=Invalid%20Course%20ID");
     exit;
 }
 
-// Get course data by ID
-$course = $kelasModel->getKelasById($courseId);
+$courseId = intval($_GET['id']);
 
-
+try {
+    $course = $kelasModel->getKelasById($courseId);
+} catch (Exception $e) {
+    error_log("Failed to fetch course: " . $e->getMessage());
+    header("Location: /error.php?msg=Course%20not%20found");
+    exit;
+}
 
 if ($course) {
-    // Extract course data
     $courseName = htmlspecialchars($course['name']);
     $courseDescription = htmlspecialchars($course['description']);
     $courseInstructor = htmlspecialchars($course['name_mentor']);
-    $courseStudents = $course['quota'] - $course['quota_left']; 
+    $courseStudents = $course['quota'] - $course['quota_left'];
     $courseQuotaLeft = $course['quota_left'];
     $courseQuota = $course['quota'];
     $coursePrice = $course['price'];
     $courseImage = htmlspecialchars($course['image']);
 } else {
-    echo "Course not found!";
+    header("Location: /error.php?msg=Course%20not%20found");
     exit;
 }
+
+$isLoggedIn = isset($_SESSION['user_id']);
+$redirectUrl = $isLoggedIn ? "/views/pages/payment/payment.php?id=$courseId" : "/views/pages/login/login.php";
 ?>
 
 <div class="container">
@@ -46,17 +53,16 @@ if ($course) {
             <div class="course-rating-enrollment">
                 <div class="enrolled">
                     <div class="avatars">
-                        <!-- Example student avatars, update dynamically if needed -->
-                        <img src="../../../../assets/images/ayam.jpg" alt="Avatar 1">
-                        <img src="../../../../assets/images/ayam.jpg" alt="Avatar 2">
-                        <img src="../../../../assets/images/ayam.jpg" alt="Avatar 3">
+                        <img src="/assets/images/ayam.jpg" alt="Avatar 1">
+                        <img src="/assets/images/ayam.jpg" alt="Avatar 2">
+                        <img src="/assets/images/ayam.jpg" alt="Avatar 3">
                     </div>
                     <span><?php echo $courseStudents; ?> Students</span>
                 </div>
                 <p><strong>Quota Left:</strong> <?php echo $courseQuotaLeft . " / " . $courseQuota; ?></p>
             </div>
             <p class="price">Rp <?php echo number_format($coursePrice, 0, ',', '.'); ?></p>
-            <a href="/views/pages/register/register.php" class="buy-now">Buy Now</a>
+            <a href="<?php echo $redirectUrl; ?>" class="buy-now">Buy Now</a>
         </div>
         <div class="course-image">
             <img src="<?php echo $courseImage; ?>" alt="Course Preview">

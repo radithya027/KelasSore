@@ -1,55 +1,33 @@
+<?php
+// Gunakan path absolut atau dirname untuk mencari path controller
+require_once dirname(__DIR__, 3) . '/controllers/BookController.php';
+require_once dirname(__DIR__, 3) . '/models/BookModel.php';
+require_once dirname(__DIR__, 3) . '/services/database.php';
+
+$bookController = new BookController();
+$books = $bookController->getAllBooks();
+?>
+
 <h1 class="title">Buku</h1>
 <section class="private-courses">
   <div class="private-container">
     <div class="private-cards-wrapper">
+      <?php foreach($books as $book): ?>
       <div class="private-card">
         <div class="private-card-image">
-          <img src="assets/images/kursus.svg" alt="Course Thumbnail">
+          <img src="<?php echo str_replace('../public', 'public', htmlspecialchars($book['image'])); ?>" alt="Book Thumbnail">
         </div>
         <div class="private-card-content">
-          <h3 class="private-course-title">Internet and Web Development Fundamentals</h3>
-          <p class="private-instructor-name">Sarah Lee</p>
-          <div class="private-card-stats">
-            <div class="private-students">20,459+</div>
+          <h3 class="private-course-title"><?php echo htmlspecialchars($book['title']); ?></h3>
+          <p class="private-instructor-name"><?php echo htmlspecialchars($book['description']); ?></p>
+          <div class="private-card-stats">  
+            <div class="private-students"><?php echo $book['rating']; ?> Rating</div>
             <div class="private-avatars">
-              <img src="assets/images/kursus.svg" alt="Student 1">
-              <img src="assets/images/kursus.svg" alt="Student 2">
             </div>
           </div>
         </div>
       </div>
-      <div class="private-card">
-        <div class="private-card-image">
-          <img src="assets/images/kursus.svg" alt="Course Thumbnail">
-        </div>
-        <div class="private-card-content">
-          <h3 class="private-course-title">Internet and Web Development Fundamentals</h3>
-          <p class="private-instructor-name">Sarah Lee</p>
-          <div class="private-card-stats">
-            <div class="private-students">20,459+</div>
-            <div class="private-avatars">
-              <img src="assets/images/kursus.svg" alt="Student 1">
-              <img src="assets/images/kursus.svg" alt="Student 2">
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="private-card">
-        <div class="private-card-image">
-          <img src="assets/images/kursus.svg" alt="Course Thumbnail">
-        </div>
-        <div class="private-card-content">
-          <h3 class="private-course-title">Internet and Web Development Fundamentals</h3>
-          <p class="private-instructor-name">Sarah Lee</p>
-          <div class="private-card-stats">
-            <div class="private-students">20,459+</div>
-            <div class="private-avatars">
-              <img src="assets/images/kursus.svg" alt="Student 1">
-              <img src="assets/images/kursus.svg" alt="Student 2">
-            </div>
-          </div>
-        </div>
-      </div>
+      <?php endforeach; ?>
     </div>
   </div>
 </section>
