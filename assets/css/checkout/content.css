@@ -347,6 +347,7 @@ a {
     flex: 2;
     flex-direction: column;
     border-radius: 16px;
+    border-color: #666;
     padding-left: 2rem;
 }
 

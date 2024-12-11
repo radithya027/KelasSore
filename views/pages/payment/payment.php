@@ -86,8 +86,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = json_decode($invoicesController->createInvoice($invoiceData), true);
 
     if ($result['success']) {
-        // Redirect to a success page
-        header("Location: /views/pages/payment/success.php?course_name=" . urlencode($_POST['course_name']));
+        header("Location: ../home/home.php");
+
         exit;
     } else {
         // If invoice creation fails, remove the uploaded file

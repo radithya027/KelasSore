@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kelas Sore</title>
-    <link rel="stylesheet" href="assets/css/dashboard/dashbod.css"> <!-- Include CSS File -->
+    <link rel="stylesheet" href="../../../../assets/css/dashboard/dashbod.css">
 </head>
 <body>
 <?php 
-include('views/pages/dashoardUser/dashboard.php'); 
-include('views/pages/dashoardUser/content.php'); 
+include('../dashoardUser/content.php'); 
+include('../dashoardUser/dashboard.php'); 
 ?>
 
 </body>
