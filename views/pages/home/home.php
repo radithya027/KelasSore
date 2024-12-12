@@ -60,9 +60,9 @@
     
     <div class="home-images slide-in-right">
         <div class="slide-container">
-            <img src="../../../../assets/images/ayam.jpg" alt="Example 1" class="slide active">
+            <!-- <img src="../../../../assets/images/ayam.jpg" alt="Example 1" class="slide active">
             <img src="../../../../assets/images/kodok.jpg" alt="Example 2" class="slide">
-            <img src="../../../../assets/images/ayam.jpg" alt="Example 3" class="slide">
+            <img src="../../../../assets/images/ayam.jpg" alt="Example 3" class="slide"> -->
             <img src="../../../../assets/images/homecontent.svg" alt="Example 4" class="slide">
             <img src="../../../../assets/images/kursus.svg" alt="Example 5" class="slide">
             <img src="../../../../assets/images/logo.svg" alt="Example 6" class="slide">
@@ -80,16 +80,11 @@
     <div class="text slide-in-left">
         <h1 class="text-bottom">Kelas sore!</h1>
         <p>
-            AKU GAMAU LES DI KELAS SOREEEEEEEEEEEEEEEEEEEEE
-            EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-            EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-            EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-            EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-            EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+             Soooo tak perlu ragu lagi, Lets Join Us!
         </p>
     </div>
     <div class="images-bottom slide-in-right">
-        <img src="../../../../assets/images/ayam.jpg" alt="Example 1">
+        <img src="../../../../assets/images/kursus.svg" alt="Example 1">
     </div>
 </section>
 
