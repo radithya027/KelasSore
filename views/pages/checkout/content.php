@@ -24,6 +24,8 @@ try {
 }
 
 if ($course) {
+  
+
     $courseName = htmlspecialchars($course['name']);
     $courseDescription = htmlspecialchars($course['description']);
     $courseInstructor = htmlspecialchars($course['name_mentor']);
@@ -31,7 +33,29 @@ if ($course) {
     $courseQuotaLeft = $course['quota_left'];
     $courseQuota = $course['quota'];
     $coursePrice = $course['price'];
-    $courseImage = htmlspecialchars($course['image']);
+    
+    // Try multiple path approaches
+    $potentialPaths = [
+        '/uploads/' . $course['image'],
+        '/assets/images/courses/' . $course['image'],
+        BASE_PATH . '/public/uploads/' . $course['image']
+    ];
+
+    $courseImage = '';
+    foreach ($potentialPaths as $path) {
+        if (file_exists($path) || file_exists($_SERVER['DOCUMENT_ROOT'] . $path)) {
+            $courseImage = $path;
+            break;
+        }
+    }
+
+    // Fallback if no path found
+    if (empty($courseImage)) {
+        $courseImage = '/assets/images/default-course.jpg';
+        echo "Warning: Image not found. Using default image.<br>";
+    }
+
+    $courseImage = htmlspecialchars($courseImage);
 } else {
     header("Location: /error.php?msg=Course%20not%20found");
     exit;
@@ -60,12 +84,12 @@ $redirectUrl = $isLoggedIn ? "/views/pages/payment/payment.php?id=$courseId" : "
                     <span><?php echo $courseStudents; ?> Students</span>
                 </div>
                 <p><strong>Quota Left:</strong> <?php echo $courseQuotaLeft . " / " . $courseQuota; ?></p>
-            </div>
+            </div>  
             <p class="price">Rp <?php echo number_format($coursePrice, 0, ',', '.'); ?></p>
             <a href="<?php echo $redirectUrl; ?>" class="buy-now">Buy Now</a>
         </div>
         <div class="course-image">
-            <img src="<?php echo $courseImage; ?>" alt="Course Preview">
+            <img src="<?php echo $courseImage; ?>" alt="Course Preview (Path: <?php echo $courseImage; ?>)">
         </div>
     </div>
 </div>

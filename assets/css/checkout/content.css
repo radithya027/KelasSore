@@ -42,9 +42,11 @@ body {
     padding-left: 20px;
 }
 .course-image img {
-    max-width: 100%;
+    display: flex;
+    justify-content: space-between;
+    max-width: 400px;
     border-radius: 8px;
-    margin-top: -50px; /* Menyesuaikan posisi gambar lebih tinggi */
+    margin-top: -50px;
 }
 
 .buy-now {
@@ -52,7 +54,7 @@ body {
     color: #fff;
     padding: 0.8rem 1.5rem;
     text-decoration: none;
-    border-radius: 24px;
+    border-radius: 16px;
     display: inline-block;
     margin-top: 1rem;
     font-size: 16px;

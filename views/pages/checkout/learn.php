@@ -15,7 +15,15 @@ $books = $bookController->getAllBooks();
       <?php foreach($books as $book): ?>
       <div class="private-card">
         <div class="private-card-image">
-          <img src="<?php echo str_replace('../public', 'public', htmlspecialchars($book['image'])); ?>" alt="Book Thumbnail">
+          <?php
+            $imagePath = str_replace('../public', 'public', htmlspecialchars($book['image']));
+            if (file_exists($_SERVER['DOCUMENT_ROOT'] . $imagePath)) {
+                $imageUrl = $imagePath;
+            } else {
+                $imageUrl = '/public/image-book/6752af8606088_commandermewing.png';
+            }
+          ?>
+          <img src="<?php echo $imageUrl; ?>" alt="Book Thumbnail">
         </div>
         <div class="private-card-content">
           <h3 class="private-course-title"><?php echo htmlspecialchars($book['title']); ?></h3>
@@ -36,9 +44,8 @@ $books = $bookController->getAllBooks();
   document.addEventListener('DOMContentLoaded', function() {
     const privateCardsWrapper = document.querySelector('.private-cards-wrapper');
     let scrollAmount = 0;
-    const cardWidth = document.querySelector('.private-card').offsetWidth + 20; // Card width + margin/padding
+    const cardWidth = document.querySelector('.private-card').offsetWidth + 20; 
 
-    // Auto-slide setiap 3 detik
     setInterval(() => {
       if (scrollAmount < privateCardsWrapper.scrollWidth - privateCardsWrapper.offsetWidth) {
         scrollAmount += cardWidth;
