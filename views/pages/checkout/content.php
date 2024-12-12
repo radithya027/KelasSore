@@ -53,9 +53,12 @@ $redirectUrl = $isLoggedIn ? "/views/pages/payment/payment.php?id=$courseId" : "
             <div class="course-rating-enrollment">
                 <div class="enrolled">
                     <div class="avatars">
-                        <img src="/assets/images/ayam.jpg" alt="Avatar 1">
+                        <!-- <img src="/assets/images/ayam.jpg" alt="Avatar 1">
                         <img src="/assets/images/ayam.jpg" alt="Avatar 2">
-                        <img src="/assets/images/ayam.jpg" alt="Avatar 3">
+                        <img src="/assets/images/ayam.jpg" alt="Avatar 3"> -->
+                        <img src="../../../../assets/images/homecontent.svg" alt="Avatar 1">
+                        <img src="../../../../assets/images/kursus.svg" alt="Avatar 2">
+                        <img src="../../../../assets/images/logo.svg" alt="Avatar 3">
                     </div>
                     <span><?php echo $courseStudents; ?> Students</span>
                 </div>
