@@ -15,9 +15,18 @@ class KelasController
     }
 
     public function getAllKelas()
-    {
-        return $this->kelasModel->getAllKelas();
+{
+    $kelasList = $this->kelasModel->getAllKelas();
+    
+    // Tambahkan logging untuk debug
+    foreach ($kelasList as $kelas) {
+        error_log("Kelas ID: " . ($kelas['id'] ?? 'N/A'));
+        error_log("Kelas Name: " . ($kelas['name'] ?? 'N/A'));
+        error_log("What Will Learn 1: " . ($kelas['what_will_learn_1'] ?? 'KOSONG'));
     }
+    
+    return $kelasList;
+}
 
     public function getKelasById($kelasId)
     {
