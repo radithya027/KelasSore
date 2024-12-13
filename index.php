@@ -6,10 +6,10 @@
 // 3. Tidak dapat menangani berbagai halaman berbeda
 
 // Solusi yang lebih baik:
-$page = isset($_GET['page']) ? $_GET['page'] : 'home';
+$page = isset($_GET['page']) ? $_GET['page'] : 'userprofile';
 
 // Daftar halaman yang diizinkan untuk mencegah akses file sembarangan
-$allowedPages = ['home', 'checkout', 'login', 'register'];
+$allowedPages = ['home', 'checkout', 'login', 'register', 'userprofile'];
 
 // Validasi halaman
 if (in_array($page, $allowedPages)) {
@@ -23,6 +23,6 @@ if (in_array($page, $allowedPages)) {
         echo "Halaman tidak ditemukan";
     }
 } else {
-    include "views/pages/home/home.php";
+    include "views/pages/userprofile/userprofile.php";
 }
 ?>
