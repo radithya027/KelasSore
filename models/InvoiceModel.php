@@ -175,4 +175,13 @@ class InvoiceModel
         mysqli_stmt_bind_param($stmt, "i", $invoiceId);
         return mysqli_stmt_execute($stmt);
     }
+
+    public function getKelasUser ($user_id) {
+        $query = "SELECT * FROM kelas_users WHERE user_id = ?";
+        $stmt = mysqli_prepare($this->conn, $query);
+        mysqli_stmt_bind_param($stmt, "i", $user_id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        return mysqli_fetch_assoc($result);
+    }
 }
