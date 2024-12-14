@@ -61,5 +61,15 @@ class InvoicesController
             return json_encode(['success' => false, 'message' => 'Failed to delete invoice']);
         }
     }
+
+    public function getkelasuser($user_id)
+    {
+        $kelasuser = $this->invoiceModel->getkelasuser($user_id);
+        if ($kelasuser) {
+            return json_encode(['success' => true, 'data' => $kelasuser]);
+        } else {
+            return json_encode(['success' => false, 'message' => 'Kelas not found']);
+        }
+    }
 }
 ?>
