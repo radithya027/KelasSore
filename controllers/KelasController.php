@@ -14,25 +14,42 @@ class KelasController
         $this->bookModel = new BookModel();
     }
 
-    public function getAllKelas()
-{
-    $kelasList = $this->kelasModel->getAllKelas();
+    public function getAllKelas() {
+        $kelasList = $this->kelasModel->getAllKelas();
     
-    // Tambahkan logging untuk debug
-    foreach ($kelasList as $kelas) {
-        error_log("Kelas ID: " . ($kelas['id'] ?? 'N/A'));
-        error_log("Kelas Name: " . ($kelas['name'] ?? 'N/A'));
-        error_log("What Will Learn 1: " . ($kelas['what_will_learn_1'] ?? 'KOSONG'));
+        foreach ($kelasList as &$kelas) {
+            // Combine the what_will_learn fields into an array
+            $kelas['what_will_learn'] = [
+                $kelas['what_will_learn_1'] ?? '',
+                $kelas['what_will_learn_2'] ?? '',
+                $kelas['what_will_learn_3'] ?? ''
+            ];
+    
+            // Clean up image paths if necessary
+            if (!empty($kelas['image'])) {
+                if (strpos($kelas['image'], '../') === 0) {
+                    $kelas['image'] = str_replace('../', '/public/', $kelas['image']);
+                }
+            }
+        }
+    
+        return $kelasList;
     }
     
-    return $kelasList;
-}
+    
 
     public function getKelasById($kelasId)
     {
         return $this->kelasModel->getKelasById($kelasId);
     }
 
+
+    public function showKelasPage() {
+        $kelasList = $this->getAllKelas(); // Includes `what_will_learn_1`, `_2`, `_3`
+        extract(['kelasList' => $kelasList]);
+        require dirname(__FILE__) . '/../views/pages/checkout/features.php';
+    }
+    
     public function createKelas($data, $imageFile)
     {
         $imageFileName = uniqid() . '_' . basename($imageFile['name']);

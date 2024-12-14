@@ -33,13 +33,17 @@ class AuthController {
         return $message;
     }
 
-    // Fungsi untuk logout
-    public function logout() {
-        session_start();
-        session_destroy(); // Menghancurkan session untuk logout
-        header('Location: ../login/login.php'); // Sesuaikan path
-        exit();
+  // Fungsi untuk logout
+public function logout() {
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start(); // Pastikan session dimulai jika belum
     }
+    session_unset(); // Hapus semua variabel session
+    session_destroy(); // Hancurkan session
+    header('Location: ../login/login.php'); // Redirect ke halaman login
+    exit(); // Pastikan eksekusi berhenti setelah redirect
+}
+
 
     // Fungsi untuk menangani form login
     public function handleLoginForm() {

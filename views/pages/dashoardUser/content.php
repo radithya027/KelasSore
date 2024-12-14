@@ -1,40 +1,60 @@
+<?php
+session_start();
+$path = dirname(__DIR__, 3) . '/controllers/InvoiceController.php';
+require_once $path;
+
+// Ambil user_id dari session (simulasi user id 3)
+$userId = $_SESSION['user_id'] ?? 3;
+
+$invoicesController = new InvoicesController();
+
+try {
+    $purchasedClasses = $invoicesController->getUserPurchasedClasses($userId);
+
+    // Debug: Print hasil kelas yang di-fetch
+    echo "<pre>";
+    print_r($purchasedClasses);
+    echo "</pre>";
+
+} catch (Exception $e) {
+    $purchasedClasses = [];
+    echo "Error: " . $e->getMessage();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kelas Sore</title>
-    <link rel="stylesheet" href="assets/css/dashboard/dashbod.css"> <!-- Include CSS File -->
+    <title>Purchased Courses</title>
+    <link rel="stylesheet" href="assets/css/dashboard/dashbod.css">
 </head>
 <body>
-
-    <!-- Courses Section -->
     <section class="courses">
         <div class="container">
             <div class="section-header">
-                <h2 class="memer">Courses</h2>
+                <h2 class="memer">Purchased Courses</h2>
             </div>
-
-            <!-- Slider Wrapper -->
             <div class="slider-wrapper">
                 <button class="slider-btn left-btn" onclick="slideLeft()">&#10094;</button>
                 <div class="class-grid">
-                    <?php for ($i = 0; $i < 4; $i++): ?> <!-- Looping through 5 courses -->
-                        <div class="class-card">
-                            <img src="../../../../assets/images/kursus.svg" alt="Class Image">
-                            <h3>The Complete 2023 PHP Full Stack Web Developer Bootcamp</h3>
-                            <p>Sarah Lee</p>
-                            <div class="price">$109.99</div>
-                            <div class="meta">
-                                <span>⭐ 4.9</span>
-                                <span>20,459+</span>
-                                <div class="users">
-                                    <img src="assets/images/user1.svg" alt="User 1">
-                                    <img src="assets/images/user2.svg" alt="User 2">
+                    <?php if (!empty($purchasedClasses)): ?>
+                        <?php foreach ($purchasedClasses as $class): ?>
+                            <div class="class-card">
+                                <img src="<?php echo htmlspecialchars($class['image_url']); ?>" alt="Class Image">
+                                <h3><?php echo htmlspecialchars($class['title']); ?></h3>
+                                <p><?php echo htmlspecialchars($class['instructor']); ?></p>
+                                <div class="price">$<?php echo number_format($class['price'], 2); ?></div>
+                                <div class="meta">
+                                    <span>⭐ <?php echo $class['rating']; ?></span>
+                                    <span>Purchased on: <?php echo htmlspecialchars($class['purchase_date']); ?></span>
                                 </div>
                             </div>
-                        </div>
-                    <?php endfor; ?>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p>No purchased courses available.</p>
+                    <?php endif; ?>
                 </div>
                 <button class="slider-btn right-btn" onclick="slideRight()">&#10095;</button>
             </div>
@@ -42,18 +62,12 @@
     </section>
 
     <script>
-        // Function to slide left
         function slideLeft() {
-            const grid = document.querySelector(".class-grid");
-            grid.scrollBy({ left: -300, behavior: "smooth" });  // Scroll left by 300px
+            document.querySelector(".class-grid").scrollBy({ left: -300, behavior: "smooth" });
         }
-
-        // Function to slide right
         function slideRight() {
-            const grid = document.querySelector(".class-grid");
-            grid.scrollBy({ left: 300, behavior: "smooth" });  // Scroll right by 300px
+            document.querySelector(".class-grid").scrollBy({ left: 300, behavior: "smooth" });
         }
     </script>
-
 </body>
 </html>

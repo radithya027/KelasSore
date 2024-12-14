@@ -15,14 +15,15 @@ $books = $bookController->getAllBooks();
       <?php foreach($books as $book): ?>
       <div class="private-card">
         <div class="private-card-image">
-          <?php
-            $imagePath = str_replace('../public', 'public', htmlspecialchars($book['image']));
-            if (file_exists($_SERVER['DOCUMENT_ROOT'] . $imagePath)) {
-                $imageUrl = $imagePath;
-            } else {
-                $imageUrl = '/public/image-book/6752af8606088_commandermewing.png';
-            }
-          ?>
+        <?php
+$imagePath = str_replace('../public', '/public', htmlspecialchars($book['image']));
+if (file_exists($_SERVER['DOCUMENT_ROOT'] . $imagePath)) {
+    $imageUrl = $imagePath;
+} else {
+    $imageUrl = '/public/image-book/6752af8606088_commandermewing.png'; // Fallback image
+}
+?>
+
           <img src="<?php echo $imageUrl; ?>" alt="Book Thumbnail">
         </div>
         <div class="private-card-content">

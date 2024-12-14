@@ -6,7 +6,7 @@
 // 3. Tidak dapat menangani berbagai halaman berbeda
 
 // Solusi yang lebih baik:
-$page = isset($_GET['page']) ? $_GET['page'] : 'userprofile';
+$page = isset($_GET['page']) ? $_GET['page'] : 'home';
 
 // Daftar halaman yang diizinkan untuk mencegah akses file sembarangan
 $allowedPages = ['home', 'checkout', 'login', 'register', 'userprofile'];
