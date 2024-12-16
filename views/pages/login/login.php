@@ -1,4 +1,5 @@
 <?php
+// Path: views/pages/login/login.php
 include dirname(__FILE__) . '/../../../controllers/AuthController.php';
 
 // Start session at the beginning

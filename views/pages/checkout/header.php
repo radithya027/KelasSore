@@ -1,6 +1,8 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <header>
+    <!-- // file ini berisi tag <head> yang berisi meta tag, title, dan link CSS -->
     <div class="logo">
         <img src="../../../../assets/images/logo.svg" alt="KelasSore Logo">
     </div>

@@ -1,3 +1,20 @@
+<?php
+// Path: views/pages/checkout/features.php
+require_once dirname(__FILE__) . '/../../../controllers/KelasController.php';
+// Inisialisasi KelasController
+$kelasController = new KelasController();
+
+try {
+    // Ambil semua kursus
+    $kelasList = $kelasController->getAllKelas();
+} catch (Exception $e) {
+    $kelasList = [];
+    error_log("Gagal mengambil kursus: " . $e->getMessage());
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,22 +79,26 @@
         <div class="accordion">
         <?php if (!empty($kelasList)): ?>
     <?php foreach ($kelasList as $kelas): ?>
-        <details>
+        <details class="kelas-item">
             <summary>
-                <span class="summary-text"><?= htmlspecialchars($kelas['name'] ?? 'Unknown Class') ?></span>
-                <span class="arrow-icon">▼</span>
+                <h4><?= htmlspecialchars($kelas['name']); ?></h4>
             </summary>
-            <ul class="list-items">
-                <li><?= htmlspecialchars($kelas['what_will_learn_1'] ?? 'Tidak ada data what will learn 1') ?></li>
-                <li><?= htmlspecialchars($kelas['what_will_learn_2'] ?? 'Tidak ada data what will learn 2') ?></li>
-                <li><?= htmlspecialchars($kelas['what_will_learn_3'] ?? 'Tidak ada data what will learn 3') ?></li>
-            </ul>
+            <div class="list-items">
+                <ul>
+                    <?php foreach ($kelas['what_will_learn'] as $learn): ?>
+                        <?php if (!empty($learn)): ?>
+                            <li><?= htmlspecialchars($learn); ?></li>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
         </details>
     <?php endforeach; ?>
-    <?php else: ?>
+<?php else: ?>
     <p>No classes available.</p>
 <?php endif; ?>
-    </div>
+
+</div>
 
         <!-- Cards Section -->
         <div class="card-container">

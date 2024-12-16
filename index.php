@@ -1,4 +1,5 @@
 <?php
+// File: index.php
 // Kode saat ini hanya secara langsung memasukkan halaman home
 // Ini memiliki beberapa kelemahan:
 // 1. Tidak fleksibel untuk navigasi antar halaman
@@ -6,7 +7,7 @@
 // 3. Tidak dapat menangani berbagai halaman berbeda
 
 // Solusi yang lebih baik:
-$page = isset($_GET['page']) ? $_GET['page'] : 'userprofile';
+$page = isset($_GET['page']) ? $_GET['page'] : 'home';
 
 // Daftar halaman yang diizinkan untuk mencegah akses file sembarangan
 $allowedPages = ['home', 'checkout', 'login', 'register', 'userprofile'];

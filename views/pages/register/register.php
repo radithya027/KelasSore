@@ -1,4 +1,5 @@
 <?php
+// File: views/pages/register/register.php
 include dirname(__FILE__) . '/../../../controllers/AuthController.php';
 
 // Instantiate AuthController

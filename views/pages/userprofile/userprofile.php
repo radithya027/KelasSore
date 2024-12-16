@@ -1,4 +1,5 @@
 <?php
+// File: views/pages/userprofile/userprofile.php
 // Start the session at the beginning
 session_start();
 
@@ -44,13 +45,10 @@ $profilePicture = !empty($user['profile_picture']) ? $user['profile_picture'] : 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
         body {
             background-color: #f5f6fa;
         }
@@ -74,12 +72,6 @@ $profilePicture = !empty($user['profile_picture']) ? $user['profile_picture'] : 
             align-items: center;
             gap: 20px;
         }
-        .search-profile input {
-            padding: 8px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            width: 200px;
-        }
         .search-profile img {
             width: 40px;
             height: 40px;
@@ -92,12 +84,6 @@ $profilePicture = !empty($user['profile_picture']) ? $user['profile_picture'] : 
             padding: 30px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-        .profile-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 30px;
-        }
         .profile-header-left {
             display: flex;
             align-items: center;
@@ -109,49 +95,8 @@ $profilePicture = !empty($user['profile_picture']) ? $user['profile_picture'] : 
             border-radius: 50%;
             object-fit: cover;
         }
-        .profile-info h2 {
-            margin-bottom: 5px;
-            color: #333;
-        }
-        .profile-info p {
-            color: #666;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #333;
-            font-size: 14px;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background: #f9f9f9;
-            color: #666;
-        }
-        .form-group:last-child {
-            margin-bottom: 0;
-        }
-        .form-group input[type="file"] {
-            padding: 8px;
-            background: white;
-        }
         .btn {
-            background: #4a90e2;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
             transition: background 0.3s ease;
-        }
-        .btn:hover {
-            background: #357abd;
         }
     </style>
 </head>
@@ -160,7 +105,6 @@ $profilePicture = !empty($user['profile_picture']) ? $user['profile_picture'] : 
         <div class="header">
             <h1>Welcome, <?php echo htmlspecialchars(explode(' ', $user['name'])[0]); ?></h1>
             <div class="search-profile">
-                <input type="search" placeholder="Search">
                 <img src="<?php echo htmlspecialchars($profilePicture); ?>" alt="Profile Picture">
             </div>
         </div>
@@ -169,28 +113,53 @@ $profilePicture = !empty($user['profile_picture']) ? $user['profile_picture'] : 
             <div class="profile-header">
                 <div class="profile-header-left">
                     <img src="<?php echo htmlspecialchars($profilePicture); ?>" alt="Profile Picture" class="profile-image">
-                    <div class="profile-info">
+                    <div>
                         <h2><?php echo htmlspecialchars($user['name']); ?></h2>
                         <p><?php echo htmlspecialchars($user['email']); ?></p>
                     </div>
                 </div>
             </div>
 
-            <form action="update-profile.php" method="POST" enctype="multipart/form-data">
-                <div class="form-group">
+            <form action="#" method="POST">
+                <div class="form-group mb-3">
                     <label>Name</label>
-                    <input type="text" name="name" placeholder="Enter your name" value="<?php echo htmlspecialchars($user['name']); ?>" required>
+                    <input type="text" class="form-control" value="<?php echo htmlspecialchars($user['name']); ?>" readonly>
                 </div>
-                <div class="form-group">
+                <div class="form-group mb-3">
                     <label>Email</label>
-                    <input type="email" name="email" placeholder="Enter your email" value="<?php echo htmlspecialchars($user['email']); ?>" required>
+                    <input type="email" class="form-control" value="<?php echo htmlspecialchars($user['email']); ?>" readonly>
                 </div>
-                <div class="form-group">
+                <div class="form-group mb-3">
                     <label>Phone Number</label>
-                    <input type="tel" name="phone_number" placeholder="Enter your phone number" value="<?php echo htmlspecialchars($user['phone_number']); ?>">
+                    <input type="tel" class="form-control" value="<?php echo htmlspecialchars($user['phone_number']); ?>" readonly>
                 </div>
-                <button type="submit" class="btn">Logout</button>
+
+                <!-- Tombol Logout dengan modal -->
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                    Logout
+                </button>
             </form>
+        </div>
+    </div>
+
+    <!-- Modal Konfirmasi Logout -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">Konfirmasi Logout</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Apakah Anda yakin ingin logout?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <form action="../userprofile/logout.php" method="POST">
+                        <button type="submit" class="btn btn-danger">Logout</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </body>

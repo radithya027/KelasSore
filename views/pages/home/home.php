@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- // home.php -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KelasSore.com</title>
@@ -20,9 +21,11 @@
         <img src="../../../../assets/images/logo.svg" alt="KelasSore Logo">
     </div>
     <div class="buttons">
-        <a href="../dashoardUser/index.php" class="login">Your Class</a>
+        <a href="/views//pages/dashoardUser/index.php" class="login">Your Class</a>
+        <a href="/views/pages/userprofile/userprofile.php" class="register" style="background-color: #FF5722; color: #fff; padding: 10px 20px; border-radius: 50px; margin-left: 10px;">Profile</a>
     </div>
 </header>
+
 
 <nav class="fade-in">
     <a href="#" class="stagger-delay-1">Technology & Software</a>

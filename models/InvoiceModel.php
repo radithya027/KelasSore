@@ -176,12 +176,19 @@ class InvoiceModel
         return mysqli_stmt_execute($stmt);
     }
 
-    public function getKelasUser ($user_id) {
-        $query = "SELECT * FROM kelas_users WHERE user_id = ?";
+    public function getKelasUserDetail($user_id) {
+        $query = "
+            SELECT k.id, k.name, k.image, k.name_mentor, k.price, k.category , k.start_date, k.end_date
+            FROM kelas_users ku
+            JOIN kelas k ON ku.kelas_id = k.id
+            WHERE ku.user_id = ?
+        ";
+    
         $stmt = mysqli_prepare($this->conn, $query);
         mysqli_stmt_bind_param($stmt, "i", $user_id);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
-        return mysqli_fetch_assoc($result);
-    }
+        return mysqli_fetch_all($result, MYSQLI_ASSOC);
+    }    
+    
 }
