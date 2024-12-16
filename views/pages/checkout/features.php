@@ -1,4 +1,5 @@
 <?php
+// Path: views/pages/checkout/features.php
 require_once dirname(__FILE__) . '/../../../controllers/KelasController.php';
 // Inisialisasi KelasController
 $kelasController = new KelasController();

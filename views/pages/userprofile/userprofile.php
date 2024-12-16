@@ -1,4 +1,5 @@
 <?php
+// File: views/pages/userprofile/userprofile.php
 // Start the session at the beginning
 session_start();
 

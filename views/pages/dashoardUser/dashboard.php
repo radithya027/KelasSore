@@ -8,7 +8,7 @@
 </head>
 <body>
 
-
+<!-- // Include content.php -->
     <section class="your-class">
         <div class="container">
             <div class="section-header">

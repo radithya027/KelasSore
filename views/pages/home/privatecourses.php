@@ -7,7 +7,7 @@
     <span class="arrow-icon">→</span>
   </a>
 </div>
-
+<!-- // Compare this snippet from views/pages/home/privatecourses.php: -->
     <div class="private-cards-wrapper fade-in">
       <div class="private-card">
         <div class="private-card-image">

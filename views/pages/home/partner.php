@@ -1,7 +1,7 @@
 <div class="partner-header fade-up">
     <h2 class="partner-title">Partner Kami</h2>
 </div>
-
+<!-- // Compare this snippet from views/pages/home/partner.php: -->
 <section class="partner">
     <div class="partner-container">
         <div class="partner-cards-wrapper fade-up">

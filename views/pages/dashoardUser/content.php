@@ -1,21 +1,13 @@
 <?php
 session_start();
-$path = dirname(__DIR__, 3) . '/controllers/InvoiceController.php';
-require_once $path;
+include dirname(__FILE__) . '/../../../controllers/InvoiceController.php';
 
-// Ambil user_id dari session (simulasi user id 3)
-$userId = $_SESSION['user_id'] ?? 3;
-
+$userId = $_SESSION['user_id'] ?? 3; // Default ke 3 jika session tidak diatur
 $invoicesController = new InvoicesController();
 
 try {
-    $purchasedClasses = $invoicesController->getUserPurchasedClasses($userId);
-
-    // Debug: Print hasil kelas yang di-fetch
-    echo "<pre>";
-    print_r($purchasedClasses);
-    echo "</pre>";
-
+    // Ambil kelas yang sudah dibeli user
+    $purchasedClasses = $invoicesController->getkelasuser($userId) ?? [];
 } catch (Exception $e) {
     $purchasedClasses = [];
     echo "Error: " . $e->getMessage();
@@ -27,7 +19,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Purchased Courses</title>
+    <name>Purchased Courses</name>
     <link rel="stylesheet" href="assets/css/dashboard/dashbod.css">
 </head>
 <body>
@@ -42,13 +34,15 @@ try {
                     <?php if (!empty($purchasedClasses)): ?>
                         <?php foreach ($purchasedClasses as $class): ?>
                             <div class="class-card">
-                                <img src="<?php echo htmlspecialchars($class['image_url']); ?>" alt="Class Image">
-                                <h3><?php echo htmlspecialchars($class['title']); ?></h3>
-                                <p><?php echo htmlspecialchars($class['instructor']); ?></p>
-                                <div class="price">$<?php echo number_format($class['price'], 2); ?></div>
+                                <img src="<?php echo htmlspecialchars($class['image']); ?>" alt="Class Image">
+                                <h3><?php echo htmlspecialchars($class['name']); ?></h3>
+                                <p>Instructor: <?php echo htmlspecialchars($class['name_mentor']); ?></p>
+                                <div class="price">Rp <?php echo number_format($class['price'], 0, ',', '.'); ?></div>
                                 <div class="meta">
-                                    <span>⭐ <?php echo $class['rating']; ?></span>
-                                    <span>Purchased on: <?php echo htmlspecialchars($class['purchase_date']); ?></span>
+                                    <span>Start class: <?php echo htmlspecialchars($class['start_date']); ?></span>
+                                </div>
+                                <div class="meta">
+                                    <span>End class: <?php echo htmlspecialchars($class['end_date']); ?></span>
                                 </div>
                             </div>
                         <?php endforeach; ?>

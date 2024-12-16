@@ -1,4 +1,5 @@
 <?php
+// File: views/pages/checkout/content.php
 define('BASE_PATH', dirname(__DIR__, 3)); // Define base path
 
 require_once BASE_PATH . '/models/KelasModel.php';

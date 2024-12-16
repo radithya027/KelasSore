@@ -1,5 +1,5 @@
 <?php
-// File: logout.php
+// File: views/pages/checkout/logout.php
 
 session_start();
 session_unset(); // Hapus semua variabel session
