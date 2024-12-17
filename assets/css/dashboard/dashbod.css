@@ -76,7 +76,7 @@ body {
 
 .meta {
     display: flex; /* Menggunakan Flexbox */
-    align-items: center; /* Menyelaraskan konten secara vertikal */
+    align-items: start; /* Menyelaraskan konten secara vertikal */
     justify-content: flex-start; /* Memindahkan ke kiri */
     gap: 5px; /* Jarak antar elemen */
 }
@@ -84,6 +84,7 @@ body {
 .meta span {
     font-size: 1rem; /* Atur ukuran teks jika diperlukan */
     color: #666; /* Warna teks */
+    align-items: start;
 }
 
 
@@ -185,6 +186,12 @@ body {
     cursor: pointer;
     z-index: 10;
 }
+.meta {
+    text-align: left; /* Rata kiri */
+ 
+    margin-bottom: 5px; /* Memberikan jarak bawah antar elemen */
+}
+
 
 .left-btn {
     left: 10px;  /* Atur posisi tombol kiri */

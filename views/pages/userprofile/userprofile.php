@@ -15,10 +15,16 @@ $userId = $_SESSION['user_id'];
 
 // Initialize UserController with correct path
 include dirname(__FILE__) . '/../../../controllers/UserController.php';
+require_once dirname(__FILE__) . '/../../../controllers/BookController.php';
+require_once dirname(__FILE__) . '/../../../models/BookModel.php';
+require_once dirname(__FILE__) . '/../../../services/database.php';
+
 $userController = new UserController();
+$bookController = new BookController();
 
 // Fetch current user's data
 $user = $userController->getUserProfile($userId);
+$books = $bookController->getAllBooks();
 
 // If user data couldn't be fetched, redirect to login
 if (!$user) {
@@ -98,6 +104,42 @@ $profilePicture = !empty($user['profile_picture']) ? $user['profile_picture'] : 
         .btn {
             transition: background 0.3s ease;
         }
+        
+        /* Book Section Styles */
+        .private-courses {
+            margin-top: 30px;
+        }
+        .private-cards-wrapper {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding-bottom: 20px;
+        }
+        .private-card {
+            min-width: 250px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .private-card:hover {
+            transform: scale(1.05);
+        }
+        .private-card-image img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .private-card-content {
+            padding: 15px;
+        }
+        .title {
+            margin-bottom: 20px;
+            color: #333;
+        }
     </style>
 </head>
 <body>
@@ -142,6 +184,39 @@ $profilePicture = !empty($user['profile_picture']) ? $user['profile_picture'] : 
         </div>
     </div>
 
+    <!-- Book Section -->
+    <div class="container mt-4">
+        <h1 class="title">Buku</h1>
+        <section class="private-courses">
+            <div class="private-container">
+                <div class="private-cards-wrapper">
+                    <?php foreach($books as $book): ?>
+                    <div class="private-card" data-book-id="<?php echo $book['id']; ?>" data-ebook-file="<?php echo htmlspecialchars($book['ebook_file']); ?>">
+                        <div class="private-card-image">
+                        <?php
+                        $imagePath = str_replace('../public', '/public', htmlspecialchars($book['image']));
+                        if (file_exists($_SERVER['DOCUMENT_ROOT'] . $imagePath)) {
+                            $imageUrl = $imagePath;
+                        } else {
+                            $imageUrl = '/public/image-book/6752af8606088_commandermewing.png'; // Fallback image
+                        }
+                        ?>
+                        <img src="<?php echo $imageUrl; ?>" alt="Book Thumbnail">
+                        </div>
+                        <div class="private-card-content">
+                        <h3 class="private-course-title"><?php echo htmlspecialchars($book['title']); ?></h3>
+                        <p class="private-instructor-name"><?php echo htmlspecialchars($book['description']); ?></p>
+                        <div class="private-card-stats">  
+                            <div class="private-students"><?php echo $book['rating']; ?> Rating</div>
+                        </div>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </section>
+    </div>
+
     <!-- Modal Konfirmasi Logout -->
     <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -162,5 +237,54 @@ $profilePicture = !empty($user['profile_picture']) ? $user['profile_picture'] : 
             </div>
         </div>
     </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const bookCards = document.querySelectorAll('.private-card');
+        bookCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const bookId = this.getAttribute('data-book-id');
+                
+                if (bookId) {
+                    // Create a download link and trigger it
+                    window.location.href = '/views/pages/class/dowload-ebook.php?book_id=' + bookId;
+                } else {
+                    alert('Ebook file not available for this book.');
+                }
+            });
+        });
+
+        // Swipe functionality for book cards
+        const privateCardsWrapper = document.querySelector('.private-cards-wrapper');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        privateCardsWrapper.addEventListener('mousedown', (e) => {
+            isDown = true;
+            privateCardsWrapper.classList.add('active');
+            startX = e.pageX - privateCardsWrapper.offsetLeft;
+            scrollLeft = privateCardsWrapper.scrollLeft;
+        });
+
+        privateCardsWrapper.addEventListener('mouseleave', () => {
+            isDown = false;
+            privateCardsWrapper.classList.remove('active');
+        });
+
+        privateCardsWrapper.addEventListener('mouseup', () => {
+            isDown = false;
+            privateCardsWrapper.classList.remove('active');
+        });
+
+        privateCardsWrapper.addEventListener('mousemove', (e) => {
+            if(!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - privateCardsWrapper.offsetLeft;
+            const walk = (x - startX) * 2; // Scroll-fast
+            privateCardsWrapper.scrollLeft = scrollLeft - walk;
+        });
+    });
+    </script>
 </body>
 </html>

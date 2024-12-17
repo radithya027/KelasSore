@@ -29,28 +29,56 @@ try {
                 <h2 class="memer">Purchased Courses</h2>
             </div>
             <div class="slider-wrapper">
-                <button class="slider-btn left-btn" onclick="slideLeft()">&#10094;</button>
-                <div class="class-grid">
-                    <?php if (!empty($purchasedClasses)): ?>
-                        <?php foreach ($purchasedClasses as $class): ?>
-                            <div class="class-card">
-                                <img src="<?php echo htmlspecialchars($class['image']); ?>" alt="Class Image">
-                                <h3><?php echo htmlspecialchars($class['name']); ?></h3>
-                                <p>Instructor: <?php echo htmlspecialchars($class['name_mentor']); ?></p>
-                                <div class="price">Rp <?php echo number_format($class['price'], 0, ',', '.'); ?></div>
-                                <div class="meta">
-                                    <span>Start class: <?php echo htmlspecialchars($class['start_date']); ?></span>
-                                </div>
-                                <div class="meta">
-                                    <span>End class: <?php echo htmlspecialchars($class['end_date']); ?></span>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <p>No purchased courses available.</p>
-                    <?php endif; ?>
+
+                
+            <div class="class-grid">
+    <?php if (!empty($purchasedClasses)): ?>
+        <?php foreach ($purchasedClasses as $class): ?>
+            <a href="../class/index.php?id=<?php echo urlencode($class['id']); ?>" class="class-card-link">
+                <div class="class-card">
+                    <?php
+                    $imagePath = !empty($class['image']) 
+                        ? '/public/image-class/' . basename($class['image']) 
+                        : '/assets/images/default-course.svg';
+                    ?>
+                    <img 
+                        src="<?php echo htmlspecialchars($imagePath); ?>" 
+                        alt="Gambar Kelas <?php echo isset($class['image']) ? htmlspecialchars($class['image']) : 'Tidak diketahui'; ?>"
+                        onerror="this.onerror=null; this.src='/assets/images/default-course.svg';"
+                    >   
+                    <h3><?php echo htmlspecialchars($class['name']); ?></h3>
+                    <p>Instructor: <?php echo htmlspecialchars($class['name_mentor']); ?></p>
+                    <div class="price">Rp <?php echo number_format($class['price'], 0, ',', '.'); ?></div>
+                    <div class="meta" style="text-align: left; margin-bottom: 5px;">
+                        <span>Kelas di Mulai: <?php echo htmlspecialchars($class['start_date']); ?></span>
+                    </div>
+                    <div class="meta">
+                        <span>Kelas Selesai: <?php echo htmlspecialchars($class['end_date']); ?></span>
+                    </div>
                 </div>
-                <button class="slider-btn right-btn" onclick="slideRight()">&#10095;</button>
+            </a>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p>No purchased courses available.</p>
+    <?php endif; ?>
+</div>
+
+</div>
+
+     
+        </div>
+    </div>
+</section>
+
+<script>
+    function slideLeft() {
+        document.querySelector(".class-grid").scrollBy({ left: -300, behavior: "smooth" });
+    }
+    function slideRight() {
+        document.querySelector(".class-grid").scrollBy({ left: 300, behavior: "smooth" });
+    }
+</script>
+         
             </div>
         </div>
     </section>
