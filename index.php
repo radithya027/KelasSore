@@ -9,7 +9,7 @@
 $page = isset($_GET['page']) ? $_GET['page'] : 'mentor';
 
 // Daftar halaman yang diizinkan untuk mencegah akses file sembarangan
-$allowedPages = ['home', 'checkout', 'login', 'register', 'userprofile', 'mentor'];
+$allowedPages = ['home', 'checkout', 'login', 'register', 'userprofile', 'mentor', 'loginmentor'];
 
 // Validasi halaman
 if (in_array($page, $allowedPages)) {
@@ -23,6 +23,6 @@ if (in_array($page, $allowedPages)) {
         echo "Halaman tidak ditemukan";
     }
 } else {
-    include "views/pages/mentor/mentor.php";
+    include "views/pages/login/loginmentor.php";
 }
 ?>
