@@ -1,5 +1,4 @@
 <?php
-// File: index.php
 // Kode saat ini hanya secara langsung memasukkan halaman home
 // Ini memiliki beberapa kelemahan:
 // 1. Tidak fleksibel untuk navigasi antar halaman
@@ -7,10 +6,10 @@
 // 3. Tidak dapat menangani berbagai halaman berbeda
 
 // Solusi yang lebih baik:
-$page = isset($_GET['page']) ? $_GET['page'] : 'home';
+$page = isset($_GET['page']) ? $_GET['page'] : 'mentor';
 
 // Daftar halaman yang diizinkan untuk mencegah akses file sembarangan
-$allowedPages = ['home', 'checkout', 'login', 'register', 'userprofile'];
+$allowedPages = ['home', 'checkout', 'login', 'register', 'userprofile', 'mentor'];
 
 // Validasi halaman
 if (in_array($page, $allowedPages)) {
@@ -24,6 +23,6 @@ if (in_array($page, $allowedPages)) {
         echo "Halaman tidak ditemukan";
     }
 } else {
-    include "views/pages/userprofile/userprofile.php";
+    include "views/pages/mentor/mentor.php";
 }
 ?>
