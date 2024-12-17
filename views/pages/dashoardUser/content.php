@@ -29,6 +29,7 @@ try {
                 <h2 class="memer">Purchased Courses</h2>
             </div>
             <div class="slider-wrapper">
+
                 
             <div class="class-grid">
     <?php if (!empty($purchasedClasses)): ?>

@@ -1,4 +1,5 @@
 <?php
+// File: views/layouts/footer.php
 $popularCourses = [
     'Python for Data Science',
     'Digital Marketing Masterclass',

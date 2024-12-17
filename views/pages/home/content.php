@@ -1,4 +1,5 @@
 <div class="container">
+    <!-- // Home Content -->
     <section class="benefits">
         <div class="benefit-item fade-up stagger-delay-1">
             <h2>Belajar dari Profesional</h2>

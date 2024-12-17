@@ -1,4 +1,5 @@
 <?php
+// File: views/pages/checkout/learn.php
 // Gunakan path absolut atau dirname untuk mencari path controller
 require_once dirname(__DIR__, 3) . '/controllers/BookController.php';
 require_once dirname(__DIR__, 3) . '/models/BookModel.php';

@@ -1,4 +1,5 @@
 <?php
+// File: views/pages/home/publiccourses.php
 // Atau gunakan cara alternatif
 require_once dirname(__FILE__) . '/../../../controllers/KelasController.php';
 $kelasController = new KelasController();

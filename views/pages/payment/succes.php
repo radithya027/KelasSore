@@ -1,4 +1,5 @@
 <?php
+// Path: views/pages/payment/succes.php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }

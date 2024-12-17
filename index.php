@@ -1,4 +1,5 @@
 <?php
+// File: index.php
 // Kode saat ini hanya secara langsung memasukkan halaman home
 // Ini memiliki beberapa kelemahan:
 // 1. Tidak fleksibel untuk navigasi antar halaman

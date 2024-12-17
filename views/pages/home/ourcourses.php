@@ -1,4 +1,5 @@
 <section class="our-courses fade-up">
+    <!-- // Home Content -->
     <h1>Kursus</h1>
     <div class="card-container">
         <div class="card fade-up stagger-delay-1">
