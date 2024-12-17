@@ -90,7 +90,7 @@
     </div>
 </section>
 
-<?php include('views/layouts/footer.php'); ?>
+<?php include('/PhpWeb/views/layouts/footer.php'); ?>
 
 
 <script src="../../../../assets/js/animation.js"></script>

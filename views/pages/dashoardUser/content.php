@@ -1,21 +1,13 @@
 <?php
 session_start();
-$path = dirname(__DIR__, 3) . '/controllers/InvoiceController.php';
-require_once $path;
+include dirname(__FILE__) . '/../../../controllers/InvoiceController.php';
 
-// Ambil user_id dari session (simulasi user id 3)
-$userId = $_SESSION['user_id'] ?? 3;
-
+$userId = $_SESSION['user_id'] ?? 3; // Default ke 3 jika session tidak diatur
 $invoicesController = new InvoicesController();
 
 try {
-    $purchasedClasses = $invoicesController->getUserPurchasedClasses($userId);
-
-    // Debug: Print hasil kelas yang di-fetch
-    echo "<pre>";
-    print_r($purchasedClasses);
-    echo "</pre>";
-
+    // Ambil kelas yang sudah dibeli user
+    $purchasedClasses = $invoicesController->getkelasuser($userId) ?? [];
 } catch (Exception $e) {
     $purchasedClasses = [];
     echo "Error: " . $e->getMessage();
@@ -27,7 +19,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Purchased Courses</title>
+    <name>Purchased Courses</name>
     <link rel="stylesheet" href="assets/css/dashboard/dashbod.css">
 </head>
 <body>
@@ -37,26 +29,55 @@ try {
                 <h2 class="memer">Purchased Courses</h2>
             </div>
             <div class="slider-wrapper">
-                <button class="slider-btn left-btn" onclick="slideLeft()">&#10094;</button>
-                <div class="class-grid">
-                    <?php if (!empty($purchasedClasses)): ?>
-                        <?php foreach ($purchasedClasses as $class): ?>
-                            <div class="class-card">
-                                <img src="<?php echo htmlspecialchars($class['image_url']); ?>" alt="Class Image">
-                                <h3><?php echo htmlspecialchars($class['title']); ?></h3>
-                                <p><?php echo htmlspecialchars($class['instructor']); ?></p>
-                                <div class="price">$<?php echo number_format($class['price'], 2); ?></div>
-                                <div class="meta">
-                                    <span>⭐ <?php echo $class['rating']; ?></span>
-                                    <span>Purchased on: <?php echo htmlspecialchars($class['purchase_date']); ?></span>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <p>No purchased courses available.</p>
-                    <?php endif; ?>
+                
+            <div class="class-grid">
+    <?php if (!empty($purchasedClasses)): ?>
+        <?php foreach ($purchasedClasses as $class): ?>
+            <a href="../class/index.php?id=<?php echo urlencode($class['id']); ?>" class="class-card-link">
+                <div class="class-card">
+                    <?php
+                    $imagePath = !empty($class['image']) 
+                        ? '/public/image-class/' . basename($class['image']) 
+                        : '/assets/images/default-course.svg';
+                    ?>
+                    <img 
+                        src="<?php echo htmlspecialchars($imagePath); ?>" 
+                        alt="Gambar Kelas <?php echo isset($class['image']) ? htmlspecialchars($class['image']) : 'Tidak diketahui'; ?>"
+                        onerror="this.onerror=null; this.src='/assets/images/default-course.svg';"
+                    >   
+                    <h3><?php echo htmlspecialchars($class['name']); ?></h3>
+                    <p>Instructor: <?php echo htmlspecialchars($class['name_mentor']); ?></p>
+                    <div class="price">Rp <?php echo number_format($class['price'], 0, ',', '.'); ?></div>
+                    <div class="meta" style="text-align: left; margin-bottom: 5px;">
+                        <span>Kelas di Mulai: <?php echo htmlspecialchars($class['start_date']); ?></span>
+                    </div>
+                    <div class="meta">
+                        <span>Kelas Selesai: <?php echo htmlspecialchars($class['end_date']); ?></span>
+                    </div>
                 </div>
-                <button class="slider-btn right-btn" onclick="slideRight()">&#10095;</button>
+            </a>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p>No purchased courses available.</p>
+    <?php endif; ?>
+</div>
+
+</div>
+
+     
+        </div>
+    </div>
+</section>
+
+<script>
+    function slideLeft() {
+        document.querySelector(".class-grid").scrollBy({ left: -300, behavior: "smooth" });
+    }
+    function slideRight() {
+        document.querySelector(".class-grid").scrollBy({ left: 300, behavior: "smooth" });
+    }
+</script>
+         
             </div>
         </div>
     </section>

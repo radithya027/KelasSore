@@ -62,14 +62,9 @@ class InvoicesController
         }
     }
 
-    public function getkelasuser($user_id)
-    {
-        $kelasuser = $this->invoiceModel->getkelasuser($user_id);
-        if ($kelasuser) {
-            return json_encode(['success' => true, 'data' => $kelasuser]);
-        } else {
-            return json_encode(['success' => false, 'message' => 'Kelas not found']);
-        }
+    public function getkelasuser($user_id) {
+        $kelasUser = $this->invoiceModel->getKelasUserDetail($user_id);
+        return $kelasUser; // Langsung kembalikan hasil array data kelas
     }
 }
 ?>
