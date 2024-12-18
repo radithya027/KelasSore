@@ -139,7 +139,6 @@ class MentorModel {
             $data['updated_at'],
             $mentorId
         );
-
         return mysqli_stmt_execute($stmt);
     }
 }

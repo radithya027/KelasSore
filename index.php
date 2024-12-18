@@ -6,12 +6,10 @@
 // 3. Tidak dapat menangani berbagai halaman berbeda
 
 // Solusi yang lebih baik:
-$page = isset($_GET['page']) ? $_GET['page'] : 'mentor';
+$page = isset($_GET['page']) ? $_GET['page'] : 'home';
 
-// Daftar halaman yang diizinkan untuk mencegah akses file sembarangan
 $allowedPages = ['home', 'checkout', 'login', 'register', 'userprofile', 'mentor', 'loginmentor'];
 
-// Validasi halaman
 if (in_array($page, $allowedPages)) {
     // Konstruksi path file secara dinamis
     $pagePath = "views/pages/{$page}/{$page}.php";
@@ -23,6 +21,6 @@ if (in_array($page, $allowedPages)) {
         echo "Halaman tidak ditemukan";
     }
 } else {
-    include "views/pages/login/loginmentor.php";
+    include "views/pages/home/home.php";
 }
 ?>
