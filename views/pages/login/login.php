@@ -92,13 +92,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                     </form>
                     <div class="input-group mb-3">
-                        <button class="btn btn-lg btn-light w-100 fs-6">
-                            <img src="../../../assets/images/google.svg" style="width:20px" class="me-2" alt="Google Logo">
-                            <small>Sign In with Google</small>
-                        </button>
+                    <a href="../login//loginmentor.php" class="btn btn-lg btn-light w-100 fs-6">
+                            <small>Login Mentor</small>
+                    </a>
                     </div>
                     <div class="row">
-                        <small>Don't have an account? <a href="views/pages/register/register.php">Sign Up</a></small>
+                        <small>Don't have an account? <a href="../register/register.php">Sign Up</a></small>
                     </div>
                 </div>
             </div>

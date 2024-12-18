@@ -16,16 +16,25 @@
 </head>
 <body>
 
-<header class="fade-in">
+<header>
+    <!-- // file ini berisi tag <head> yang berisi meta tag, title, dan link CSS -->
     <div class="logo">
         <img src="../../../../assets/images/logo.svg" alt="KelasSore Logo">
     </div>
     <div class="buttons">
-        <a href="/views//pages/dashoardUser/index.php" class="login">Your Class</a>
-        <a href="/views/pages/userprofile/userprofile.php" class="register" style="background-color: #FF5722; color: #fff; padding: 10px 20px; border-radius: 50px; margin-left: 10px;">Profile</a>
+        <?php
+        session_start(); // Mulai session
+        if (!isset($_SESSION['user_id'])) {
+            // Jika belum login, tampilkan tombol Log in dan Join
+            echo '<a href="/views/pages/login/login.php" class="login">Log in</a>';
+        } else {
+            // Jika sudah login, tampilkan tombol Log out
+            echo '<a href="/views//pages/dashoardUser/index.php" class="login">Your Class</a>';
+            echo '<a href="/views/pages/userprofile/userprofile.php" class="register" style="background-color: #FF5722; color: #fff; padding: 10px 20px; border-radius: 50px; margin-left: 10px;">Profile</a>';
+        }
+        ?>
     </div>
 </header>
-
 
 <nav class="fade-in">
     <a href="#" class="stagger-delay-1">Technology & Software</a>

@@ -4,7 +4,7 @@
 include dirname(__FILE__) . '/../services/database.php';
 include dirname(__FILE__) . '/../models/MentorModel.php';
 
-class AuthController {
+class AuthMentorController {
     protected $mentorModel;
 
     public function __construct() {

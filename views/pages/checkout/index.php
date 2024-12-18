@@ -23,7 +23,6 @@
     include('nav.php'); 
     include('content.php'); 
     include('features.php');
-    include('learn.php');
     include('kursus.php');
     include('../../layouts/footer.php'); 
     ?>
