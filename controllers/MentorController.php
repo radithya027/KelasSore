@@ -20,7 +20,6 @@ class AuthMentorController {
             $_SESSION['mentor_id'] = $mentor['id']; // ID pengguna
             $_SESSION['mentor_email'] = $mentor['email']; // Email pengguna
             $_SESSION['mentor_name'] = $mentor['name']; // Nama pengguna
-            header('Location: ../views/pages/dashboard/dashboard.php'); // Sesuaikan path
             exit();
         } else {
             return "Email atau Password salah!";

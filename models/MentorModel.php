@@ -12,13 +12,13 @@ class MentorModel {
 
     // Fungsi untuk mendapatkan mentor berdasarkan email
     public function getMentorByEmail($email) {
-        global $conn;
         $query = "SELECT * FROM mentors WHERE email = ?";
-        $stmt = mysqli_prepare($conn, $query);
+        $stmt = mysqli_prepare($this->conn, $query);
         mysqli_stmt_bind_param($stmt, "s", $email);
         mysqli_stmt_execute($stmt);
-        return mysqli_stmt_get_result($stmt);
+        return mysqli_stmt_get_result($stmt); // Kembalikan mysqli_result
     }
+    
 
     public function getMentorByPhoneNumber($phone_number) {
         global $conn;
@@ -47,63 +47,53 @@ class MentorModel {
 
     public function loginMentor($email, $password) {
         $result = $this->getMentorByEmail($email);
-        if (mysqli_num_rows($result) > 0) {
-            $mentor = mysqli_fetch_assoc($result);
+        if ($result && mysqli_num_rows($result) > 0) { // Pastikan result bukan null atau false
+            $mentor = mysqli_fetch_assoc($result); // Ambil array dari hasil query
             if (password_verify($password, $mentor['password'])) {
                 return $mentor; // Jika password valid, kembalikan data mentor
             }
         }
         return false; // Return false jika login gagal
     }
+    
 
     // Fungsi untuk registrasi mentor
     public function registerMentor($email, $name, $password, $password_confirm, $phone_number) {
-        // Validasi input
         if (empty($email) || empty($name) || empty($password)) {
             return "Semua field harus diisi!";
         }
-
-        // Validasi format email
+    
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return "Format email tidak valid!";
         }
-
-
-        // Validasi panjang password
+    
         if (strlen($password) < 6) {
             return "Password minimal 6 karakter!";
         }
-
-        if ($password === $password_confirm) {
-            // Cek apakah email sudah terdaftar
-            $result = $this->getMentorByEmail($email);
-            if (mysqli_num_rows($result) > 0) {
-                return "Email sudah terdaftar!";
-            } else {
-                // Buat pengguna baru
-                if ($this->createMentor($email, $name, $password)) {
-                    return "Pendaftaran berhasil, silakan login!";
-                } else {
-                    return "Terjadi kesalahan saat pendaftaran!";
-                }
-            }
-        } if ($phone_number === $phone_number) {
-            // Cek apakah nomor telepon sudah terdaftar
-            $result = $this->getMentorByPhoneNumber($phone_number);
-            if (mysqli_num_rows($result) > 0) {
-                return "Nomor telepon sudah terdaftar!";
-            } else {
-                // Buat pengguna baru
-                if ($this->createMentor($email, $name, $password, $phone_number)) {
-                    return "Pendaftaran berhasil, silakan login!";
-                } else {
-                    return "Terjadi kesalahan saat pendaftaran!";
-                }
-            }
-        } else {
+    
+        if ($password !== $password_confirm) {
             return "Password tidak cocok!";
         }
-    }
+    
+        // Cek apakah email sudah terdaftar
+        $result = $this->getMentorByEmail($email);
+        if ($result && mysqli_num_rows($result) > 0) {
+            return "Email sudah terdaftar!";
+        }
+    
+        // Cek apakah nomor telepon sudah terdaftar
+        $result = $this->getMentorByPhoneNumber($phone_number);
+        if ($result && mysqli_num_rows($result) > 0) {
+            return "Nomor telepon sudah terdaftar!";
+        }
+    
+        // Buat pengguna baru
+        if ($this->createMentor($email, $name, $password)) {
+            return "Pendaftaran berhasil, silakan login!";
+        } else {
+            return "Terjadi kesalahan saat pendaftaran!";
+        }
+    }    
 
     public function getMentorById($mentorId) {
         $query = "SELECT * FROM mentors WHERE id = ?";
