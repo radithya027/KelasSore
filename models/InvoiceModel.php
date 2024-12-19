@@ -189,7 +189,21 @@ class InvoiceModel
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         return mysqli_fetch_all($result, MYSQLI_ASSOC);
-    }    
+    }  
+    
+    public function getMentorKelasDetail($mentor_id) {
+        $query = "
+            SELECT k.id, k.name, k.image, k.name_mentor, k.price, k.category , k.start_date, k.end_date
+            FROM kelas k
+            WHERE k.mentor_id = ?
+        ";
+    
+        $stmt = mysqli_prepare($this->conn, $query);
+        mysqli_stmt_bind_param($stmt, "i", $mentor_id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        return mysqli_fetch_all($result, MYSQLI_ASSOC);
+    }
     
 
 }
