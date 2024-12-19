@@ -4,7 +4,7 @@ include dirname(__FILE__) . '/../../../controllers/MentorController.php';
 session_start();
 
 if (isset($_SESSION['mentor_id'])) {
-    header('Location: /../../dashboard/dashboard.php');
+    header('Location: ../../mentor/mentor.php'); 
     exit();
 }
 
