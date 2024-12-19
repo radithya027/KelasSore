@@ -66,5 +66,10 @@ class InvoicesController
         $kelasUser = $this->invoiceModel->getKelasUserDetail($user_id);
         return $kelasUser; // Langsung kembalikan hasil array data kelas
     }
+
+    public function getmentorkelas($mentor_id) {
+        $mentorKelas = $this->invoiceModel->getMentorKelasDetail($mentor_id);
+        return $mentorKelas; // Langsung kembalikan hasil array data kelas
+    }
 }
 ?>
