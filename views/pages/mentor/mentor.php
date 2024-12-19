@@ -1,7 +1,7 @@
 <?php
 // Include necessary files for database connection and authentication
-require_once '../../../../config/database.php'; // Adjust path as needed
-require_once '../../../../models/AuthModel.php'; // Adjust path as needed
+include dirname(__FILE__) . '/../../../services/database.php';
+include dirname(__FILE__) . '/../../../models/MentorModel.php';
 
 // Start session to get mentor ID
 session_start();
