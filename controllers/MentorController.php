@@ -11,15 +11,12 @@ class AuthMentorController {
         $this->mentorModel = new MentorModel(); // Inisialisasi model
     }
 
-    // Fungsi untuk login
     public function login($email, $password) {
         $mentor = $this->mentorModel->loginMentor($email, $password);
         if ($mentor) {
-            session_start(); // Pastikan memulai session sebelum set session
-            // Setelah login berhasil, simpan data pengguna ke session
-            $_SESSION['mentor_id'] = $mentor['id']; // ID pengguna
-            $_SESSION['mentor_email'] = $mentor['email']; // Email pengguna
-            $_SESSION['mentor_name'] = $mentor['name']; // Nama pengguna
+            $_SESSION['mentor_id'] = $mentor['id'];
+            $_SESSION['mentor_email'] = $mentor['email'];
+            $_SESSION['mentor_name'] = $mentor['name'];
             exit();
         } else {
             return "Email atau Password salah!";
