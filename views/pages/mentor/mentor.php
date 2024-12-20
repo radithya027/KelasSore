@@ -4,6 +4,7 @@ include dirname(__FILE__) . '/../../../services/database.php';
 include dirname(__FILE__) . '/../../../models/MentorModel.php';
 include dirname(__FILE__) . '/../../../controllers/InvoiceController.php';
 include dirname(__FILE__) . '/../../../controllers/AuthController.php';
+include dirname(__FILE__) . '/../../../controllers/BookController.php';
 
 // Start session to get mentor ID
 session_start();
@@ -18,6 +19,7 @@ if (!isset($_SESSION['mentor_id'])) {
 $mentorModel = new MentorModel();
 $invoicesController = new InvoicesController();
 $authController = new AuthController();
+$bookController = new BookController();
 
 // Get mentor details
 $mentorId = $_SESSION['mentor_id'];
@@ -25,6 +27,9 @@ $mentorDetails = $mentorModel->getMentorById($mentorId);
 
 // Get mentor's classes
 $mentorClasses = $invoicesController->getmentorkelas($mentorId);
+
+// Get all books
+$books = $bookController->getAllBooks();
 
 // Extract salary information
 $salaryReceived = $mentorDetails['salary_recived'] ?? 0;
@@ -71,6 +76,73 @@ $salaryRemaining = $mentorDetails['salary_remaining'] ?? 0;
 
         .mentor-name {
             font-weight: 500;
+        }
+
+        /* Books Section Styles */
+        .books-section {
+            padding: 2rem 0;
+            background-color: #f8f9fa;
+        }
+        
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+        
+        .book-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+        
+        .book-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .book-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .book-info {
+            padding: 1rem;
+        }
+        
+        .book-info h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.2rem;
+            color: #333;
+        }
+        
+        .book-info p {
+            margin: 0.5rem 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .book-actions {
+            padding: 1rem;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .download-btn {
+            padding: 0.5rem 1rem;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        
+        .download-btn:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
@@ -129,6 +201,36 @@ $salaryRemaining = $mentorDetails['salary_remaining'] ?? 0;
                 <h3>Gaji Belum Diterima</h3>
                 <p>Rp <?= number_format($salaryRemaining, 0, ',', '.') ?></p>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- Books Section -->
+<section class="books-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Available Books</h2>
+        </div>
+        <div class="books-grid">
+            <?php if (!empty($books)): ?>
+                <?php foreach ($books as $book): ?>
+                    <div class="book-card">
+                        <img src="<?= htmlspecialchars($book['image']) ?>" 
+                             alt="<?= htmlspecialchars($book['title']) ?>" 
+                             onerror="this.src='../../../../assets/images/book-placeholder.svg'">
+                        <div class="book-info">
+                            <h3><?= htmlspecialchars($book['title']) ?></h3>
+                            <p><?= htmlspecialchars(substr($book['description'], 0, 100)) ?>...</p>
+                            <p>Rating: <?= number_format($book['rating'], 1) ?> / 5.0</p>
+                        </div>
+                        
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="no-books">
+                    <p>No books available at the moment.</p>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 </section>
