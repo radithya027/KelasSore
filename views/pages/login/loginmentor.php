@@ -4,7 +4,7 @@ include dirname(__FILE__) . '/../../../controllers/MentorController.php';
 session_start();
 
 if (isset($_SESSION['mentor_id'])) {
-    header('Location: ../../mentor/mentor.php'); 
+    header('Location: ../../pages/mentor/mentor.php'); 
     exit();
 }
 
@@ -39,10 +39,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
         <div class="row border rounded-5 p-3 bg-white shadow box-area">
-            <div class="col-md-6 left-box d-flex justify-content-center align-items-center flex-column" 
-                 style="background: #000842;">
-                <p class="text-white fs-2">Selamat Datang Mentor</p>
+        <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box" style="background: #000842;">
+                <div class="featured-image mb-8">
+                    <img src="../../../assets/images/login.svg" class="img-fluid" style="width: 200px; height: 300px;" alt="Featured Image">
+                </div>
+                <p class="text-white fs-2" style="font-family: 'Manrope', sans-serif; font-weight: 600;">Log in Mentor</p>
             </div>
+
             <div class="col-md-5 right-box" style="padding-left: 40px;">
                 <div class="header-text mb-4">
                     <h2>KelasSore</h2>
@@ -62,6 +65,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="mb-3">
                         <input type="password" name="password" class="form-control" placeholder="Password" required>
                     </div>
+                    <div class="input-group mb-5 d-flex justify-content-between">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="formCheck" name="remember_me">
+                                <label for="formCheck" class="form-check-label text-secondary"><small>Remember Me</small></label>
+                            </div>
+                            <div class="forgot">
+                                <small><a href="#">Forgot Password?</a></small>
+                            </div>
+                        </div>
                     <div>
                         <button type="submit" class="btn btn-primary w-100">Login</button>
                     </div>

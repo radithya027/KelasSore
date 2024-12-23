@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                     </form>
                     <div class="input-group mb-3">
-                    <a href="../login//loginmentor.php" class="btn btn-lg btn-light w-100 fs-6">
+                    <a href="../login/loginmentor.php" class="btn btn-lg btn-light w-100 fs-6">
                             <small>Login Mentor</small>
                     </a>
                     </div>

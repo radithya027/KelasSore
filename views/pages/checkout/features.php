@@ -84,25 +84,36 @@ try {
         <!-- Accordion Section -->
         <div class="accordion">
             <?php if ($kelas): ?>
-                <details class="kelas-item">
-    <summary>
-        <h4><?= htmlspecialchars($kelas['name']); ?></h4>
-    </summary>
-    <div class="list-items">
-        <ul>
-            <?php if (!empty($kelas['what_will_learn_1'])): ?>
-                <li><?= htmlspecialchars($kelas['what_will_learn_1']); ?></li>
-            <?php endif; ?>
-            <?php if (!empty($kelas['what_will_learn_2'])): ?>
-                <li><?= htmlspecialchars($kelas['what_will_learn_2']); ?></li>
-            <?php endif; ?>
-            <?php if (!empty($kelas['what_will_learn_3'])): ?>
-                <li><?= htmlspecialchars($kelas['what_will_learn_3']); ?></li>
-            <?php endif; ?>
-        </ul>
-    </div>
-</details>
-
+                <?php if (!empty($kelas['what_will_learn_1'])): ?>
+                    <details class="kelas-item">
+                        <summary>
+                            <h5>Apa yang kamu Pelajari</h5>
+                        </summary>
+                        <div class="list-items">
+                            <p><?= htmlspecialchars($kelas['what_will_learn_1']); ?></p>
+                        </div>
+                    </details>
+                <?php endif; ?>
+                <?php if (!empty($kelas['what_will_learn_2'])): ?>
+                    <details class="kelas-item">
+                        <summary>
+                            <h5>Apa yang kamu Pelajari</h5>
+                        </summary>
+                        <div class="list-items">
+                            <p><?= htmlspecialchars($kelas['what_will_learn_2']); ?></p>
+                        </div>
+                    </details>
+                <?php endif; ?>
+                <?php if (!empty($kelas['what_will_learn_3'])): ?>
+                    <details class="kelas-item">
+                        <summary>
+                            <h5>Apa yang kamu Pelajari</h5>
+                        </summary>
+                        <div class="list-items">
+                            <p><?= htmlspecialchars($kelas['what_will_learn_3']); ?></p>
+                        </div>
+                    </details>
+                <?php endif; ?>
             <?php else: ?>
                 <p>No class details available.</p>
             <?php endif; ?>

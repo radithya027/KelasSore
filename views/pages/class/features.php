@@ -1,17 +1,24 @@
 <?php
+// Path: views/pages/checkout/features.php
 require_once dirname(__FILE__) . '/../../../controllers/KelasController.php';
-// Inisialisasi KelasController
+
+// Initialize KelasController
 $kelasController = new KelasController();
 
+$kelasId = $_GET['id'] ?? null; 
+$kelas = null;
+
 try {
-    // Ambil semua kursus
-    $kelasList = $kelasController->getAllKelas();
+    if ($kelasId) {
+        // Fetch specific class by ID
+        $kelas = $kelasController->getKelasById($kelasId);
+    } else {
+        throw new Exception("Class ID not provided.");
+    }
 } catch (Exception $e) {
-    $kelasList = [];
-    error_log("Gagal mengambil kursus: " . $e->getMessage());
+    $kelas = null;
+    error_log("Failed to fetch class: " . $e->getMessage());
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -73,34 +80,49 @@ try {
     </script>
 </head>
 <body>
-    <div class="row-container">
+<div class="row-container">
         <!-- Accordion Section -->
         <div class="accordion">
-        <?php if (!empty($kelasList)): ?>
-    <?php foreach ($kelasList as $kelas): ?>
-        <details class="kelas-item">
-            <summary>
-                <h4><?= htmlspecialchars($kelas['name']); ?></h4>
-            </summary>
-            <div class="list-items">
-                <ul>
-                    <?php foreach ($kelas['what_will_learn'] as $learn): ?>
-                        <?php if (!empty($learn)): ?>
-                            <li><?= htmlspecialchars($learn); ?></li>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-        </details>
-    <?php endforeach; ?>
-<?php else: ?>
-    <p>No classes available.</p>
-<?php endif; ?>
-
-</div>
+            <?php if ($kelas): ?>
+                <?php if (!empty($kelas['what_will_learn_1'])): ?>
+                    <details class="kelas-item">
+                        <summary>
+                            <h5>Apa yang kamu Pelajari</h5>
+                        </summary>
+                        <div class="list-items">
+                            <p><?= htmlspecialchars($kelas['what_will_learn_1']); ?></p>
+                        </div>
+                    </details>
+                <?php endif; ?>
+                <?php if (!empty($kelas['what_will_learn_2'])): ?>
+                    <details class="kelas-item">
+                        <summary>
+                            <h5>Apa yang kamu Pelajari</h5>
+                        </summary>
+                        <div class="list-items">
+                            <p><?= htmlspecialchars($kelas['what_will_learn_2']); ?></p>
+                        </div>
+                    </details>
+                <?php endif; ?>
+                <?php if (!empty($kelas['what_will_learn_3'])): ?>
+                    <details class="kelas-item">
+                        <summary>
+                            <h5>Apa yang kamu Pelajari</h5>
+                        </summary>
+                        <div class="list-items">
+                            <p><?= htmlspecialchars($kelas['what_will_learn_3']); ?></p>
+                        </div>
+                    </details>
+                <?php endif; ?>
+            <?php else: ?>
+                <p>No class details available.</p>
+            <?php endif; ?>
+        </div>
 
         <!-- Cards Section -->
         <div class="card-container">
+        
+
             <div class="card-coursesfeature1">
                 <h4>Instructor Profile</h4>
                 <div class="avatar-text">

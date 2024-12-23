@@ -40,7 +40,6 @@ class InvoicesController
         }
     }
 
-    // Update an existing invoice
     public function updateInvoice($invoiceId, $data)
     {
         $updateResult = $this->invoiceModel->updateInvoice($invoiceId, $data);
@@ -51,7 +50,7 @@ class InvoicesController
         }
     }
 
-    // Delete an invoice by ID
+
     public function deleteInvoice($invoiceId)
     {
         $deleteResult = $this->invoiceModel->deleteInvoice($invoiceId);

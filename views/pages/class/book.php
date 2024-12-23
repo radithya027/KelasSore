@@ -40,23 +40,17 @@ $books = $bookController->getAllBooks();
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Existing scroll and swipe code...
-
-    // Add click event listener to book cards for download
     const bookCards = document.querySelectorAll('.private-card');
     bookCards.forEach(card => {
       card.addEventListener('click', function() {
         const bookId = this.getAttribute('data-book-id');
         
         if (bookId) {
-          // Create a download link and trigger it
           window.location.href = '/views/pages/class/dowload-ebook.php?book_id=' + bookId;
         } else {
           alert('Ebook file not available for this book.');
         }
       });
     });
-
-    // Existing scroll and touch code...
   });
 </script>
