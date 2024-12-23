@@ -158,26 +158,16 @@ class KelasController
         return false;
     }
 
-    public function getKelasByCategory($category)
+    public function showPublicKelas()
     {
-        $kelasList = $this->kelasModel->getKelasByCategory($category);
+        // Mengambil data kelas dengan kategori 'public'
+        return $this->kelasModel->getKelasByCategory('public');       
+    }
 
-        foreach ($kelasList as &$kelas) {
-            // Gabungkan field `what_will_learn` menjadi array
-            $kelas['what_will_learn'] = [
-                $kelas['what_will_learn_1'] ?? '',
-                $kelas['what_will_learn_2'] ?? '',
-                $kelas['what_will_learn_3'] ?? ''
-            ];
+    public function showPrivateKelas()
+    {
+        // Mengambil data kelas dengan kategori 'private'
+        return $this->kelasModel->getKelasByCategory('private');
 
-            // Bersihkan path gambar
-            if (!empty($kelas['image'])) {
-                if (strpos($kelas['image'], '../') === 0) {
-                    $kelas['image'] = str_replace('../', '/public/', $kelas['image']);
-                }
-            }
-        }
-
-        return $kelasList;
     }
 }
