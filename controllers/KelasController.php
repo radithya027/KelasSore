@@ -41,9 +41,19 @@ class KelasController
 
     public function getKelasById($kelasId)
     {
-        return $this->kelasModel->getKelasById($kelasId);
+        $kelas = $this->kelasModel->getKelasById($kelasId);
+    
+        if ($kelas) {
+            $kelas['what_will_learn'] = [
+                $kelas['what_will_learn_1'] ?? '',
+                $kelas['what_will_learn_2'] ?? '',
+                $kelas['what_will_learn_3'] ?? ''
+            ];
+        }
+    
+        return $kelas;
     }
-
+    
 
     public function showKelasPage()
     {

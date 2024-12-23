@@ -1,18 +1,24 @@
 <?php
 // Path: views/pages/checkout/features.php
 require_once dirname(__FILE__) . '/../../../controllers/KelasController.php';
-// Inisialisasi KelasController
+
+// Initialize KelasController
 $kelasController = new KelasController();
 
+$kelasId = $_GET['id'] ?? null; // Get the class ID from the URL query parameter
+$kelas = null;
+
 try {
-    // Ambil semua kursus
-    $kelasList = $kelasController->getAllKelas();
+    if ($kelasId) {
+        // Fetch specific class by ID
+        $kelas = $kelasController->getKelasById($kelasId);
+    } else {
+        throw new Exception("Class ID not provided.");
+    }
 } catch (Exception $e) {
-    $kelasList = [];
-    error_log("Gagal mengambil kursus: " . $e->getMessage());
+    $kelas = null;
+    error_log("Failed to fetch class: " . $e->getMessage());
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +31,7 @@ try {
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const details = document.querySelectorAll('details');
 
             details.forEach((detail) => {
@@ -77,9 +83,8 @@ try {
     <div class="row-container">
         <!-- Accordion Section -->
         <div class="accordion">
-        <?php if (!empty($kelasList)): ?>
-    <?php foreach ($kelasList as $kelas): ?>
-        <details class="kelas-item">
+            <?php if ($kelas): ?>
+                <details class="kelas-item">
     <summary>
         <h4><?= htmlspecialchars($kelas['name']); ?></h4>
     </summary>
@@ -98,12 +103,10 @@ try {
     </div>
 </details>
 
-    <?php endforeach; ?>
-<?php else: ?>
-    <p>No classes available.</p>
-<?php endif; ?>
-
-</div>
+            <?php else: ?>
+                <p>No class details available.</p>
+            <?php endif; ?>
+        </div>
 
         <!-- Cards Section -->
         <div class="card-container">
