@@ -37,7 +37,7 @@ class AuthController {
 public function logout() {
     if (session_status() === PHP_SESSION_NONE) {
         session_start(); // Pastikan session dimulai jika belum
-    }
+    }   
     session_unset(); // Hapus semua variabel session
     session_destroy(); // Hancurkan session
     header('Location: ../login/login.php'); // Redirect ke halaman login

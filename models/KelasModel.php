@@ -191,4 +191,20 @@
             mysqli_stmt_bind_param($stmt, "i", $kelasId);
             mysqli_stmt_execute($stmt);
         }
+
+        public function getKelasByCategory($category)
+        {
+            // Query untuk mengambil data berdasarkan kategori
+            $query = "SELECT * FROM kelas WHERE LOWER(category) = LOWER(?)";
+            $stmt = mysqli_prepare($this->conn, $query);
+            mysqli_stmt_bind_param($stmt, "s", $category);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+
+            $kelasList = [];
+            while ($row = mysqli_fetch_assoc($result)) {
+                $kelasList[] = $row;
+            }
+            return $kelasList;
+        }
     }
