@@ -19,14 +19,13 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <name>Purchased Courses</name>
     <link rel="stylesheet" href="assets/css/dashboard/dashbod.css">
 </head>
 <body>
     <section class="courses">
         <div class="container">
             <div class="section-header">
-                <h2 class="memer">Purchased Courses</h2>
+                <h2 class="memer">Kelas Anda</h2>
             </div>
             <div class="slider-wrapper">
 
@@ -50,10 +49,10 @@ try {
                     <p>Instructor: <?php echo htmlspecialchars($class['name_mentor']); ?></p>
                     <div class="price">Rp <?php echo number_format($class['price'], 0, ',', '.'); ?></div>
                     <div class="meta" style="text-align: left; margin-bottom: 5px;">
-                        <span>Kelas di Mulai: <?php echo htmlspecialchars($class['start_date']); ?></span>
+                        <span>Sesi Kelas di Mulai: <?php echo htmlspecialchars($class['start_date']); ?></span>
                     </div>
                     <div class="meta">
-                        <span>Kelas Selesai: <?php echo htmlspecialchars($class['end_date']); ?></span>
+                        <span>Sesi Kelas Selesai: <?php echo htmlspecialchars($class['end_date']); ?></span>
                     </div>
                 </div>
             </a>

@@ -40,21 +40,20 @@ class KelasController
 
 
     public function getKelasById($kelasId)
-    {
-        $kelas = $this->kelasModel->getKelasById($kelasId);
-    
-       foreach ($kelas as &$kelas) {
-            // Combine the what_will_learn fields into an array
-            $kelas['what_will_learn'] = [
-                $kelas['what_will_learn_1'] ?? '',
-                $kelas['what_will_learn_2'] ?? '',
-                $kelas['what_will_learn_3'] ?? ''
-            ];
-        }
-    
-        return $kelas;
+{
+    $kelas = $this->kelasModel->getKelasById($kelasId);
+
+    if ($kelas) {
+        $kelas['what_will_learn'] = [
+            $kelas['what_will_learn_1'] ?? '',
+            $kelas['what_will_learn_2'] ?? '',
+            $kelas['what_will_learn_3'] ?? ''
+        ];
     }
-    
+
+    return $kelas;
+}
+
 
     public function showKelasPage()
     {

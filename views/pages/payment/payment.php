@@ -15,9 +15,10 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
+$successMessage = ''; // Flag for success message
+
 // Process form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Validate required fields
     $requiredFields = ['course_id', 'course_name', 'course_price', 'bank', 'account_number', 'name', 'transfer_date'];
     foreach ($requiredFields as $field) {
         if (!isset($_POST[$field]) || empty($_POST[$field])) {
@@ -26,72 +27,60 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // Handle file upload
     if (!isset($_FILES['transfer_proof']) || $_FILES['transfer_proof']['error'] !== UPLOAD_ERR_OK) {
         header("Location: /error.php?msg=Invalid%20transfer%20proof");
         exit;
     }
 
-    // File upload configuration
     $uploadDir = BASE_PATH . '/public/uploads/transfer_proofs/';
-    $maxFileSize = 2 * 1024 * 1024; // 2MB
-    
-    // Validate file size
+    $maxFileSize = 2 * 1024 * 1024;
+
     if ($_FILES['transfer_proof']['size'] > $maxFileSize) {
         header("Location: /error.php?msg=File%20too%20large");
         exit;
     }
 
-    // Validate file type (only images)
     $allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
     if (!in_array($_FILES['transfer_proof']['type'], $allowedMimeTypes)) {
         header("Location: /error.php?msg=Invalid%20file%20type");
         exit;
     }
 
-    // Generate unique filename
     $fileExtension = pathinfo($_FILES['transfer_proof']['name'], PATHINFO_EXTENSION);
     $uniqueFilename = uniqid('transfer_proof_') . '.' . $fileExtension;
     $uploadPath = $uploadDir . $uniqueFilename;
 
-    // Ensure upload directory exists
     if (!is_dir($uploadDir)) {
         mkdir($uploadDir, 0755, true);
     }
 
-    // Move uploaded file
     if (!move_uploaded_file($_FILES['transfer_proof']['tmp_name'], $uploadPath)) {
         header("Location: /error.php?msg=File%20upload%20failed");
         exit;
     }
 
-    // Prepare invoice data
     $invoiceData = [
         'user_id' => $_SESSION['user_id'],
         'kelas_id' => intval($_POST['course_id']),
-        'status' => 'pending', // Initial status
+        'status' => 'pending',
         'name' => htmlspecialchars($_POST['name']),
         'payment_price' => intval($_POST['course_price']),
-        'nominal' => intval($_POST['course_price']), // Use course price for nominal
+        'nominal' => intval($_POST['course_price']),
         'no_rekening' => htmlspecialchars($_POST['account_number']),
-        'image_pay' => $uniqueFilename, // Store filename in database
+        'image_pay' => $uniqueFilename,
         'bank_name' => htmlspecialchars($_POST['bank']),
-        'transfer_date' => date('Y-m-d', strtotime($_POST['transfer_date'])), // Date format for transfer_date
-        'approval' => 'waiting', // Initial approval status
-        'created_at' => date('Y-m-d'), // Only date, no time
-        'updated_at' => date('Y-m-d')  // Only date, no time
+        'transfer_date' => date('Y-m-d', strtotime($_POST['transfer_date'])),
+        'approval' => 'waiting',
+        'created_at' => date('Y-m-d'),
+        'updated_at' => date('Y-m-d')
     ];
 
-    // Create invoice using InvoicesController
     $invoicesController = new InvoicesController();
     $result = json_decode($invoicesController->createInvoice($invoiceData), true);
 
     if ($result['success']) {
-        header("Location: ../home/home.php");
-
-        exit;
+        $successMessage = "Pembayaran Anda berhasil. Tim kami akan segera memverifikasi bukti transfer Anda.";
     } else {
-        // If invoice creation fails, remove the uploaded file
         unlink($uploadPath);
         header("Location: /error.php?msg=Invoice%20creation%20failed");
         exit;
@@ -103,7 +92,6 @@ $courseId = intval($_GET['id']);
 $kelasModel = new KelasModel();
 
 try {
-    // Fetch the course details using the ID
     $course = $kelasModel->getKelasById($courseId);
     
     if (!$course) {
@@ -111,7 +99,6 @@ try {
         exit;
     }
 
-    // Prepare course details for the payment page
     $courseName = htmlspecialchars($course['name']);
     $coursePrice = $course['price'];
     $courseInstructor = htmlspecialchars($course['name_mentor']);
@@ -141,6 +128,13 @@ try {
 <body>
     <div class="container d-flex justify-content-center align-items-center h-100">
         <div class="row g-4 w-100" style="max-width: 900px;">
+        <?php if ($successMessage): ?>
+                <div class="alert alert-success text-center" role="alert">
+                    <h4 class="alert-heading">Transfer Berhasil</h4>
+                    <p><?php echo $successMessage; ?></p>
+                    <a href="../home/home.php" class="btn btn-primary mt-3">Kembali ke Dashboard</a>
+                </div>
+            <?php endif; ?>
             <!-- Left Section -->
             <div class="col-md-6">
                 <div class="price-box">
@@ -202,6 +196,21 @@ try {
                         <div class="d-flex justify-content-between">
                             <button type="reset" class="btn btn-light">Batalkan</button>
                             <button type="submit" class="btn btn-orange">Kirim</button>
+                        <script>
+                            document.querySelector('form').addEventListener('submit', function(event) {
+                                if (!confirm('Apakah anda yakin ingin membayar kursus ini?')) {
+                                    event.preventDefault();
+                                    const alertPlaceholder = document.createElement('div');
+                                    alertPlaceholder.className = 'alert alert-warning alert-dismissible fade show mt-3';
+                                    alertPlaceholder.role = 'alert';
+                                    alertPlaceholder.innerHTML = `
+                                        <strong>Perhatian!</strong> Pembayaran dibatalkan.
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    `;
+                                    document.querySelector('.transfer-card').appendChild(alertPlaceholder);
+                                }
+                            });
+                        </script>
                         </div>
                     </form>
                 </div>
