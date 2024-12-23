@@ -14,9 +14,10 @@ class KelasController
         $this->bookModel = new BookModel();
     }
 
-    public function getAllKelas() {
+    public function getAllKelas()
+    {
         $kelasList = $this->kelasModel->getAllKelas();
-    
+
         foreach ($kelasList as &$kelas) {
             // Combine the what_will_learn fields into an array
             $kelas['what_will_learn'] = [
@@ -24,7 +25,7 @@ class KelasController
                 $kelas['what_will_learn_2'] ?? '',
                 $kelas['what_will_learn_3'] ?? ''
             ];
-    
+
             // Clean up image paths if necessary
             if (!empty($kelas['image'])) {
                 if (strpos($kelas['image'], '../') === 0) {
@@ -32,11 +33,11 @@ class KelasController
                 }
             }
         }
-    
+
         return $kelasList;
     }
-    
-    
+
+
 
     public function getKelasById($kelasId)
     {
@@ -44,12 +45,13 @@ class KelasController
     }
 
 
-    public function showKelasPage() {
+    public function showKelasPage()
+    {
         $kelasList = $this->getAllKelas(); // Includes `what_will_learn_1`, `_2`, `_3`
         extract(['kelasList' => $kelasList]);
         require dirname(__FILE__) . '/../views/pages/checkout/features.php';
     }
-    
+
     public function createKelas($data, $imageFile)
     {
         $imageFileName = uniqid() . '_' . basename($imageFile['name']);
@@ -154,5 +156,28 @@ class KelasController
         }
 
         return false;
+    }
+
+    public function getKelasByCategory($category)
+    {
+        $kelasList = $this->kelasModel->getKelasByCategory($category);
+
+        foreach ($kelasList as &$kelas) {
+            // Gabungkan field `what_will_learn` menjadi array
+            $kelas['what_will_learn'] = [
+                $kelas['what_will_learn_1'] ?? '',
+                $kelas['what_will_learn_2'] ?? '',
+                $kelas['what_will_learn_3'] ?? ''
+            ];
+
+            // Bersihkan path gambar
+            if (!empty($kelas['image'])) {
+                if (strpos($kelas['image'], '../') === 0) {
+                    $kelas['image'] = str_replace('../', '/public/', $kelas['image']);
+                }
+            }
+        }
+
+        return $kelasList;
     }
 }
