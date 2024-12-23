@@ -173,9 +173,7 @@ class KelasController
 
         }
 
-        // Tampilkan view khusus untuk kategori public
-        extract(['kelasList' => $kelasList]);
-
+        return $kelasList;
     }
 
     public function showPrivateKelas()
@@ -192,7 +190,6 @@ class KelasController
             ];
         }
 
-        // Tampilkan view khusus untuk kategori private
-        extract(['kelasList' => $kelasList]);
+        return $kelasList;
     }
 }
