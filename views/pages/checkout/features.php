@@ -80,19 +80,24 @@ try {
         <?php if (!empty($kelasList)): ?>
     <?php foreach ($kelasList as $kelas): ?>
         <details class="kelas-item">
-            <summary>
-                <h4><?= htmlspecialchars($kelas['name']); ?></h4>
-            </summary>
-            <div class="list-items">
-                <ul>
-                    <?php foreach ($kelas['what_will_learn'] as $learn): ?>
-                        <?php if (!empty($learn)): ?>
-                            <li><?= htmlspecialchars($learn); ?></li>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-        </details>
+    <summary>
+        <h4><?= htmlspecialchars($kelas['name']); ?></h4>
+    </summary>
+    <div class="list-items">
+        <ul>
+            <?php if (!empty($kelas['what_will_learn_1'])): ?>
+                <li><?= htmlspecialchars($kelas['what_will_learn_1']); ?></li>
+            <?php endif; ?>
+            <?php if (!empty($kelas['what_will_learn_2'])): ?>
+                <li><?= htmlspecialchars($kelas['what_will_learn_2']); ?></li>
+            <?php endif; ?>
+            <?php if (!empty($kelas['what_will_learn_3'])): ?>
+                <li><?= htmlspecialchars($kelas['what_will_learn_3']); ?></li>
+            <?php endif; ?>
+        </ul>
+    </div>
+</details>
+
     <?php endforeach; ?>
 <?php else: ?>
     <p>No classes available.</p>

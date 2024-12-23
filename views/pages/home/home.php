@@ -38,14 +38,6 @@
     </div>
 </header>
 
-<nav class="fade-in">
-    <a href="#" class="stagger-delay-1">Technology & Software</a>
-    <a href="#" class="stagger-delay-2">Partner Kami</a>
-    <a href="#" class="stagger-delay-3">Kategori Kursus</a>
-    <a href="#" class="stagger-delay-4">Health & Wellness</a>
-    <a href="#" class="stagger-delay-5">Language Learning</a>
-    <a href="#">See All Categories</a>
-</nav>
 
 <section class="hero">
     <div class="text slide-in-left">

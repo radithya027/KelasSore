@@ -1,14 +1,13 @@
 <?php
 // File: views/pages/home/publiccourses.php
-// Atau gunakan cara alternatif
 require_once dirname(__FILE__) . '/../../../controllers/KelasController.php';
 $kelasController = new KelasController();
 
 try {
-    $courses = $kelasController->getAllKelas();
+    $courses = $kelasController->showPublicKelas();
 } catch (Exception $e) {
     $courses = [];
-    error_log("Gagal mengambil kursus: " . $e->getMessage());
+    error_log("Gagal mengambil kursus publik: " . $e->getMessage());
 }
 ?>
 
@@ -16,7 +15,7 @@ try {
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Kursus Tersedia</title>
+    <title>Kursus Publik Tersedia</title>
 </head>
 <body>
     <section class="public-courses">
@@ -35,9 +34,15 @@ try {
                             <a href="/views/pages/checkout/index.php?id=<?php echo urlencode($course['id']); ?>" class="public-card-link">
                                 <div class="public-card-image">
                                     <?php
-                                    $imagePath = !empty($course['image']) 
-                                        ? '/public/image-class/' . basename($course['image']) 
-                                        : '/assets/images/default-course.svg';
+                                    // New image path handling
+                                    if (!empty($course['image'])) {
+                                        // Extract just the filename from the path
+                                        $filename = basename($course['image']);
+                                        // Construct the correct path
+                                        $imagePath = "/public/image-class/" . $filename;
+                                    } else {
+                                        $imagePath = '/assets/images/default-course.svg';
+                                    }
                                     ?>
                                     <img 
                                         src="<?php echo htmlspecialchars($imagePath); ?>" 
@@ -56,7 +61,7 @@ try {
                         </div>
                     <?php endforeach; ?>
                 <?php else: ?>
-                    <p>Tidak ada kursus tersedia saat ini. Silakan cek kembali nanti.</p>
+                    <p class="no-courses-message">Tidak ada kursus publik tersedia saat ini. Silakan cek kembali nanti.</p>
                 <?php endif; ?>
             </div>
         </div>
