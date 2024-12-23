@@ -36,8 +36,8 @@
         public function insertKelas($data)
         {
             $query = "INSERT INTO kelas 
-            (mentor_id, name_mentor, name, image, description, category, kurikulum, price, quota, quota_left, start_date, end_date, link_wa, status, what_will_learn_1, what_will_learn_2, what_will_learn_3, created_at, updated_at)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            (mentor_id, name_mentor, name, image, description, category, kurikulum, price, quota, quota_left, schedule, sesion_1,sesion_2,sesion_3, end_date, link_wa, status, what_will_learn_1, what_will_learn_2, what_will_learn_3, created_at, updated_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             // Prepare the query
             $stmt = mysqli_prepare($this->conn, $query);
@@ -48,7 +48,7 @@
             // Bind parameters individually
             mysqli_stmt_bind_param(
                 $stmt,
-                "isssssssiiissssssss",  // Updated type definition
+                "isssssssiiisssssssssss",  // Updated type definition
                 $mentor_id,  // This will be NULL if not provided
                 $data['name_mentor'],
                 $data['name'],
@@ -59,7 +59,10 @@
                 $data['price'],
                 $data['quota'],
                 $data['quota_left'],
-                $data['start_date'],
+                $data['schedule'],
+                $data['sesion_1'],
+                $data['sesion_2'],
+                $data['sesion_3'],
                 $data['end_date'],
                 $data['link_wa'],
                 $data['status'],
@@ -84,7 +87,7 @@
         public function updateKelas($kelasId, $data)
         {
             $query = "UPDATE kelas 
-                    SET mentor_id = ?, name_mentor = ?, name = ?, image = ?, description = ?, category = ?, kurikulum = ?, price = ?, quota = ?, quota_left = ?, start_date = ?, end_date = ?, link_wa = ?, status = ?,  what_will_learn_1 = ?, what_will_learn_2 = ?, what_will_learn_3 = ?, updated_at = ?
+                    SET mentor_id = ?, name_mentor = ?, name = ?, image = ?, description = ?, category = ?, kurikulum = ?, price = ?, quota = ?, quota_left = ?, schedule = ?, sesion_1 = ?, sesion_2 = ?, sesion_3 = ?, end_date = ?, link_wa = ?, status = ?,  what_will_learn_1 = ?, what_will_learn_2 = ?, what_will_learn_3 = ?, updated_at = ?
                     WHERE id = ?";
             $stmt = mysqli_prepare($this->conn, $query);
 
@@ -99,7 +102,7 @@
 
             mysqli_stmt_bind_param(
                 $stmt,
-                "isssssssiissssssssi",  // Updated type definition
+                "isssssssiisssssssssssi",  // Updated type definition
                 $mentor_id,          // mentor_id
                 $data['name_mentor'],
                 $data['name'],
@@ -110,7 +113,10 @@
                 $data['price'],
                 $data['quota'],
                 $data['quota_left'],
-                $data['start_date'],
+                $data['schedule'],
+                $data['sesion_1'],
+                $data['sesion_2'],
+                $data['sesion_3'],
                 $data['end_date'],
                 $data['link_wa'],
                 $data['status'],
