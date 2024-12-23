@@ -207,4 +207,51 @@
             }
             return $kelasList;
         }
+
+        public function getMentorByKelasId($kelasId)
+        {
+            // Query SQL untuk mengambil data mentor berdasarkan mentor_id dari tabel kelas
+            $query = "
+                SELECT 
+                    mentors.id,
+                    mentors.name,
+                    mentors.email,
+                    mentors.profile_picture,
+                    mentors.phone_number
+                FROM mentors
+                INNER JOIN kelas ON kelas.mentor_id = mentors.id
+                WHERE kelas.id = ?
+            ";
+        
+            // Siapkan statement
+            $stmt = mysqli_prepare($this->conn, $query);
+        
+            if (!$stmt) {
+                error_log("Failed to prepare statement: " . mysqli_error($this->conn));
+                return null;
+            }
+        
+            // Bind parameter kelasId
+            mysqli_stmt_bind_param($stmt, "i", $kelasId);
+        
+            // Eksekusi statement
+            mysqli_stmt_execute($stmt);
+        
+            // Ambil hasil query
+            $result = mysqli_stmt_get_result($stmt);
+        
+            if (!$result) {
+                error_log("Query failed: " . mysqli_error($this->conn));
+                return null;
+            }
+        
+            // Kembalikan hasil sebagai array asosiatif (atau null jika tidak ditemukan)
+            $mentor = mysqli_fetch_assoc($result);
+        
+            if (!$mentor) {
+                error_log("No mentor found for class ID: " . $kelasId);
+            }
+        
+            return $mentor;
+        }        
     }

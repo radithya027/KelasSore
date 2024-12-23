@@ -5,13 +5,18 @@ require_once dirname(__FILE__) . '/../../../controllers/KelasController.php';
 // Initialize KelasController
 $kelasController = new KelasController();
 
-$kelasId = $_GET['id'] ?? null; 
+$kelasId = $_GET['id'] ?? null;
 $kelas = null;
+$mentor = null;
 
 try {
     if ($kelasId) {
         // Fetch specific class by ID
         $kelas = $kelasController->getKelasById($kelasId);
+
+
+        // Fetch mentor details by class ID
+        $mentor = $kelasController->getmentorbykelasid($kelasId);
     } else {
         throw new Exception("Class ID not provided.");
     }
@@ -23,6 +28,7 @@ try {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -79,8 +85,9 @@ try {
         });
     </script>
 </head>
+
 <body>
-<div class="row-container">
+    <div class="row-container">
         <!-- Accordion Section -->
         <div class="accordion">
             <?php if ($kelas): ?>
@@ -121,28 +128,32 @@ try {
 
         <!-- Cards Section -->
         <div class="card-container">
-        
-
-            <div class="card-coursesfeature1">
-                <h4>Instructor Profile</h4>
-                <div class="avatar-text">
-                    <div class="avatar-container">
-                        <img class="avatar" src="assets/images/1fdd264b4b531494b306bf6994d7448c.jpg" alt="Avatar">
+            <?php if ($mentor): ?>
+                <div class="card-coursesfeature1">
+                    <h4>Instructor Profile</h4>
+                    <div class="avatar-text">
+                        <div class="avatar-container">
+                            <img class="avatar"
+                                src="<?= !empty($mentor['profile_picture'])
+                                            ? 'path_to_images/' . htmlspecialchars($mentor['profile_picture'])
+                                            : 'default-avatar.jpg'; ?>"
+                                alt="Avatar">
+                        </div>
+                        <div class="text">
+                            <p><strong><?= htmlspecialchars($mentor['name']); ?></strong></p>
+                        </div>
                     </div>
-                    <div class="text">
-                        <p><strong>Angela Yu</strong></p>
-                        <p>Lead Instructor, Software Engineer</p>
-                    </div>
+                    <ul class="list-itemscolumn">
+                        <li>Email: <?= htmlspecialchars($mentor['email'] ?? 'No Email Provided'); ?></li>
+                        <li>Phone: <?= htmlspecialchars($mentor['phone_number'] ?? 'N/A'); ?></li>
+                    </ul>
+                    <button class="buy-nowcek">Learn More about</button>
                 </div>
-                <ul class="list-itemscolumn">
-                    <li>10+ years Experience <span class="divider"></span></li>
-                    <li>20,450+ Reviews <span class="divider"></span></li>
-                    <li>25+ Courses <span class="divider"></span></li>
-                    <li><a href="#">Follow on LinkedIn</a></li>
-                </ul>
-                <button class="buy-nowcek">Learn More about</button>
-            </div>
+            <?php else: ?>
+                <p>Mentor data not found for this class.</p>
+            <?php endif; ?>
         </div>
     </div>
 </body>
+
 </html>
