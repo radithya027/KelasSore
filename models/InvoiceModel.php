@@ -86,7 +86,37 @@ class InvoiceModel
                 throw new Exception("Execute statement failed for invoices: " . mysqli_stmt_error($stmt));
             }
 
-            // Jika query berhasil, commit transaksi
+            // Ambil invoice_id dari tabel invoices
+            $invoice_id = mysqli_insert_id($this->conn);
+            if (!$invoice_id) {
+                throw new Exception("Failed to retrieve invoice_id: " . mysqli_error($this->conn));
+            }
+
+            // Query untuk memasukkan data ke tabel kelas_users
+            $kelasQuery = "INSERT INTO kelas_users (user_id, kelas_id, invoice_id, created_at, updated_at) VALUES (?, ?, ?, ?, ?)";
+            $stmt2 = mysqli_prepare($this->conn, $kelasQuery);
+            if (!$stmt2) {
+                throw new Exception("Prepare statement failed for kelas_users: " . mysqli_error($this->conn));
+            }
+
+            // Binding parameter untuk query kelas_users
+            mysqli_stmt_bind_param(
+                $stmt2,
+                "iiiss",
+                $data['user_id'],
+                $data['kelas_id'],
+                $invoice_id, // Gunakan invoice_id yang baru saja diambil
+                $data['created_at'],
+                $data['updated_at']
+            );
+
+            // Eksekusi query untuk kelas_users
+            $executeResult2 = mysqli_stmt_execute($stmt2);
+            if (!$executeResult2) {
+                throw new Exception("Execute statement failed for kelas_users: " . mysqli_stmt_error($stmt2));
+            }
+
+            // Jika kedua query berhasil, commit transaksi
             mysqli_commit($this->conn);
             return true; // Data berhasil dimasukkan
 
@@ -100,8 +130,12 @@ class InvoiceModel
             if (isset($stmt)) {
                 mysqli_stmt_close($stmt);
             }
+            if (isset($stmt2)) {
+                mysqli_stmt_close($stmt2);
+            }
         }
     }
+
 
     public function updateInvoice($invoiceId, $data)
     {
@@ -118,72 +152,27 @@ class InvoiceModel
         mysqli_stmt_bind_param(
             $stmt,
             "sssssssssssi", // format tipe data
-            $data['status'] ?? $data['status'], // Jika data tidak ada, gunakan data lama
-            $data['name'] ?? $data['name'], // Jika data tidak ada, gunakan data lama
-            $data['payment_price'] ?? $data['payment_price'], // Jika data tidak ada, gunakan data lama
-            $data['nominal'] ?? $data['nominal'], // Jika data tidak ada, gunakan data lama
-            $data['no_rekening'] ?? $data['no_rekening'], // Jika data tidak ada, gunakan data lama
-            $data['image_pay'] ?? $data['image_pay'], // Jika data tidak ada, gunakan data lama
-            $data['bank_name'] ?? $data['bank_name'], // Jika data tidak ada, gunakan data lama
-            $data['transfer_date'] ?? $data['transfer_date'], // Jika data tidak ada, gunakan data lama
-            $data['approval'] ?? $data['approval'], // Jika data tidak ada, gunakan data lama
+            $data['status'],
+            $data['name'],
+            $data['payment_price'],
+            $data['nominal'],
+            $data['no_rekening'],
+            $data['image_pay'],
+            $data['bank_name'],
+            $data['transfer_date'],
+            $data['approval'],
             $updated_at,
             $invoiceId  // Parameter terakhir untuk id invoice yang akan diupdate
         );
 
-        // Mulai transaksi
-        mysqli_begin_transaction($this->conn);
+        // Eksekusi pernyataan SQL
+        $executeResult = mysqli_stmt_execute($stmt);
 
-        try {
-            // Eksekusi pernyataan SQL untuk memperbarui invoices
-            $executeResult = mysqli_stmt_execute($stmt);
-
-            if (!$executeResult) {
-                throw new Exception("Execute statement failed for invoices: " . mysqli_stmt_error($stmt));
-            }
-
-            // Jika status adalah 'terbayar', masukkan data ke tabel kelas_users
-            if ($data['status'] === 'terbayar') {
-                $kelasQuery = "INSERT INTO kelas_users (user_id, kelas_id, created_at, updated_at) VALUES (?, ?, ?, ?)";
-                $stmt2 = mysqli_prepare($this->conn, $kelasQuery);
-
-                if (!$stmt2) {
-                    throw new Exception("Prepare statement failed for kelas_users: " . mysqli_error($this->conn));
-                }
-
-                // Bind parameter untuk query kelas_users
-                mysqli_stmt_bind_param(
-                    $stmt2,
-                    "iiss",
-                    $data['user_id'],
-                    $data['kelas_id'],
-                    $updated_at,
-                    $updated_at
-                );
-
-                // Eksekusi query untuk kelas_users
-                $executeResult2 = mysqli_stmt_execute($stmt2);
-                if (!$executeResult2) {
-                    throw new Exception("Execute statement failed for kelas_users: " . mysqli_stmt_error($stmt2));
-                }
-
-                // Tutup statement kelas_users
-                mysqli_stmt_close($stmt2);
-            }
-
-            // Commit transaksi jika semua query berhasil
-            mysqli_commit($this->conn);
-            return true;
-        } catch (Exception $e) {
-            // Rollback jika terjadi kesalahan
-            mysqli_rollback($this->conn);
-            error_log("Error: " . $e->getMessage());
-            return false;
-        } finally {
-            // Menutup statement
-            if (isset($stmt)) {
-                mysqli_stmt_close($stmt);
-            }
+        // Cek apakah eksekusi berhasil
+        if ($executeResult) {
+            return true; // Data berhasil diperbarui
+        } else {
+            return false; // Gagal memperbarui data
         }
     }
 
@@ -198,10 +187,11 @@ class InvoiceModel
     public function getKelasUserDetail($user_id)
     {
         $query = "
-            SELECT k.id, k.name, k.image, k.name_mentor, k.price, k.category , k.start_date, k.end_date
+            SELECT k.id, k.name, k.image, k.name_mentor, k.price, k.category, k.start_date, k.end_date
             FROM kelas_users ku
             JOIN kelas k ON ku.kelas_id = k.id
-            WHERE ku.user_id = ?
+            JOIN invoices i ON i.id = ku.invoice_id -- Asumsikan ada kolom invoice_id di kelas_users
+            WHERE ku.user_id = ? AND i.status = 'terbayar'
         ";
 
         $stmt = mysqli_prepare($this->conn, $query);
@@ -210,6 +200,7 @@ class InvoiceModel
         $result = mysqli_stmt_get_result($stmt);
         return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
+
 
     public function getMentorKelasDetail($mentor_id)
     {
