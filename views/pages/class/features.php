@@ -140,7 +140,7 @@ try {
                                 alt="Avatar">
                         </div>
                         <div class="text">
-                            <p><strong><?= htmlspecialchars($mentor['name']); ?></strong></p>
+                            <p><strong><?= htmlspecialchars($kelas['name_mentor']); ?></strong></p>
                         </div>
                     </div>
                     <ul class="list-itemscolumn">
