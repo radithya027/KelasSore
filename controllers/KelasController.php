@@ -40,19 +40,19 @@ class KelasController
 
 
     public function getKelasById($kelasId)
-{
-    $kelas = $this->kelasModel->getKelasById($kelasId);
+    {
+        $kelas = $this->kelasModel->getKelasById($kelasId);
 
-    if ($kelas) {
-        $kelas['what_will_learn'] = [
-            $kelas['what_will_learn_1'] ?? '',
-            $kelas['what_will_learn_2'] ?? '',
-            $kelas['what_will_learn_3'] ?? ''
-        ];
+        if ($kelas) {
+            $kelas['what_will_learn'] = [
+                $kelas['what_will_learn_1'] ?? '',
+                $kelas['what_will_learn_2'] ?? '',
+                $kelas['what_will_learn_3'] ?? ''
+            ];
+        }
+
+        return $kelas;
     }
-
-    return $kelas;
-}
 
 
     public function showKelasPage()
@@ -180,7 +180,6 @@ class KelasController
                 $kelas['what_will_learn_2'] ?? '',
                 $kelas['what_will_learn_3'] ?? ''
             ];
-
         }
 
         return $kelasList;
@@ -201,5 +200,16 @@ class KelasController
         }
 
         return $kelasList;
+    }
+
+    public function getMentorByKelasId($kelasId)
+    {
+        $mentor = $this->kelasModel->getMentorByKelasId($kelasId);
+
+        if (!$mentor) {
+            error_log("Failed to fetch mentor details for class ID: " . $kelasId);
+        }
+
+        return $mentor;
     }
 }
