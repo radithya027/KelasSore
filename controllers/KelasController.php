@@ -161,13 +161,38 @@ class KelasController
     public function showPublicKelas()
     {
         // Mengambil data kelas dengan kategori 'public'
-        return $this->kelasModel->getKelasByCategory('public');       
+        $kelasList = $this->kelasModel->getKelasByCategory('public');
+
+        // Transformasi data jika perlu
+        foreach ($kelasList as &$kelas) {
+            $kelas['what_will_learn'] = [
+                $kelas['what_will_learn_1'] ?? '',
+                $kelas['what_will_learn_2'] ?? '',
+                $kelas['what_will_learn_3'] ?? ''
+            ];
+
+        }
+
+        // Tampilkan view khusus untuk kategori public
+        extract(['kelasList' => $kelasList]);
+
     }
 
     public function showPrivateKelas()
     {
         // Mengambil data kelas dengan kategori 'private'
-        return $this->kelasModel->getKelasByCategory('private');
+        $kelasList = $this->kelasModel->getKelasByCategory('private');
 
+        // Transformasi data jika perlu
+        foreach ($kelasList as &$kelas) {
+            $kelas['what_will_learn'] = [
+                $kelas['what_will_learn_1'] ?? '',
+                $kelas['what_will_learn_2'] ?? '',
+                $kelas['what_will_learn_3'] ?? ''
+            ];
+        }
+
+        // Tampilkan view khusus untuk kategori private
+        extract(['kelasList' => $kelasList]);
     }
 }
