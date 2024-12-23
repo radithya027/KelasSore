@@ -43,7 +43,8 @@ class KelasController
     {
         $kelas = $this->kelasModel->getKelasById($kelasId);
     
-        if ($kelas) {
+       foreach ($kelas as &$kelas) {
+            // Combine the what_will_learn fields into an array
             $kelas['what_will_learn'] = [
                 $kelas['what_will_learn_1'] ?? '',
                 $kelas['what_will_learn_2'] ?? '',
