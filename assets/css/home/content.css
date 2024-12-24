@@ -1,5 +1,6 @@
 .container {
     display: flex;
+    flex-wrap: wrap; /* Tambahkan agar bisa wrap saat layar kecil */
     justify-content: space-between;
     gap: 2%; 
     padding: 0 5%; 
@@ -19,10 +20,10 @@
 .benefit-item {
     padding: 10px;
     box-shadow: none;
-    flex: 0 0 90%;
+    flex: 0 0 48%; /* Kurangi lebar untuk layar kecil */
 }
 
-.benefit-item h2{
+.benefit-item h2 {
     font-size: 1.5rem;
     margin-bottom: 10px;
     color: #373737;
@@ -39,7 +40,6 @@
     width: 100%; 
 }
 
-
 .benefitwithus {
     flex: 0 0 40%;
     display: flex;
@@ -54,8 +54,8 @@
 }
 
 .benefit-image {
-    width: auto; 
-    height: 350px;
+    width: 100%; /* Ubah ke 100% untuk layar kecil */
+    height: auto; /* Sesuaikan tinggi otomatis */
     margin-top: 20px;
     object-fit: contain; 
     border-radius: 10px; 
@@ -63,7 +63,6 @@
 }
 
 .cta {
-    
     padding: 0;
     text-align: left; 
 }
@@ -92,7 +91,6 @@
     transition: background-color 0.3s ease;
 }
 
-
 .start-learn-btn:hover {
     background-color: #004085;
 }
@@ -106,4 +104,49 @@ h1, h2, h3, h4, h5, h6 {
 p, a, .content, .buttons {
     font-family: 'Quick Sans', sans-serif;
     font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        padding: 0 2%; /* Kurangi padding untuk layar kecil */
+    }
+
+    .benefit-item {
+        flex: 0 0 100%; /* Full width untuk layar kecil */
+        margin-bottom: 20px;
+    }
+
+    .benefitwithus {
+        flex: 0 0 100%;
+        padding: 20px;
+    }
+
+    .cta h2 {
+        font-size: 1.8rem; /* Sesuaikan ukuran font */
+    }
+
+    .cta p {
+        font-size: 1rem; /* Kurangi ukuran font */
+    }
+
+    .benefit-image {
+        height: auto; /* Pastikan gambar menyesuaikan */
+    }
+}
+
+@media (max-width: 480px) {
+    .cta h2 {
+        font-size: 1.5rem; /* Lebih kecil untuk layar sangat kecil */
+    }
+
+    .cta p {
+        font-size: 0.9rem;
+    }
+
+    .start-learn-btn {
+        font-size: 0.9rem;
+        padding: 8px 15px; /* Lebih kecil pada layar kecil */
+    }
 }

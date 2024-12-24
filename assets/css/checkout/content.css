@@ -665,3 +665,97 @@ span {
       .title{
         padding-left: 2rem;
       }
+      @media (max-width: 1200px) {
+        .container {
+            padding: 1rem;
+        }
+        .course-content {
+            flex-direction: column;
+        }
+        .course-details, .course-image img {
+            max-width: 100%;
+            padding-left: 0;
+        }
+        .buy-now {
+            width: 100%;
+        }
+        .row-container {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .navbar {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .navbar a {
+            margin: 0.5rem 0;
+        }
+        .course-header h1 {
+            font-size: 24px;
+        }
+        .course-details {
+            padding-left: 0;
+        }
+        .course-image img {
+            margin-top: 0;
+        }
+        .buy-now {
+            font-size: 14px;
+        }
+        .course-rating-enrollment {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .rating {
+            margin-right: 0;
+        }
+        .private-cards-wrapper {
+            flex-direction: column;
+        }
+        .private-card {
+            flex: 1 0 100%;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        body {
+            font-size: 14px;
+        }
+        .navbar {
+            padding: 0.5rem;
+        }
+        .container {
+            margin: 1rem auto;
+        }
+        .course-header h1 {
+            font-size: 20px;
+        }
+        .course-details {
+            max-width: 100%;
+        }
+        .course-image img {
+            max-width: 100%;
+        }
+        .buy-now {
+            padding: 0.5rem 1rem;
+        }
+        .course-rating-enrollment {
+            gap: 0.5rem;
+        }
+        .price {
+            font-size: 20px;
+        }
+        .private-card-content {
+            padding: 0.5rem;
+        }
+        .private-course-title {
+            font-size: 0.875rem;
+        }
+        .private-price {
+            font-size: 1rem;
+        }
+    }
+    

@@ -205,3 +205,65 @@ body {
 .slider-btn:hover {
     background-color: #004080;
 }
+
+/* For tablets and smaller screens */
+@media screen and (max-width: 992px) {
+    .class-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* For mobile landscape */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 10px;
+    }
+    
+    .header-content {
+        gap: 10px;
+    }
+
+    .class-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+}
+
+/* For mobile portrait */
+@media screen and (max-width: 576px) {
+    .header-content {
+        flex-direction: column;
+    }
+
+    .profile {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .class-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .class-card {
+        margin: 0 auto;
+        max-width: 100%;
+    }
+
+    .slider-btn {
+        display: none;
+    }
+}
+
+/* For very small screens */
+@media screen and (max-width: 320px) {
+    .container {
+        width: 100%;
+        padding: 10px 5px;
+    }
+
+    .class-card {
+        padding: 10px;
+    }
+}

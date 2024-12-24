@@ -9,8 +9,7 @@
 </head>
 <body>
 <?php 
-include('../dashoardUser/content.php'); 
-include('../dashoardUser/dashboard.php'); 
+include('../dashoardUser/content.php');     
 ?>
 
 </body>

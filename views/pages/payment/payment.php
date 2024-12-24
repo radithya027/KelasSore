@@ -117,12 +117,104 @@ try {
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .transfer-card { border: 1px solid #ddd; border-radius: 8px; padding: 20px; background-color: #fff; }
-        .price-box { background-color: #001A45; color: #fff; padding: 20px; border-radius: 8px; text-align: center; font-size: 1.5rem; }
-        .important-note { background-color: #FFF3E0; border-left: 4px solid #F57C00; padding: 15px; border-radius: 8px; }
-        .btn-orange { background-color: #001A45; color: #fff; }
-        .btn-orange:hover { background-color: #001A45; }
-        body { height: 100vh; }
+        .transfer-card { 
+            border: 1px solid #ddd; 
+            border-radius: 8px; 
+            padding: 20px; 
+            background-color: #fff; 
+        }
+        .price-box { 
+            background-color: #001A45; 
+            color: #fff; 
+            padding: 20px; 
+            border-radius: 8px; 
+            text-align: center; 
+            font-size: 1.5rem; 
+        }
+        .important-note { 
+            background-color: #FFF3E0; 
+            border-left: 4px solid #F57C00; 
+            padding: 15px; 
+            border-radius: 8px; 
+        }
+        .btn-orange { 
+            background-color: #001A45; 
+            color: #fff; 
+        }
+        .btn-orange:hover { 
+            background-color: #001A45; 
+        }
+        body { 
+            height: 100vh; 
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .row {
+                margin: 0;
+            }
+            
+            .transfer-card {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+            
+            .price-box {
+                font-size: 1.2rem;
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+            
+            .important-note {
+                padding: 12px;
+                margin: 10px 0;
+            }
+            
+            .form-control, .form-select {
+                margin-bottom: 10px;
+            }
+            
+            .btn {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            
+            .d-flex.justify-content-between {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 5px;
+            }
+            
+            .transfer-card {
+                padding: 10px;
+            }
+            
+            .price-box {
+                font-size: 1.1rem;
+                padding: 12px;
+            }
+            
+            h5 {
+                font-size: 1.1rem;
+            }
+            
+            .important-note {
+                font-size: 0.9rem;
+            }
+            
+            .form-label {
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -196,21 +288,6 @@ try {
                         <div class="d-flex justify-content-between">
                             <button type="reset" class="btn btn-light">Batalkan</button>
                             <button type="submit" class="btn btn-orange">Kirim</button>
-                        <script>
-                            document.querySelector('form').addEventListener('submit', function(event) {
-                                if (!confirm('Apakah anda yakin ingin membayar kursus ini?')) {
-                                    event.preventDefault();
-                                    const alertPlaceholder = document.createElement('div');
-                                    alertPlaceholder.className = 'alert alert-warning alert-dismissible fade show mt-3';
-                                    alertPlaceholder.role = 'alert';
-                                    alertPlaceholder.innerHTML = `
-                                        <strong>Perhatian!</strong> Pembayaran dibatalkan.
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    `;
-                                    document.querySelector('.transfer-card').appendChild(alertPlaceholder);
-                                }
-                            });
-                        </script>
                         </div>
                     </form>
                 </div>
@@ -220,5 +297,20 @@ try {
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.querySelector('form').addEventListener('submit', function(event) {
+            if (!confirm('Apakah anda yakin ingin membayar kursus ini?')) {
+                event.preventDefault();
+                const alertPlaceholder = document.createElement('div');
+                alertPlaceholder.className = 'alert alert-warning alert-dismissible fade show mt-3';
+                alertPlaceholder.role = 'alert';
+                alertPlaceholder.innerHTML = `
+                    <strong>Perhatian!</strong> Pembayaran dibatalkan.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                `;
+                document.querySelector('.transfer-card').appendChild(alertPlaceholder);
+            }
+        });
+    </script>
 </body>
 </html>

@@ -33,10 +33,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../../assets/css/login/login.css">
     <title>Login Mentor</title>
 </head>
 <body>
+<div class="container my-3" style="max-width: 200px; position: absolute; top: 0; left: 0; padding-left: 50px; padding-top: 20px">
+    <a href="../home/home.php" style="text-decoration: none; color: inherit;">
+        <i class="bi bi-arrow-left me-2"></i> Back
+    </a>
+</div>
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
         <div class="row border rounded-5 p-3 bg-white shadow box-area">
         <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box" style="background: #000842;">
@@ -62,9 +68,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="mb-3">
                         <input type="email" name="email" class="form-control" placeholder="Email" required>
                     </div>
-                    <div class="mb-3">
-                        <input type="password" name="password" class="form-control" placeholder="Password" required>
-                    </div>
+                    <div class="input-group mb-1 position-relative">
+                            <input type="password" name="password" id="password" class="form-control form-control-lg bg-light fs-6" 
+                                placeholder="Enter your password" 
+                                style="font-weight: 400;" 
+                                required>
+                            <span class="position-absolute top-50 end-0 translate-middle-y me-3">
+                                <i class="bi bi-eye-slash" id="togglePassword" style="cursor: pointer;"></i>
+                            </span>
+                        </div>
                     <div class="input-group mb-5 d-flex justify-content-between">
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" id="formCheck" name="remember_me">
@@ -78,10 +90,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <button type="submit" class="btn btn-primary w-100">Login</button>
                     </div>
                 </form>
-
-                <small class="d-block mt-3">Belum punya akun? <a href="../register/register.php">Daftar</a></small>
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById('togglePassword').addEventListener('click', function () {
+            const passwordField = document.getElementById('password');
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+
+            // Toggle icon class
+            this.classList.toggle('bi-eye');
+            this.classList.toggle('bi-eye-slash');
+        });
+    </script>
 </body>
 </html>
