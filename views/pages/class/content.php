@@ -31,6 +31,7 @@ if ($course) {
     $courseQuotaLeft = $course['quota_left'];
     $courseQuota = $course['quota'];
     $coursePrice = $course['price'];
+    $courseSchedule = htmlspecialchars($course['schedule'] ?? 'Schedule not available');
     
     // Try multiple path approaches
     $potentialPaths = [
@@ -73,7 +74,6 @@ $joinButtonText = !empty($course['link_wa'])
     ? 'Join Group WA' 
     : 'Group Link Unavailable';
 ?>
-?>
 
 <div class="container">
     <div class="course-header">
@@ -95,23 +95,19 @@ $joinButtonText = !empty($course['link_wa'])
                 </div>
                 <p><strong>Quota Left:</strong> <?php echo $courseQuotaLeft . " / " . $courseQuota; ?></p>
             </div>  
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+
+            <div class="course-schedule">
+                <p><strong>Jadwal:</strong> <?php echo $courseSchedule; ?></p>
+            </div>
+
             <a href="<?php echo $waGroupUrl; ?>" 
-           class="<?php echo $joinButtonClass; ?>" 
-           <?php echo empty($course['link_wa']) ? 'disabled' : 'target="_blank"'; ?>>
-           <?php echo $joinButtonText; ?>
-        </a>
+               class="<?php echo $joinButtonClass; ?>" 
+               <?php echo empty($course['link_wa']) ? 'disabled' : 'target="_blank"'; ?>>
+               <?php echo $joinButtonText; ?>
+            </a>
         </div>
         <div class="course-image">
-            <img src="<?php echo $courseImage; ?>" alt="Course Preview (Path: <?php echo $courseImage; ?>)">
+            <img src="<?php echo $courseImage; ?>" alt="Course Preview">
         </div>
     </div>
 </div>

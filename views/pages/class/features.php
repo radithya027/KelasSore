@@ -14,7 +14,6 @@ try {
         // Fetch specific class by ID
         $kelas = $kelasController->getKelasById($kelasId);
 
-
         // Fetch mentor details by class ID
         $mentor = $kelasController->getmentorbykelasid($kelasId);
     } else {
@@ -90,41 +89,43 @@ try {
     <div class="row-container">
         <!-- Accordion Section -->
         <div class="accordion">
-            <?php if ($kelas): ?>
-                <?php if (!empty($kelas['what_will_learn_1'])): ?>
-                    <details class="kelas-item">
-                        <summary>
-                            <h5>Apa yang kamu Pelajari</h5>
-                        </summary>
-                        <div class="list-items">
-                            <p><?= htmlspecialchars($kelas['what_will_learn_1']); ?></p>
-                        </div>
-                    </details>
-                <?php endif; ?>
-                <?php if (!empty($kelas['what_will_learn_2'])): ?>
-                    <details class="kelas-item">
-                        <summary>
-                            <h5>Apa yang kamu Pelajari</h5>
-                        </summary>
-                        <div class="list-items">
-                            <p><?= htmlspecialchars($kelas['what_will_learn_2']); ?></p>
-                        </div>
-                    </details>
-                <?php endif; ?>
-                <?php if (!empty($kelas['what_will_learn_3'])): ?>
-                    <details class="kelas-item">
-                        <summary>
-                            <h5>Apa yang kamu Pelajari</h5>
-                        </summary>
-                        <div class="list-items">
-                            <p><?= htmlspecialchars($kelas['what_will_learn_3']); ?></p>
-                        </div>
-                    </details>
-                <?php endif; ?>
-            <?php else: ?>
-                <p>No class details available.</p>
-            <?php endif; ?>
-        </div>
+    <?php if ($kelas): ?>
+        <?php if (!empty($kelas['sesion_1'])): ?>
+            <details class="kelas-item">
+                <summary>
+                    <h5>Sesi 1</h5>
+                </summary>
+                <div class="list-items">
+                    <button class="session-content-btn"><?= htmlspecialchars($kelas['sesion_1']); ?></button>
+                </div>
+            </details>
+        <?php endif; ?>
+        <?php if (!empty($kelas['sesion_2'])): ?>
+            <details class="kelas-item">
+                <summary>
+                    <h5>Sesi 2</h5>
+                </summary>
+                <div class="list-items">
+                    <button class="session-content-btn"><?= htmlspecialchars($kelas['sesion_2']); ?></button>
+                </div>
+            </details>
+        <?php endif; ?>
+        <?php if (!empty($kelas['sesion_3'])): ?>
+            <details class="kelas-item">
+                <summary>
+                    <h5>Sesi 3</h5>
+                </summary>
+                <div class="list-items">
+                    <button class="session-content-btn"><?= htmlspecialchars($kelas['sesion_3']); ?></button>
+                </div>
+            </details>
+        <?php endif; ?>
+    <?php else: ?>
+        <p>No class details available.</p>
+    <?php endif; ?>
+</div>
+
+
 
         <!-- Cards Section -->
         <div class="card-container">

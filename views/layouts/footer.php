@@ -50,7 +50,7 @@ $community = [
 
 <style>
 .footer {
-    background-color: #F3F7FF ;
+    background-color: #F3F7FF;
     padding: 48px 24px;
     border-top: 1px solid #e5e7eb;
 }
@@ -126,6 +126,12 @@ $community = [
 
 .footer-social-links a:hover {
     color: #111827;
+}
+
+@media (max-width: 1024px) {
+    .footer-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 @media (max-width: 768px) {

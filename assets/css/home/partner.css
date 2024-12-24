@@ -28,7 +28,7 @@
 
 .partner-cards-wrapper {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Untuk mengatur kartu agar responsif */
     transition: transform 0.5s ease;
     gap: 15px;
     justify-content: center; 
@@ -36,8 +36,8 @@
 }
 
 .partner-card {
-    width: 200px;  /* Fixed width */
-    height: 200px; /* Fixed height */
+    width: 200px;  /* Tetap sama untuk layar besar */
+    height: 200px; 
     background-color: white;
     border: 2px solid #ddd;
     border-radius: 8px;
@@ -51,15 +51,16 @@
 .partner-card img {
     width: 100%;
     height: 100%;
-    object-fit: contain;  /* Memastikan gambar sepenuhnya terlihat */
-    padding: 20px;  /* Tambahkan padding agar gambar tidak terlalu ketat */
-    box-sizing: border-box;  /* Pastikan padding tidak menambah ukuran total */
+    object-fit: contain; 
+    padding: 20px;  
+    box-sizing: border-box;  
 }
 
 .partner-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
+
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
@@ -69,4 +70,59 @@ h1, h2, h3, h4, h5, h6 {
 p, a, .content, .buttons {
     font-family: 'Quick Sans', sans-serif;
     font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .partner-title {
+        font-size: 24px; /* Kurangi ukuran font */
+    }
+
+    .partner-card {
+        width: 180px; /* Kurangi ukuran kartu */
+        height: 180px;
+    }
+
+    .partner-card img {
+        padding: 15px; /* Kurangi padding gambar */
+    }
+}
+
+@media (max-width: 768px) {
+    .partner-container {
+        padding: 15px; /* Kurangi padding container */
+    }
+
+    .partner-card {
+        width: 160px;
+        height: 160px; /* Kartu lebih kecil */
+    }
+
+    .partner-card img {
+        padding: 10px; /* Kurangi padding gambar lagi */
+    }
+
+    .partner-title {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .partner-container {
+        flex-direction: column; /* Tumpuk kartu untuk layar kecil */
+        align-items: center;
+    }
+
+    .partner-card {
+        width: 140px; /* Kartu lebih kecil untuk ponsel */
+        height: 140px;
+    }
+
+    .partner-card img {
+        padding: 8px;
+    }
+
+    .partner-title {
+        font-size: 18px; /* Lebih kecil untuk layar ponsel */
+    }
 }

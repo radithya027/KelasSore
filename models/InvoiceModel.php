@@ -187,7 +187,7 @@ class InvoiceModel
     public function getKelasUserDetail($user_id)
     {
         $query = "
-            SELECT k.id, k.name, k.image, k.name_mentor, k.price, k.category, k.start_date, k.end_date
+            SELECT k.id, k.name, k.image, k.name_mentor, k.price, k.category, schedule, k.end_date
             FROM kelas_users ku
             JOIN kelas k ON ku.kelas_id = k.id
             JOIN invoices i ON i.id = ku.invoice_id -- Asumsikan ada kolom invoice_id di kelas_users
@@ -205,7 +205,7 @@ class InvoiceModel
     public function getMentorKelasDetail($mentor_id)
     {
         $query = "
-            SELECT k.id, k.name, k.image, k.name_mentor, k.price, k.category , k.start_date, k.end_date
+            SELECT k.id, k.name, k.image, k.name_mentor, k.price, k.category , schedule, k.end_date
             FROM kelas k
             WHERE k.mentor_id = ?
         ";

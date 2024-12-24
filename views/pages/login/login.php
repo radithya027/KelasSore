@@ -33,11 +33,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="../../../assets/css/login/login.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&display=swap" rel="stylesheet">
     <title>Login</title>
 </head>
 <body>
+<div class="container my-3" style="max-width: 200px; position: absolute; top: 0; left: 0; padding-left: 50px; padding-top: 20px">
+    <a href="javascript:history.back()" style="text-decoration: none; color: inherit;">
+        <i class="bi bi-arrow-left me-2"></i> Back
+    </a>
+</div>
     <!----------------------- Main Container -------------------------->
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
         <!----------------------- Login Container -------------------------->
@@ -72,11 +77,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 style="font-weight: 400;" 
                                 required>
                         </div>
-                        <div class="input-group mb-1">
-                            <input type="password" name="password" class="form-control form-control-lg bg-light fs-6" 
+                        <div class="input-group mb-1 position-relative">
+                            <input type="password" name="password" id="password" class="form-control form-control-lg bg-light fs-6" 
                                 placeholder="Enter your password" 
                                 style="font-weight: 400;" 
                                 required>
+                            <span class="position-absolute top-50 end-0 translate-middle-y me-3">
+                                <i class="bi bi-eye-slash" id="togglePassword" style="cursor: pointer;"></i>
+                            </span>
                         </div>
                         <div class="input-group mb-5 d-flex justify-content-between">
                             <div class="form-check">
@@ -103,5 +111,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('togglePassword').addEventListener('click', function () {
+            const passwordField = document.getElementById('password');
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+
+            // Toggle icon class
+            this.classList.toggle('bi-eye');
+            this.classList.toggle('bi-eye-slash');
+        });
+    </script>
 </body>
 </html>

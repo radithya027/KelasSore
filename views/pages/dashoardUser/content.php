@@ -49,16 +49,14 @@ try {
                     <p>Instructor: <?php echo htmlspecialchars($class['name_mentor']); ?></p>
                     <div class="price">Rp <?php echo number_format($class['price'], 0, ',', '.'); ?></div>
                     <div class="meta" style="text-align: left; margin-bottom: 5px;">
-                        <span>Sesi Kelas di Mulai: <?php echo htmlspecialchars($class['start_date']); ?></span>
+                        <span>Sesi Kelas di Mulai: <?php echo htmlspecialchars($class['schedule']); ?></span>
                     </div>
-                    <div class="meta">
-                        <span>Sesi Kelas Selesai: <?php echo htmlspecialchars($class['end_date']); ?></span>
-                    </div>
+                  
                 </div>
             </a>
         <?php endforeach; ?>
     <?php else: ?>
-        <p>No purchased courses available.</p>
+        <p>Belum ada kelas yang terbayarkan.</p>
     <?php endif; ?>
 </div>
 

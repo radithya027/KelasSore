@@ -1,166 +1,218 @@
 .public-courses {
-    padding: 2rem;
-    background-color: #f8f9fa;
-    position: relative;
+  padding: 2rem;
+  background-color: #f8f9fa;
+  position: relative;
 }
 
 .public-container {
-    max-width: 1200px;
-    margin: 0 auto;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .public-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
 
-  
-  
-  .public-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #2d3748;
-    margin: 0;
-  }
-  
-  .public-see-all {
-    font-size: 0.875rem;
-    color: #3182ce;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    font-weight: 600;
-    transition: color 0.3s ease;
-  }
-  
-  .public-see-all:hover {
-    text-decoration: underline;
-    color: #2b6cb0; 
-  }
-  
-  .arrow-icon {
-    margin-left: 5px;
-    font-size: 1.2rem;
-    transition: transform 0.3s ease;
-  }
-  
-  .public-see-all:hover .arrow-icon {
-    transform: translateX(5px);
-  }
-  
+.public-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0;
+}
+
+.public-see-all {
+  font-size: 0.875rem;
+  color: #3182ce;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.public-see-all:hover {
+  text-decoration: underline;
+  color: #2b6cb0; 
+}
+
+.arrow-icon {
+  margin-left: 5px;
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.public-see-all:hover .arrow-icon {
+  transform: translateX(5px);
+}
 
 .public-cards-wrapper {
-    display: flex;
-    gap: 1rem;
-    overflow: hidden;
-    position: relative;
-    scroll-behavior: smooth;
+  display: flex;
+  gap: 1rem;
+  overflow: hidden;
+  position: relative;
+  scroll-behavior: smooth;
+  flex-wrap: wrap; /* Tambahkan agar responsif */
 }
-  
-  .public-card {
-    background: white;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.2s ease-in-out;
-    flex: 0 0 23%;
-  }
-  
-  .public-card:hover {
-    transform: translateY(-5px);
-  }
-  
-  .public-card-image {
-    line-height: 0;
-  }
-  
-  .public-card-image img {
-    width: 100%;
-    height: 160px;
-    object-fit: cover;
-    display: block;
-  }
-  
-  .public-card-content {
-    padding: 1rem;
-  }
-  
-  .public-course-title {
-    color: #2d3748;
-    font-size: 1rem;
-    font-weight: 600;
-    margin: 0 0 0.5rem 0;
-    line-height: 1.4;
-  }
-  
 
-  
-  .public-instructor-name {
-    color: #718096;
-    font-size: 0.875rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .public-price {
-    color: #2d3748;
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-  }
-  
-  .public-card-stats {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-  
-  .public-rating {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    color: #2d3748;
-  }
-  
-  .public-rating span:first-child {
-    color: #f6ad55;
-  }
-  
-  .public-students {
-    color: #718096;
-    font-size: 0.875rem;
-  }
-  
-  .public-avatars {
-    display: flex;
-    align-items: center;
-  }
-  
-  .public-avatars img {
-    width: 1.75rem;
-    height: 1.75rem;
-    border-radius: 50%;
-    border: 2px solid white;
-    margin-left: -0.5rem;
-  }
-  
-  .public-avatars img:first-child {
-    margin-left: 0;
-  }
-  
-  /* Hilangkan tombol */
-  .public-courses-controls {
-    display: none;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
+.public-card {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+  flex: 0 0 calc(25% - 1rem); /* 4 kolom */
+  max-width: calc(25% - 1rem);
+}
+
+.public-card:hover {
+  transform: translateY(-5px);
+}
+
+.public-card-image {
+  line-height: 0;
+}
+
+.public-card-image img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+
+.public-card-content {
+  padding: 1rem;
+}
+
+.public-course-title {
+  color: #2d3748;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.4;
+}
+
+.public-instructor-name {
+  color: #718096;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.public-price {
+  color: #2d3748;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.public-card-stats {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.public-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #2d3748;
+}
+
+.public-rating span:first-child {
+  color: #f6ad55;
+}
+
+.public-students {
+  color: #718096;
+  font-size: 0.875rem;
+}
+
+.public-avatars {
+  display: flex;
+  align-items: center;
+}
+
+.public-avatars img {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  border: 2px solid white;
+  margin-left: -0.5rem;
+}
+
+.public-avatars img:first-child {
+  margin-left: 0;
+}
+
+/* Hilangkan tombol */
+.public-courses-controls {
+  display: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
 }
 
 /* Apply Quick Sans 500 to content elements */
 p, a, .content, .buttons {
-    font-family: 'Quick Sans', sans-serif;
-    font-weight: 500;
+  font-family: 'Quick Sans', sans-serif;
+  font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .public-card {
+      flex: 0 0 calc(33.333% - 1rem); /* 3 kolom */
+      max-width: calc(33.333% - 1rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .public-header {
+      flex-direction: column; /* Tumpuk header */
+      align-items: flex-start;
+  }
+
+  .public-title {
+      font-size: 1.25rem; /* Kurangi ukuran font */
+  }
+
+  .public-card {
+      flex: 0 0 calc(50% - 1rem); /* 2 kolom */
+      max-width: calc(50% - 1rem);
+  }
+
+  .public-card-content {
+      padding: 0.75rem; /* Kurangi padding */
+  }
+
+  .public-course-title {
+      font-size: 0.9rem;
+  }
+
+  .public-price {
+      font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .public-card {
+      flex: 0 0 100%; /* 1 kolom */
+      max-width: 100%;
+  }
+
+  .public-card-content {
+      padding: 0.5rem;
+  }
+
+  .public-course-title {
+      font-size: 0.875rem;
+  }
+
+  .public-price {
+      font-size: 0.9rem;
+  }
 }

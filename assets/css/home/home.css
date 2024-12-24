@@ -23,6 +23,7 @@ header .buttons {
     gap: 10px;
 }
 
+
 header .buttons a { 
     text-decoration: none;
     padding: 10px 15px;
@@ -66,10 +67,12 @@ nav a {
     justify-content: space-between;
     align-items: center;
     padding: 50px 10%;
+    flex-wrap: wrap; /* Tambahkan agar elemen wrap di layar kecil */
 }
 
 .hero .text {
     max-width: 50%;
+    flex: 1;
 }
 
 .hero .text-bottom {
@@ -78,8 +81,8 @@ nav a {
 }
 
 .hero .home-images-bottom img {
-    width: 120%; 
-    height: 300px; 
+    width: 100%; /* Ubah agar sesuai layar */
+    height: auto;
     object-fit: cover; 
     border-radius: 10px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
@@ -105,7 +108,6 @@ nav a {
     margin: 0 10px;
 }
 
-
 .hero .home-images {
     display: block;
     width: 45%;
@@ -113,6 +115,7 @@ nav a {
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
 }
 
 .slide-container {
@@ -133,7 +136,6 @@ nav a {
 .slide.active {
     opacity: 1;
 }
-
 
 .highlight {
     color: #443EDE;
@@ -189,4 +191,88 @@ h1, h2, h3, h4, h5, h6 {
 p, a, .content, .buttons {
     font-family: 'Quick Sans', sans-serif;
     font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .hero {
+        flex-direction: column; /* Stack elements for tablet */
+    }
+
+    .hero .text {
+        max-width: 100%;
+        text-align: center; /* Center text for tablet */
+    }
+
+    .hero .home-images {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    nav {
+        flex-wrap: wrap; /* Allow wrapping navigation items */
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 15px 5%;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav a {
+        margin: 5px 0;
+    }
+
+    .hero .text h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero .text p {
+        font-size: 1rem;
+    }
+
+    .hero .home-images-bottom img {
+        height: auto; /* Maintain aspect ratio */
+    }
+
+    .avatars img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .avatar-count {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero .text h1 {
+        font-size: 2rem;
+    }
+
+    .hero .text p {
+        font-size: 0.9rem;
+    }
+
+    .hero .home-images {
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    .hero .text .buttons a {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
 }

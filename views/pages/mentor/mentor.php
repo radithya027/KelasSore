@@ -42,109 +42,108 @@ $salaryRemaining = $mentorDetails['salary_remaining'] ?? 0;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kelas Sore</title>
-    <link rel="stylesheet" href="../../../../assets/css/mentor/mentor.css"> 
+    <link rel="stylesheet" href="../../../../assets/css/mentor/mentor.css">
     <style>
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .logout-btn {
+        padding: 0.5rem 1rem;
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        font-size: 14px;
+    }
+    
+    .logout-btn:hover {
+        background-color: #c82333;
+    }
+
+    .header-right {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .mentor-name {
+        font-weight: 500;
+    }
+
+    /* Class Section Styles */
+    .class-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 2rem;
+        padding: 1rem;
+    }
+
+    .class-card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        overflow: hidden;
+        transition: transform 0.2s;
+    }
+
+    .class-card img {
+        width: 100%;
+        height: auto;
+    }
+
+    .class-details {
+        padding: 1rem;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
         .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .logout-btn {
-            padding: 0.5rem 1rem;
-            background-color: #dc3545;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: 14px;
-        }
-        
-        .logout-btn:hover {
-            background-color: #c82333;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
         .header-right {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
         }
 
-        .mentor-name {
-            font-weight: 500;
+        .class-grid {
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem; /* Membesarkan padding */
         }
 
-        /* Books Section Styles */
-        .books-section {
-            padding: 2rem 0;
-            background-color: #f8f9fa;
-        }
-        
-        .books-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 2rem;
+        .class-card {
             padding: 1rem;
         }
-        
-        .book-card {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            overflow: hidden;
-            transition: transform 0.2s;
+    }
+
+    @media (max-width: 480px) {
+        .class-grid {
+            grid-template-columns: 1fr;
+            padding: 3rem; /* Lebih besar padding pada layar kecil */
         }
-        
-        .book-card:hover {
-            transform: translateY(-5px);
+
+        .class-card img {
+            height: 150px;
         }
-        
-        .book-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        
-        .book-info {
+
+        .class-details {
             padding: 1rem;
         }
-        
-        .book-info h3 {
-            margin: 0 0 0.5rem 0;
-            font-size: 1.2rem;
-            color: #333;
-        }
-        
-        .book-info p {
-            margin: 0.5rem 0;
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
-        .book-actions {
-            padding: 1rem;
-            border-top: 1px solid #eee;
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .download-btn {
-            padding: 0.5rem 1rem;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 0.9rem;
-        }
-        
-        .download-btn:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    }
+</style>
+
+
 </head>
 <body>
 
@@ -153,7 +152,7 @@ $salaryRemaining = $mentorDetails['salary_remaining'] ?? 0;
     <h1>Mentor Dashboard</h1>
     <div class="header-right">
         <span class="mentor-name">Welcome, <?= htmlspecialchars($mentorDetails['name'] ?? 'Mentor') ?></span>
-        <a href="logiut.php" class="logout-btn">Logout</a>
+        <a href="logout.php" class="logout-btn">Logout</a>
     </div>
 </header>
 
@@ -170,11 +169,10 @@ $salaryRemaining = $mentorDetails['salary_remaining'] ?? 0;
                              alt="<?= htmlspecialchars($class['name']) ?>" 
                              onerror="this.src='../../../../assets/images/kursus.svg'">
                         <h3><?= htmlspecialchars($class['name']) ?></h3>
-                        <p>Mentor: <?= htmlspecialchars($class['name_mentor']) ?></p>
+                    
                         <div class="class-details">
                             <p>Category: <?= htmlspecialchars($class['category']) ?></p>
-                            <p>Price: Rp <?= number_format($class['price'], 0, ',', '.') ?></p>
-                            <p>Schedule: <?= htmlspecialchars($class['start_date']) ?> - <?= htmlspecialchars($class['end_date']) ?></p>
+                            <p>Jadwal: <?= htmlspecialchars($class['schedule']) ?> 
                         </div>
                     </div>
                 <?php endforeach; ?>
