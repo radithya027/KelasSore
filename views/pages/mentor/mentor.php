@@ -43,6 +43,7 @@ $salaryRemaining = $mentorDetails['salary_remaining'] ?? 0;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kelas Sore</title>
     <link rel="stylesheet" href="../../../../assets/css/mentor/mentor.css">
+    <link rel="stylesheet" href="../../../../assets/css/mentor/header.css"> 
     <style>
     .header {
         display: flex;
@@ -147,15 +148,23 @@ $salaryRemaining = $mentorDetails['salary_remaining'] ?? 0;
 </head>
 <body>
 
-<!-- Add Header with Logout -->
-<header class="header">
-    <h1>Mentor Dashboard</h1>
-    <div class="header-right">
-        <span class="mentor-name">Welcome, <?= htmlspecialchars($mentorDetails['name'] ?? 'Mentor') ?></span>
-        <a href="logout.php" class="logout-btn">Logout</a>
+<header>
+    <!-- // file ini berisi tag <head> yang berisi meta tag, title, dan link CSS -->
+    <div class="logo">
+        <img src="../../../../assets/images/logo.svg" alt="KelasSore Logo">
     </div>
+    <div class="buttons">
+        <?php
+        if (!isset($_SESSION['mentor_id'])) {
+         
+            echo '<a href="/views/pages/login/login.php" class="login">Log in</a>';
+        } else {
+            echo '<a href="/views/pages/userprofile/userprofile.php" class="register" style="background-color: #FF5722; color: #fff; padding: 10px 20px; border-radius: 50px; margin-left: 10px;">Log Out</a>';
+        }
+        ?>
+    </div>
+    
 </header>
-
 <section class="your-class">
     <div class="container">
         <div class="section-header">
@@ -204,7 +213,7 @@ $salaryRemaining = $mentorDetails['salary_remaining'] ?? 0;
 </section>
 
 <!-- Books Section -->
-<section class="books-section">
+<!-- <section class="books-section">
     <div class="container">
         <div class="section-header">
             <h2>Available Books</h2>
@@ -231,7 +240,8 @@ $salaryRemaining = $mentorDetails['salary_remaining'] ?? 0;
             <?php endif; ?>
         </div>
     </div>
-</section>
+</section> -->
+<?php include('/PhpWeb/views/layouts/footer.php'); ?>
 
 </body>
 </html>
