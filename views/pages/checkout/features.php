@@ -7,11 +7,13 @@ $kelasController = new KelasController();
 
 $kelasId = $_GET['id'] ?? null; // Get the class ID from the URL query parameter
 $kelas = null;
+$mentor = null;
 
 try {
     if ($kelasId) {
         // Fetch specific class by ID
         $kelas = $kelasController->getKelasById($kelasId);
+        $mentor = $kelasController->getmentorbykelasid($kelasId);
     } else {
         throw new Exception("Class ID not provided.");
     }
@@ -133,25 +135,31 @@ try {
                 <button class="buy-now">Buy Now</button>
             </div>
 
-            <div class="card-coursesfeature1">
-                <h4>Instructor Profile</h4>
-                <div class="avatar-text">
-                    <div class="avatar-container">
-                        <img class="avatar" src="assets/images/1fdd264b4b531494b306bf6994d7448c.jpg" alt="Avatar">
+            <div class="card-container">
+            <?php if ($mentor): ?>
+                <div class="card-coursesfeature1">
+                    <h4>Instructor Profile</h4>
+                    <div class="avatar-text">
+                        <div class="avatar-container">
+                            <img class="avatar"
+                                src="<?= !empty($mentor['profile_picture'])
+                                            ? 'path_to_images/' . htmlspecialchars($mentor['profile_picture'])
+                                            : 'default-avatar.jpg'; ?>"
+                                alt="Avatar">
+                        </div>
+                        <div class="text">
+                            <p><strong><?= htmlspecialchars($kelas['name_mentor']); ?></strong></p>
+                        </div>
                     </div>
-                    <div class="text">
-                        <p><strong>Angela Yu</strong></p>
-                        <p>Lead Instructor, Software Engineer</p>
-                    </div>
+                    <ul class="list-itemscolumn">
+                        <li>Email: <?= htmlspecialchars($mentor['email'] ?? 'No Email Provided'); ?></li>
+                        <li>Phone: <?= htmlspecialchars($mentor['phone_number'] ?? 'N/A'); ?></li>
+                    </ul>   
                 </div>
-                <ul class="list-itemscolumn">
-                    <li>10+ years Experience <span class="divider"></span></li>
-                    <li>20,450+ Reviews <span class="divider"></span></li>
-                    <li>25+ Courses <span class="divider"></span></li>
-                    <li><a href="#">Follow on LinkedIn</a></li>
-                </ul>
-                <button class="buy-nowcek">Learn More about</button>
-            </div>
+            <?php else: ?>
+                <p>Mentor data not found for this class.</p>
+            <?php endif; ?>
+        </div>
         </div>
     </div>
 </body>

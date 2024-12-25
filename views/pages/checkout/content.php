@@ -39,7 +39,9 @@ if ($course) {
     $potentialPaths = [
         '/uploads/' . $course['image'],
         '/assets/images/courses/' . $course['image'],
-        BASE_PATH . '/public/uploads/' . $course['image']
+       
+        BASE_PATH . '/public/image-book' . $course['image']
+
     ];
 
     $courseImage = '';
@@ -50,11 +52,6 @@ if ($course) {
         }
     }
 
-    // Fallback if no path found
-    if (empty($courseImage)) {
-        $courseImage = '/assets/images/default-course.jpg';
-        echo "Warning: Image not found. Using default image.<br>";
-    }
 
     $courseImage = htmlspecialchars($courseImage);
 } else {
@@ -93,7 +90,22 @@ $redirectUrl = $isLoggedIn ? "/views/pages/payment/payment.php?id=$courseId" : "
             <a href="<?php echo $redirectUrl; ?>" class="buy-now">Buy Now</a>
         </div>
         <div class="course-image">
-            <img src="<?php echo $courseImage; ?>" alt="Course Preview (Path: <?php echo $courseImage; ?>)">
+        <?php
+                                    // New image path handling
+                                    if (!empty($course['image'])) {
+                                        // Extract just the filename from the path
+                                        $filename = basename($course['image']);
+                                        // Construct the correct path
+                                        $imagePath = "/public/image-class/" . $filename;
+                                    } else {
+                                        $imagePath = '/assets/images/default-course.svg';
+                                    }
+                                    ?>
+                                    <img 
+                                        src="<?php echo htmlspecialchars($imagePath); ?>" 
+                                        alt="Gambar Kelas <?php echo isset($course['name']) ? htmlspecialchars($course['name']) : 'Tidak diketahui'; ?>"
+                                        onerror="this.onerror=null; this.src='/assets/images/default-course.svg';"
+                                    >
         </div>
     </div>
 </div>

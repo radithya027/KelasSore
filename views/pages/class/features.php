@@ -89,43 +89,41 @@ try {
     <div class="row-container">
         <!-- Accordion Section -->
         <div class="accordion">
-    <?php if ($kelas): ?>
-        <?php if (!empty($kelas['sesion_1'])): ?>
-            <details class="kelas-item">
-                <summary>
-                    <h5>Sesi 1</h5>
-                </summary>
-                <div class="list-items">
-                    <button class="session-content-btn"><?= htmlspecialchars($kelas['sesion_1']); ?></button>
-                </div>
-            </details>
-        <?php endif; ?>
-        <?php if (!empty($kelas['sesion_2'])): ?>
-            <details class="kelas-item">
-                <summary>
-                    <h5>Sesi 2</h5>
-                </summary>
-                <div class="list-items">
-                    <button class="session-content-btn"><?= htmlspecialchars($kelas['sesion_2']); ?></button>
-                </div>
-            </details>
-        <?php endif; ?>
-        <?php if (!empty($kelas['sesion_3'])): ?>
-            <details class="kelas-item">
-                <summary>
-                    <h5>Sesi 3</h5>
-                </summary>
-                <div class="list-items">
-                    <button class="session-content-btn"><?= htmlspecialchars($kelas['sesion_3']); ?></button>
-                </div>
-            </details>
-        <?php endif; ?>
-    <?php else: ?>
-        <p>No class details available.</p>
-    <?php endif; ?>
-</div>
-
-
+            <?php if ($kelas): ?>
+                <?php if (!empty($kelas['sesion_1'])): ?>
+                    <details class="kelas-item">
+                        <summary>
+                            <h5>Sesi 1</h5>
+                        </summary>
+                        <div class="list-items">
+                            <button class="session-content-btn"><?= htmlspecialchars($kelas['sesion_1']); ?></button>
+                        </div>
+                    </details>
+                <?php endif; ?>
+                <?php if (!empty($kelas['sesion_2'])): ?>
+                    <details class="kelas-item">
+                        <summary>
+                            <h5>Sesi 2</h5>
+                        </summary>
+                        <div class="list-items">
+                            <button class="session-content-btn"><?= htmlspecialchars($kelas['sesion_2']); ?></button>
+                        </div>
+                    </details>
+                <?php endif; ?>
+                <?php if (!empty($kelas['sesion_3'])): ?>
+                    <details class="kelas-item">
+                        <summary>
+                            <h5>Sesi 3</h5>
+                        </summary>
+                        <div class="list-items">
+                            <button class="session-content-btn"><?= htmlspecialchars($kelas['sesion_3']); ?></button>
+                        </div>
+                    </details>
+                <?php endif; ?>
+            <?php else: ?>
+                <p>No class details available.</p>
+            <?php endif; ?>
+        </div>
 
         <!-- Cards Section -->
         <div class="card-container">
@@ -148,11 +146,13 @@ try {
                         <li>Email: <?= htmlspecialchars($mentor['email'] ?? 'No Email Provided'); ?></li>
                         <li>Phone: <?= htmlspecialchars($mentor['phone_number'] ?? 'N/A'); ?></li>
                     </ul>
-                    <button class="buy-nowcek">Learn More about</button>
                 </div>
             <?php else: ?>
                 <p>Mentor data not found for this class.</p>
             <?php endif; ?>
+            
+            <!-- Include the book component -->
+            <?php include_once dirname(__FILE__) . '/../class/book.php'; ?>
         </div>
     </div>
 </body>
