@@ -313,8 +313,10 @@ $salaryRemaining = $mentorDetails['salary_remaining'] ?? 0;
                 <a href="/views/pages/register/register.php" class="join">Join</a>
             <?php elseif (isset($_SESSION['mentor_id'])): ?>
                 <a href="logout.php" class="logout">Log Out</a>
+                <a href="profile.php" class="Profile">Profile</a>
             <?php elseif (isset($_SESSION['user_id'])): ?>
                 <a href="logout.php" class="logout">Log Out</a>
+                
             <?php endif; ?>
         </div>
     </header>
