@@ -1,3 +1,12 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700; /* Bold */
+}
+
+
 body {
     font-family: 'Manrope', sans-serif;
     margin: 0;
@@ -19,14 +28,13 @@ body {
     margin: 0 10px;
 }
 .container {
-    max-width: 1400px;
     margin: 2rem auto;
-    margin: 2rem auto;
-    padding: 1rem 1rem 1rem 2rem;
+    padding: 2rem 1rem; 
     background: #F1F4FF;
     border-radius: 32px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
+
 .course-header h1 {
     font-size: 30px;
     padding-left: 20px;
@@ -63,15 +71,6 @@ body {
 }
 
 
-
-h1 {
-    font-family: 'Manrope', sans-serif; /* Gunakan font Manrope */
-    font-weight: 700; /* Bold */
-    color: #333; /* Warna teks */
-    font-size: 30px; /* Ukuran font */
-    line-height: 1.5; /* Jarak antar baris */
-    margin-bottom: 1rem; /* Jarak bawah */
-}
 
 
 .rating {

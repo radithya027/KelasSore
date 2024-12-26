@@ -20,7 +20,9 @@ try {
 <header>
     <link rel="stylesheet" href="../../../assets/css/dashboard/header.css">
     <div class="logo">
-        <img src="../../../../assets/images/logo.svg" alt="KelasSore Logo">
+        <a href="../home/home.php"> <!-- Ganti "/index.php" dengan URL halaman home/dashboard Anda -->
+            <img src="../../../../assets/images/logo.svg" alt="KelasSore Logo">
+        </a>
     </div>
     <div class="buttons">
         <?php

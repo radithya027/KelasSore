@@ -1,22 +1,24 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <header>
-    <!-- // file ini berisi tag <head> yang berisi meta tag, title, dan link CSS -->
+    <!-- File ini berisi tag <head> yang berisi meta tag, title, dan link CSS -->
     <div class="logo">
-        <img src="../../../../assets/images/logo.svg" alt="KelasSore Logo">
+        <a href="../home/home.php"> <!-- Ganti "/index.php" dengan URL halaman home/dashboard Anda -->
+            <img src="../../../../assets/images/logo.svg" alt="KelasSore Logo">
+        </a>
     </div>
     <div class="buttons">
         <?php
         session_start(); // Mulai session
-        if (!isset($_SESSION['user_id'])) {
+        if (!isset($_SESSION['user_id']) && !isset($_SESSION['mentor_id'])) {
             // Jika belum login, tampilkan tombol Log in dan Join
             echo '<a href="/views/pages/login/login.php" class="login">Log in</a>';
+            echo '<a href="/views/pages/register/register.php" class="join">Join</a>';
+        } elseif (isset($_SESSION['mentor_id'])) {
+            echo '<a href="logout.php" class="logout">Log Out</a>';
+        } elseif (isset($_SESSION['user_id'])) {
 
-            echo '<a href="/viewa/pages/register/register.php" class="join">Join</a>';
-        } else {
-            // Jika sudah login, tampilkan tombol Log out
-            echo '<a href="logout.php" class="login">Log Out</a>';
+            echo '<a href="logout.php" class="logout">Log Out</a>';
         }
         ?>
     </div>

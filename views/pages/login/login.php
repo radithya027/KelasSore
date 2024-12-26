@@ -34,8 +34,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="../../../assets/css/login/login.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&family=Roboto:wght@400;700&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
     <title>Login</title>
+    <style>
+        h2 {
+            font-family: 'Roboto', sans-serif;
+        }
+        p {
+            font-family: 'Quicksand', sans-serif;
+        }
+    </style>
 </head>
 <body>
 <div class="container my-3" style="max-width: 200px; position: absolute; top: 0; left: 0; padding-left: 50px; padding-top: 20px">

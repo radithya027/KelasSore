@@ -17,6 +17,7 @@ class AuthMentorController {
             $_SESSION['mentor_id'] = $mentor['id'];
             $_SESSION['mentor_email'] = $mentor['email'];
             $_SESSION['mentor_name'] = $mentor['name'];
+            header('Location: ../mentor/mentor.php'); 
             exit();
         } else {
             return "Email atau Password salah!";

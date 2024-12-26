@@ -1,13 +1,14 @@
 <?php
-// Path: views/pages/checkout/features.php
 require_once dirname(__FILE__) . '/../../../controllers/KelasController.php';
-
+require_once dirname(__FILE__) . '/../../../controllers/CatatanController.php';
 // Initialize KelasController
 $kelasController = new KelasController();
+$catatanController = new CatatanController();
 
 $kelasId = $_GET['id'] ?? null;
 $kelas = null;
 $mentor = null;
+$message = '';
 
 try {
     if ($kelasId) {
@@ -16,6 +17,22 @@ try {
 
         // Fetch mentor details by class ID
         $mentor = $kelasController->getmentorbykelasid($kelasId);
+
+        // Handle form submission
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['catatan_submit'])) {
+            $title = $_POST['title'] ?? '';
+            $content = $_POST['content'] ?? '';
+            $mentorId = $mentor['id'] ?? null; // Ensure mentor ID exists
+            $createdAt = date('Y-m-d H:i:s');
+            $updatedAt = $createdAt;
+
+            if ($mentorId && $title && $content) {
+                $catatanController->createCatatan($mentorId, $title, $content, $createdAt, $updatedAt);
+                $message = 'Catatan kamu berhasil dikirim ke mentor kamu.';
+            } else {
+                $message = 'Please fill in all fields.';
+            }
+        }
     } else {
         throw new Exception("Class ID not provided.");
     }
@@ -96,7 +113,10 @@ try {
                             <h5>Sesi 1</h5>
                         </summary>
                         <div class="list-items">
-                            <button class="session-content-btn"><?= htmlspecialchars($kelas['sesion_1']); ?></button>
+                            <button class="session-content-btn" 
+                                    onclick="window.open('<?= htmlspecialchars($kelas['sesion_1']); ?>', '_blank')">
+                               Masuk Ke Sesi 1
+                            </button>
                         </div>
                     </details>
                 <?php endif; ?>
@@ -106,7 +126,10 @@ try {
                             <h5>Sesi 2</h5>
                         </summary>
                         <div class="list-items">
-                            <button class="session-content-btn"><?= htmlspecialchars($kelas['sesion_2']); ?></button>
+                            <button class="session-content-btn" 
+                                    onclick="window.open('<?= htmlspecialchars($kelas['sesion_2']); ?>', '_blank')">
+                               Masuk Ke Sesi 2
+                            </button>
                         </div>
                     </details>
                 <?php endif; ?>
@@ -116,7 +139,10 @@ try {
                             <h5>Sesi 3</h5>
                         </summary>
                         <div class="list-items">
-                            <button class="session-content-btn"><?= htmlspecialchars($kelas['sesion_3']); ?></button>
+                            <button class="session-content-btn" 
+                                    onclick="window.open('<?= htmlspecialchars($kelas['sesion_3']); ?>', '_blank')">
+                               Masuk Ke Sesi 3
+                            </button>
                         </div>
                     </details>
                 <?php endif; ?>
@@ -125,36 +151,64 @@ try {
             <?php endif; ?>
         </div>
 
+
         <!-- Cards Section -->
         <div class="card-container">
-            <?php if ($mentor): ?>
-                <div class="card-coursesfeature1">
-                    <h4>Instructor Profile</h4>
-                    <div class="avatar-text">
-                        <div class="avatar-container">
-                            <img class="avatar"
-                                src="<?= !empty($mentor['profile_picture'])
-                                            ? 'path_to_images/' . htmlspecialchars($mentor['profile_picture'])
-                                            : 'default-avatar.jpg'; ?>"
-                                alt="Avatar">
-                        </div>
-                        <div class="text">
-                            <p><strong><?= htmlspecialchars($kelas['name_mentor']); ?></strong></p>
-                        </div>
+        <?php if ($mentor): ?>
+            <div class="card-coursesfeature1">
+                <h4>Mentor Profile</h4>
+                <div class="avatar-text">
+                    <div class="avatar-container">
+                        <img class="avatar"
+                            src="<?= !empty($mentor['profile_picture'])
+                                        ? 'path_to_images/' . htmlspecialchars($mentor['profile_picture'])
+                                        : 'default-avatar.jpg'; ?>"
+                            alt="Avatar">
                     </div>
-                    <ul class="list-itemscolumn">
-                        <li>Email: <?= htmlspecialchars($mentor['email'] ?? 'No Email Provided'); ?></li>
-                        <li>Phone: <?= htmlspecialchars($mentor['phone_number'] ?? 'N/A'); ?></li>
-                    </ul>
+                    <div class="text">
+                        <p><strong><?= htmlspecialchars($kelas['name_mentor']); ?></strong></p>
+                    </div>
                 </div>
-            <?php else: ?>
-                <p>Mentor data not found for this class.</p>
-            <?php endif; ?>
+                <ul class="list-itemscolumn">
+                    <li>Email: <?= htmlspecialchars($mentor['email'] ?? 'No Email Provided'); ?></li>
+                    <li>Phone: <?= htmlspecialchars($mentor['phone_number'] ?? 'N/A'); ?></li>
+                </ul>
+                <?php if (!empty($message)): ?>
+                    <div class="alert alert-success" role="alert">
+                        <?= htmlspecialchars($message); ?>
+                    </div>
+                <?php endif; ?>
+
+                <div class="note-form">
+                <h4>Kirim catatan ke mentor</h4>
+<form method="POST" class="mt-3">
+    <div class="form-group">
+        <label for="noteTitle" class="form-label">Title</label>
+        <input type="text" name="title" id="noteTitle" class="form-control" placeholder="Enter note title" required>
+    </div>
+    <div class="form-group mt-3">
+        <label for="noteContent" class="form-label">Content</label>
+        <textarea name="content" id="noteContent" class="form-control" rows="5" placeholder="Write your note here..." required></textarea>
+    </div>
+    <button type="submit" name="catatan_submit" class="btn btn-primary mt-3">Send Note</button>
+</form>
+
             
+            </div>
+            
+
+            </div>
+        <?php else: ?>
+            <p>Mentor data not found for this class.</p>
+        <?php endif; ?>
+                
             <!-- Include the book component -->
             <?php include_once dirname(__FILE__) . '/../class/book.php'; ?>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

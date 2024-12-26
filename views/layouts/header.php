@@ -2,15 +2,17 @@
 function renderHeader() {
     ?>
     <header>
-        <div class="logo">
+    <div class="logo">
+        <a href="../home/home.php"> <!-- Ganti "/index.php" dengan URL halaman home/dashboard Anda -->
             <img src="../../../../assets/images/logo.svg" alt="KelasSore Logo">
-        </div>
+        </a>
+    </div>
         <div class="buttons">
             <?php
             if (!isset($_SESSION['user_id'])) {
                 echo '<a href="/views/pages/login/login.php" class="login">Log in</a>';
             } else {
-                echo '<a href="/views/pages/userprofile/userprofile.php" class="register" style="background-color: #FF5722; color: #fff; padding: 10px 20px; border-radius: 50px; margin-left: 10px;">Log Out</a>';
+                
             }
             ?>
         </div>
