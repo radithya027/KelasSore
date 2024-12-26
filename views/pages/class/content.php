@@ -1,5 +1,5 @@
 <?php
-define('BASE_PATH', dirname(__DIR__, 3)); // Define base path
+define('BASE_PATH', dirname(__DIR__, 3)); 
 
 require_once BASE_PATH . '/models/KelasModel.php';
 if (session_status() === PHP_SESSION_NONE) {
@@ -75,39 +75,62 @@ $joinButtonText = !empty($course['link_wa'])
     : 'Group Link Unavailable';
 ?>
 
-<div class="container">
-    <div class="course-header">
-        <h1><?php echo $courseName; ?></h1>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 15px;
+            font-weight: 400;
+        }
+        .course-header h1 {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+        }
+        .course-content p {
+            text-align: justify;
+        }
+        .container {
+    max-width: 1460px;
+    margin: 2rem auto;
+    margin: 2rem auto;
+    padding: 1rem 1rem 1rem 2rem;
+    background: #F1F4FF;
+    border-radius: 32px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="course-header">
+            <h1><?php echo $courseName; ?></h1>
+        </div>
 
-    <div class="course-content">
-        <div class="course-details">
-            <p><?php echo $courseDescription; ?></p>
-            <p><strong>Instructor:</strong> <?php echo $courseInstructor; ?></p>
-            <div class="course-rating-enrollment">
-                <div class="enrolled">
-                    <div class="avatars">
-                        <img src="../../../../assets/images/homecontent.svg" alt="Avatar 1">
-                        <img src="../../../../assets/images/kursus.svg" alt="Avatar 2">
-                        <img src="../../../../assets/images/logo.svg" alt="Avatar 3">
-                    </div>
-                    <span><?php echo $courseStudents; ?> Students</span>
+        <div class="course-content">
+            <div class="course-details">
+                <p><?php echo $courseDescription; ?></p>
+                <p><strong>Instructor:</strong> <?php echo $courseInstructor; ?></p>
+            
+                <div class="course-schedule">
+                    <p><strong>Jadwal:</strong> <?php echo $courseSchedule; ?></p>
                 </div>
-                <p><strong>Quota Left:</strong> <?php echo $courseQuotaLeft . " / " . $courseQuota; ?></p>
-            </div>  
 
-            <div class="course-schedule">
-                <p><strong>Jadwal:</strong> <?php echo $courseSchedule; ?></p>
+                <a href="<?php echo $waGroupUrl; ?>" 
+                   class="<?php echo $joinButtonClass; ?>" 
+                   <?php echo empty($course['link_wa']) ? 'disabled' : 'target="_blank"'; ?>>
+                   <?php echo $joinButtonText; ?>
+                </a>
             </div>
-
-            <a href="<?php echo $waGroupUrl; ?>" 
-               class="<?php echo $joinButtonClass; ?>" 
-               <?php echo empty($course['link_wa']) ? 'disabled' : 'target="_blank"'; ?>>
-               <?php echo $joinButtonText; ?>
-            </a>
-        </div>
-        <div class="course-image">
-            <img src="<?php echo $courseImage; ?>" alt="Course Preview">
+            <div class="course-image">
+                <img src="<?php echo $courseImage; ?>" alt="Course Preview">
+            </div>
         </div>
     </div>
-</div>
+</body>
+</html>

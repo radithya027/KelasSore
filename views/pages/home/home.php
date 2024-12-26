@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quick+Sans:wght@500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
     <!-- // home.php -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +16,15 @@
     <link rel="stylesheet" href="../../../../assets/css/home/partner.css">
     <link rel="stylesheet" href="../../../../assets/css/home/animation.css"> 
     <link rel="stylesheet" href="../../../../assets/css/home/banner.css">
+    <link rel="stylesheet" href="../../../../assets/css/home/artikel.css">
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif !important;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
 </head>
 <body>
 
@@ -38,15 +48,16 @@
     </div>
     
 </header>
-
+  
 
 <section class="hero">
     <div class="text slide-in-left">
-        <h1><span class="highlight">Selamat Datang di Kelas Sore!</span></h1>
-        <p>
+        <h1 style="padding-right: 48px;"><span class="highlight">Selamat Datang di Kelas Sore!</span></h1>
+        <p style="font-family: 'Quicksand', sans-serif; padding-right: 48px; margin-top: 24px;">
+            Tingkatkan keterampilan Anda bersama Kelas Sore, platform kursus online dengan berbagai pilihan topik menarik, seperti teknologi, pengembangan karier, dan pembelajaran bahasa. Belajar kapan saja dan di mana saja dengan mudah dan fleksibel.
+
             Tingkatkan keterampilan Anda bersama Kelas Sore, platform kursus online dengan berbagai pilihan topik menarik, seperti teknologi, pengembangan karier, dan pembelajaran bahasa. Belajar kapan saja dan di mana saja dengan mudah dan fleksibel.
         </p>
-
         <div class="avatar-stack fade-up">
             <div class="avatars">
                 <img src="../../../../assets/images/homecontent.svg" alt="User 1">
@@ -82,12 +93,13 @@
 <?php include('privatecourses.php'); ?>
 <?php include('publiccourses.php'); ?>
 <?php include('partner.php'); ?>
+<?php include('artikel.php'); ?>
 
 <section class="hero">
     <div class="text slide-in-left">
         <h1 class="text-bottom">Kelas sore!</h1>
         <p>
-             Soooo tak perlu ragu lagi, Lets Join Us!
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
         </p>
     </div>
     <div class="images-bottom slide-in-right">

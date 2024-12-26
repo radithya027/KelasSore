@@ -96,13 +96,13 @@
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: 600;
 }
 
-/* Apply Quick Sans 500 to content elements */
+/* Apply Quicksand 500 to content elements */
 p, a, .content, .buttons {
-    font-family: 'Quick Sans', sans-serif;
+    font-family: 'Quicksand';
     font-weight: 500;
 }
 
