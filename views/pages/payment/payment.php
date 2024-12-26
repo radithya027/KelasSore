@@ -108,9 +108,14 @@ try {
     exit;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
+<?php
+    include_once dirname(__FILE__) . '/../../layouts/header.php';
+    ?>
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transfer Form</title>
@@ -216,8 +221,11 @@ try {
             }
         }
     </style>
+   
 </head>
+
 <body>
+    
     <div class="container d-flex justify-content-center align-items-center h-100">
         <div class="row g-4 w-100" style="max-width: 900px;">
         <?php if ($successMessage): ?>
@@ -312,5 +320,11 @@ try {
             }
         });
     </script>
+    
 </body>
+<footer>
+    <?php
+    include_once dirname(__FILE__) . '/../../layouts/footer.php';
+    ?>
+</footer>
 </html>

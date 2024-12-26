@@ -17,7 +17,7 @@
         } elseif (isset($_SESSION['mentor_id'])) {
             echo '<a href="logout.php" class="logout">Log Out</a>';
         } elseif (isset($_SESSION['user_id'])) {
-
+            echo '<a href="" class="login">Your Class</a>';
             echo '<a href="logout.php" class="logout">Log Out</a>';
         }
         ?>

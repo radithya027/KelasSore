@@ -98,6 +98,7 @@ if (isset($_GET['id'])) {
             border: 2px solid #f44336;
             color: #f44336;
         }
+        
 
         header .buttons a:hover {
             opacity: 0.8;
@@ -112,8 +113,8 @@ if (isset($_GET['id'])) {
     font-family: 'Quicksand', sans-serif;
     font-weight: 500;
 }
-        .article-header .text-muted,
-        .article-footer .text-muted {
+        .article-header .text-muted
+         {
             text-align: center;
         }
 
@@ -191,6 +192,7 @@ if (isset($_GET['id'])) {
         </div>
         
     </div>
+</div>
 
     <!-- Bootstrap JS (Optional for Bootstrap components like dropdowns, modals, etc.) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
@@ -199,7 +201,6 @@ if (isset($_GET['id'])) {
 <footer>
 <?php
     include_once dirname(__FILE__) . '/../../layouts/footer.php'; 
-    ?>
+?>
 </footer>
-
 </html>

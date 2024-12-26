@@ -1,26 +1,11 @@
 .container {
     display: flex;
-    flex-wrap: wrap; /* Tambahkan agar bisa wrap saat layar kecil */
-    justify-content: space-between;
-    gap: 2%; 
-    padding: 0 5%; 
-    width: 100%; 
-    box-sizing: border-box; 
-}
-
-.benefits {
-    display: flex;
     flex-wrap: wrap;
-    background-color: #f7f7f7;
-    gap: 1%;
-    flex: 1;
-    padding-left: 5%;
-}
-
-.benefit-item {
-    padding: 10px;
-    box-shadow: none;
-    flex: 0 0 48%; /* Kurangi lebar untuk layar kecil */
+    justify-content: space-between;
+    gap: 2%;
+    padding: 0 5%;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .benefit-item h2 {
@@ -32,45 +17,86 @@
 .benefit-item p {
     font-size: 1rem;
     color: #6D6D6D;
+    text-align: justify; /* Text alignment justified */
 }
 
 .divider {
-    height: 1px; 
-    background-color: #585858;
-    width: 100%; 
+    height: 1px;
+    background-color: #004085;
+    width: 98%; /* Sesuaikan lebar divider dengan lebar container */
+    margin: 10px 0; /* Mengurangi jarak antar divider */
 }
 
 .benefitwithus {
     flex: 0 0 40%;
     display: flex;
-    justify-content: flex-start; 
+    justify-content: flex-start;
     align-items: flex-start;
-    padding: 40px 20px;
+    padding: 40px 0;
+    margin-left: 60px;
     box-sizing: border-box;
     background-color: transparent;
     align-self: flex-start;
     height: 100%;
-    flex-direction: column; 
+    flex-direction: column;
+}
+
+@media (max-width: 768px) {
+    .benefitwithus {
+        flex: 0 0 100%;
+        padding: 20px 0;
+        margin-left: 0;
+    }
+
+    .benefits {
+        padding: 0 5%; /* Kurangi padding */
+    }
+
+    .cta h2 {
+        font-size: 1.8rem;
+    }
+
+    .cta p {
+        font-size: 1rem;
+    }
+
+    .benefit-image {
+        height: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .cta h2 {
+        font-size: 1.5rem;
+    }
+
+    .cta p {
+        font-size: 0.9rem;
+    }
+
+    .start-learn-btn {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
 }
 
 .benefit-image {
-    width: 100%; /* Ubah ke 100% untuk layar kecil */
-    height: auto; /* Sesuaikan tinggi otomatis */
+    width: 106%;
+    height: auto;
     margin-top: 20px;
-    object-fit: contain; 
-    border-radius: 10px; 
-    margin-left: 0; 
+    object-fit: contain;
+    border-radius: 10px;
 }
 
 .cta {
     padding: 0;
-    text-align: left; 
+    text-align: left;
 }
 
 .cta h2 {
     font-size: 2rem;
     margin-bottom: 20px;
-    color: #443EDE; 
+    color: #443EDE;
 }
 
 .cta p {
@@ -87,7 +113,7 @@
     font-weight: bold;
     display: inline-block;
     margin-top: 35px;
-    margin-bottom: 35px; 
+    margin-bottom: 35px;
     transition: background-color 0.3s ease;
 }
 
@@ -100,53 +126,40 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
 }
 
-/* Apply Quicksand 500 to content elements */
 p, a, .content, .buttons {
     font-family: 'Quicksand';
     font-weight: 500;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-        padding: 0 2%; /* Kurangi padding untuk layar kecil */
-    }
-
-    .benefit-item {
-        flex: 0 0 100%; /* Full width untuk layar kecil */
-        margin-bottom: 20px;
-    }
-
-    .benefitwithus {
-        flex: 0 0 100%;
-        padding: 20px;
-    }
-
-    .cta h2 {
-        font-size: 1.8rem; /* Sesuaikan ukuran font */
-    }
-
-    .cta p {
-        font-size: 1rem; /* Kurangi ukuran font */
-    }
-
-    .benefit-image {
-        height: auto; /* Pastikan gambar menyesuaikan */
-    }
+.benefits {
+    display: flex;
+    margin-top: 50px;
+    flex-direction: column; /* Tetap gunakan layout column */
+    background-color: #f7f7f7;
+    gap: 50px;
+    flex: 1;
+    padding: 5% 5% 0 4%;
+    width: 100%; /* Pastikan container lebar penuh */
 }
 
-@media (max-width: 480px) {
-    .cta h2 {
-        font-size: 1.5rem; /* Lebih kecil untuk layar sangat kecil */
-    }
+.benefit-item {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-    .cta p {
-        font-size: 0.9rem;
-    }
+.benefit-item h2 {
+    font-size: 1.25rem;
+    color: #001A45;
+    margin: 0;
+}
 
-    .start-learn-btn {
-        font-size: 0.9rem;
-        padding: 8px 15px; /* Lebih kecil pada layar kecil */
-    }
+.benefit-item p {
+    font-size: 0.875rem;
+    color: #555;
+    margin-top: 5px;
 }
