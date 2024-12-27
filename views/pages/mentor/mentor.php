@@ -171,7 +171,6 @@ $salaryRemaining = $mentorDetails['salary_remaining'] ?? 0;
     .section-header h2 {
         color: #333;
         font-family: 'Roboto', sans-serif;
-
         font-size: 1.8rem;
         margin-bottom: 0.5rem;
     }
@@ -213,25 +212,11 @@ $salaryRemaining = $mentorDetails['salary_remaining'] ?? 0;
             transition: transform 0.3s;
         }
 
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            z-index: 10;
-        }
+       
 
       
 
-        .carousel-btn:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
+     
 
         .no-catatan {
             text-align: center;
@@ -244,9 +229,8 @@ $salaryRemaining = $mentorDetails['salary_remaining'] ?? 0;
 
 
 
-.carousel-btn:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-}
+
+
 
 /* No Catatan Style */
 .no-catatan {
@@ -263,7 +247,6 @@ $salaryRemaining = $mentorDetails['salary_remaining'] ?? 0;
         flex: 0 0 80%; /* Smaller width for mobile */
     }
 }
-
 
     .no-catatan {
         grid-column: 1 / -1;
@@ -400,16 +383,7 @@ $salaryRemaining = $mentorDetails['salary_remaining'] ?? 0;
     <?php include('/PhpWeb/views/layouts/footer.php'); ?>
     <script>
         const track = document.querySelector('.carousel-track');
-        const prevButton = document.querySelector('.prev-btn');
-        const nextButton = document.querySelector('.next-btn');
-
-        let currentIndex = 0;
-
-        function updateCarousel() {
-            const cardWidth = document.querySelector('.catatan-card').offsetWidth + 16; // Card width + margin
-            track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-        }
-
+      
 
         // Auto-scroll every 5 seconds
         setInterval(() => {

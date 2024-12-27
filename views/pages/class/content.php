@@ -33,25 +33,13 @@ if ($course) {
     $coursePrice = $course['price'];
     $courseSchedule = htmlspecialchars($course['schedule'] ?? 'Schedule not available');
     
-    // Try multiple path approaches
-    $potentialPaths = [
-        '/uploads/' . $course['image'],
-        '/assets/images/courses/' . $course['image'],
-        BASE_PATH . '/public/uploads/' . $course['image']
-    ];
-
-    $courseImage = '';
-    foreach ($potentialPaths as $path) {
-        if (file_exists($path) || file_exists($_SERVER['DOCUMENT_ROOT'] . $path)) {
-            $courseImage = $path;
-            break;
-        }
-    }
-
-    // Fallback if no path found
-    if (empty($courseImage)) {
+    // Simplified image path handling
+    $courseImage = '/public/image-class/' . $course['image'];
+    
+    // Check if image exists, otherwise use default
+    if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $courseImage)) {
         $courseImage = '/assets/images/default-course.jpg';
-        echo "Warning: Image not found. Using default image.<br>";
+        error_log("Course image not found: {$course['image']}");
     }
 
     $courseImage = htmlspecialchars($courseImage);
@@ -96,14 +84,13 @@ $joinButtonText = !empty($course['link_wa'])
             text-align: justify;
         }
         .container {
-    max-width: 1460px;
-    margin: 2rem auto;
-    margin: 2rem auto;
-    padding: 1rem 1rem 1rem 2rem;
-    background: #F1F4FF;
-    border-radius: 32px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem 1rem 1rem 2rem;
+            background: #F1F4FF;
+            border-radius: 32px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body>
