@@ -1,9 +1,8 @@
 <?php
-// File: views/pages/mentorprofile/mentorprofile.php
 session_start();
 
 // Include header component
-include dirname(__FILE__) . '/../../layouts/header.php';
+include dirname(__FILE__) . '/header.php';
 include dirname(__FILE__) . '/../../../controllers/CatatanController.php';
 
 // Check if mentor is logged in
@@ -159,8 +158,7 @@ $profilePicture = !empty($mentor['profile_picture']) ? $mentor['profile_picture'
     </style>
 </head>
 <body>
-    <!-- Render the header -->
-    <?php renderHeader(); ?>
+    <?php renderHeaderProfile(); ?>
 
     <div class="container">
         <div class="header">
@@ -224,23 +222,26 @@ $profilePicture = !empty($mentor['profile_picture']) ? $mentor['profile_picture'
     </div>
 
     <!-- Logout Confirmation Modal -->
-    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="logoutModalLabel">Konfirmasi Logout</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Apakah Anda yakin ingin logout?
-                </div>
-                <div class="modal-footer">
-                    <a href="/controllers/AuthMentorController.php?action=logout" class="btn btn-danger">Logout</a>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                </div>
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="logoutModalLabel">Konfirmasi Logout</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Apakah Anda yakin ingin logout?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                <!-- Tombol Logout -->
+                <a href="/views/pages/userprofile/logout.php" class="btn btn-danger">Logout</a>
             </div>
         </div>
     </div>
+</div>
+
+
     
 </body>
 <footer>

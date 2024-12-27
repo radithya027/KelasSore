@@ -41,7 +41,7 @@
             echo '<a href="/views/pages/login/login.php" class="login">Log in</a>';
         } else {
             // Jika sudah login, tampilkan tombol Log out
-            echo '<a href="/views//pages/dashoardUser/index.php" class="login">Your Class</a>';
+            echo '<a href="/views/pages/dashoardUser/index.php" class="login">Your Class</a>';
             echo '<a href="/views/pages/userprofile/userprofile.php" class="register" style="background-color: #FF5722; color: #fff; padding: 10px 20px; border-radius: 50px; margin-left: 10px;">Profile</a>';
         }
         ?>

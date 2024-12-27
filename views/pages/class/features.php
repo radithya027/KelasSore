@@ -1,7 +1,8 @@
 <?php
 require_once dirname(__FILE__) . '/../../../controllers/KelasController.php';
 require_once dirname(__FILE__) . '/../../../controllers/CatatanController.php';
-// Initialize KelasController
+
+// Initialize controllers
 $kelasController = new KelasController();
 $catatanController = new CatatanController();
 
@@ -19,7 +20,7 @@ try {
         $mentor = $kelasController->getmentorbykelasid($kelasId);
 
         // Handle form submission
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['catatan_submit'])) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['catatan_submit']) && isset($_SESSION['user_id'])) {
             $title = $_POST['title'] ?? '';
             $content = $_POST['content'] ?? '';
             $mentorId = $mentor['id'] ?? null; // Ensure mentor ID exists
@@ -179,24 +180,25 @@ try {
                     </div>
                 <?php endif; ?>
 
+                <!-- Note Form -->
                 <div class="note-form">
-                <h4>Kirim catatan ke mentor</h4>
-<form method="POST" class="mt-3">
-    <div class="form-group">
-        <label for="noteTitle" class="form-label">Title</label>
-        <input type="text" name="title" id="noteTitle" class="form-control" placeholder="Enter note title" required>
-    </div>
-    <div class="form-group mt-3">
-        <label for="noteContent" class="form-label">Content</label>
-        <textarea name="content" id="noteContent" class="form-control" rows="5" placeholder="Write your note here..." required></textarea>
-    </div>
-    <button type="submit" name="catatan_submit" class="btn btn-primary mt-3">Send Note</button>
-</form>
-
-            
-            </div>
-            
-
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                        <h4>Kirim catatan ke mentor</h4>
+                        <form method="POST" class="mt-3">
+                            <div class="form-group">
+                                <label for="noteTitle" class="form-label">Title</label>
+                                <input type="text" name="title" id="noteTitle" class="form-control" placeholder="Enter note title" required>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="noteContent" class="form-label">Content</label>
+                                <textarea name="content" id="noteContent" class="form-control" rows="5" placeholder="Write your note here..." required></textarea>
+                            </div>
+                            <button type="submit" name="catatan_submit" class="btn btn-primary mt-3">Send Note</button>
+                        </form>
+                    <?php else: ?>
+                        <p></p>
+                    <?php endif; ?>
+                </div>
             </div>
         <?php else: ?>
             <p>Mentor data not found for this class.</p>

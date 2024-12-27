@@ -296,6 +296,7 @@ a {
     color: #000;
     border-radius: 16px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    max-width: 82%;
     border: 3px solid #E1E9FE; 
     }
 
@@ -335,11 +336,12 @@ a {
 
 /* Accordion Section */
 .accordion {
-    flex: 2;
+    flex: 1; /* Agar accordion mengambil setengah lebar */
+    max-width: 50%; /* Batasi lebar maksimal accordion */
     flex-direction: column;
     border-radius: 16px;
     border-color: #666;
-    padding-left: 2rem;
+    padding-left: 13rem;
 }
 
 .session-content-btn {
@@ -430,6 +432,7 @@ details[open] {
 
 /* Cards Section */
 .card-container {
+    max-width: 73%;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -580,7 +583,7 @@ span {
 
     .private-courses {
         padding: 2rem;
-        background-color: #f8f9fa;
+        max-width: 85%;
         position: relative;
       }
       
@@ -693,3 +696,174 @@ span {
       .title{
         padding-left: 2rem;
       }
+
+      /* Add these media queries at the end of your existing CSS file */
+
+/* Mobile and Tablet Responsive Styles */
+@media screen and (max-width: 768px) {
+    .container {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    .navbar {
+        flex-direction: column;
+        padding: 0.5rem;
+    }
+
+    .course-content {
+        flex-direction: column;
+    }
+
+    .course-details {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    .course-image img {
+        margin: 0 auto;
+        max-width: 100%;
+    }
+
+    .course-rating-enrollment {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .rating {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+
+    .row-container {
+        flex-direction: column;
+        padding: 1rem;
+        width: 100%;
+        max-width: none;
+    }
+
+    .accordion {
+        width: 100%;
+        max-width: none;
+        padding-left: 0;
+        /* Remove any margin that might be causing shrinkage */
+        margin: 0;  
+    }
+
+    .card-container {
+        width: 100%;
+        max-width: none;
+        padding-left: 0;
+        margin: 0;
+    }
+
+    .card-coursesfeature1 {
+        max-width: 100%;    
+    }
+
+    .private-cards-wrapper {
+        flex-direction: column;
+    }
+
+    .private-card {
+        flex: 0 0 100%;
+    }
+
+    .course-header h1 {
+        font-size: 24px;
+        padding-left: 10px;
+    }
+
+    .buy-nowcek, .join-group {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+}
+
+/* Tablet Specific Styles */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .private-cards-wrapper {
+        flex-wrap: wrap;
+    }
+
+    .private-card {
+        flex: 0 0 48%;
+    }
+
+    .accordion {
+        max-width: 100%;
+        padding-left: 0;
+    }
+
+    .card-container {
+        max-width: 100%;
+    }
+
+    .card-coursesfeature1 {
+        max-width: 90%;
+    }
+
+    .course-details {
+        max-width: 50%;
+    }
+}
+
+/* Additional Responsive Utilities */
+@media screen and (max-width: 480px) {
+    .list-items {
+        flex-direction: column;
+    }
+
+    .list-items li::after {
+        display: none;
+    }
+
+    details {
+        padding: 1rem;
+    }
+
+    .course-features {
+        padding: 1rem;
+    }
+
+    .private-courses {
+        padding: 1rem;
+    }
+
+    .avatars img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .title {
+        padding-left: 1rem;
+    }
+}
+
+/* Fix for horizontal scrolling */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* Touch-friendly adjustments for mobile */
+@media (hover: none) {
+    .navbar a,
+    .buy-nowcek,
+    .join-group {
+        padding: 12px 20px;
+    }
+
+    details summary {
+        padding: 15px;
+    }
+}
+
+/* High-resolution screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .course-image img {
+        max-width: 100%;
+        height: auto;
+    }
+}   
