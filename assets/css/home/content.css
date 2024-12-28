@@ -81,12 +81,13 @@
 }
 
 .benefit-image {
-    width: 106%;
+    width: 100%;
     height: auto;
     margin-top: 20px;
     object-fit: contain;
     border-radius: 10px;
 }
+
 
 .cta {
     padding: 0;
