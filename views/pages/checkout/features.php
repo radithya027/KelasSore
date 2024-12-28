@@ -124,16 +124,7 @@ try {
         <!-- Cards Section -->
         <div class="card-container">
             <!-- Course Features -->
-            <div class="card-coursesfeature">
-                <h4 class="hai">Course Features</h4>
-                <ul>
-                    <li><i class="bi bi-pin-fill pinned-icon"></i> Beginner to Advanced</li>
-                    <li><i class="bi bi-pin-fill pinned-icon"></i> 80+ hours of video content</li>
-                    <li><i class="bi bi-pin-fill pinned-icon"></i> 15 modules with over 150 lessons</li>
-                    <li><i class="bi bi-pin-fill pinned-icon"></i> Professional Certificate upon completion</li>
-                </ul>
-                <button class="buy-now">Buy Now</button>
-            </div>
+           
 
             <div class="card-container">
             <?php if ($mentor): ?>

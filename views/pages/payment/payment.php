@@ -1,6 +1,7 @@
 <?php
 // Path: views/pages/payment/payment.php
 define('BASE_PATH', dirname(__DIR__, 3)); // Define base path
+include dirname(__FILE__) . '/../../layouts/header.php';
 
 require_once BASE_PATH . '/models/KelasModel.php';
 require_once BASE_PATH . '/controllers/InvoiceController.php';
@@ -225,7 +226,8 @@ try {
 </head>
 
 <body>
-    
+<?php renderHeader(); ?>
+
     <div class="container d-flex justify-content-center align-items-center h-100">
         <div class="row g-4 w-100" style="max-width: 900px;">
         <?php if ($successMessage): ?>
